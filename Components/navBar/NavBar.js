@@ -18,7 +18,7 @@ class NavBar extends Component {
         super(props)
     }
     _navigate(route){
-        NavigationService.navigate(route, { userName: 'Lucy' });
+        NavigationService.navigate(route);
     }
 
     render() {

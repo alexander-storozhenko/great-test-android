@@ -11,7 +11,7 @@ import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 import { NavigationActions } from 'react-navigation';
 import * as NavigationService from '../../lib/NavigationService'
 
-
+//test
 class NavBar extends Component {
 
     constructor(props){
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     nav_item_text: {
         fontSize: 11,
-        
+
      }
 })
 

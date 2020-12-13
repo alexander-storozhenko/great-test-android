@@ -56,10 +56,8 @@ class MovableContent extends Component {
 const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
-    card: {
-        width: width - 15,
-        minHeight: 40,
-        backgroundColor: "red"
+    sidebar: {
+        backgroundColor: "white",
     },
 })
 

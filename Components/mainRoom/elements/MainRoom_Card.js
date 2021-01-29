@@ -13,12 +13,23 @@ import Profile from '../../svg/Profile';
 import TestOne from '../../svg/TestOne';
 import { color } from 'react-native-reanimated';
 import TestTwo from '../../svg/TestTwo';
+import { showNavBar } from '../../../actions/navBarAction';
+import { setTestData } from '../../../actions/testsAction';
 
 class MainRoom_Card extends Component {
     constructor(props) {
         super(props)
         // this.navigation = props.navigation
     }
+
+    onClick = () => {
+        this.props.onSetTestTemplateData({ test_t_id: this.props.test_t_id })
+        this.props.navigation.navigate('TestPreview')
+        console.log("a",this.props.testTData)
+        // this.props.onSetTestData()
+        this.props.onShowNavBar(false)
+    }
+
     render() {
         return (
             <View style={styles.card}>
@@ -29,19 +40,19 @@ class MainRoom_Card extends Component {
                         <View style={styles.statistics_container}>
                             <View style={styles.statisticsContent}>
                                 <Eye fill={lightColor} width="15" height="15" />
-                                <Text style={{ marginLeft: 3, color: lightColor }} >12k</Text>
+                                <Text style={{ marginLeft: 3, color: lightColor }} >{this.props.plays}</Text>
 
                                 <Love fill={lightColor} style={{ marginLeft: 8 }} width="13" height="13" />
-                                <Text style={{ marginLeft: 3, color: lightColor }} >1.3k</Text>
+                                <Text style={{ marginLeft: 3, color: lightColor }} >{this.props.likes}</Text>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Profile width={14} height={14} fill={primaryColor} />
-                                <Text style={{ color: "white", marginLeft: 10, fontFamily: fontMedium }}>Alex Abramov</Text>
+                                <Text style={{ color: "white", marginLeft: 10, fontFamily: fontMedium }}>{this.props.author}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={{ overflow: 'hidden', borderRadius: 10 }}>
-                        <TouchableNativeFeedback onPress={() => this.props.navigation.navigate('TestPreview')}>
+                        <TouchableNativeFeedback onPress={() => this.onClick()}>
                             <View style={{ padding: 10, borderRadius: 10 }}>
 
                                 <View style={{ width: '100%', height: "100%" }}>
@@ -49,6 +60,7 @@ class MainRoom_Card extends Component {
                                         <Text style={{ fontSize: h2, fontFamily: fontBold, color: titleColorLight }}>
                                             {this.props.title}
                                         </Text>
+
                                     </View>
 
                                     <View style={styles.subTitleContainer}>
@@ -57,10 +69,6 @@ class MainRoom_Card extends Component {
                                         </Text>
                                     </View>
 
-
-                                    <Text style={{ color: primaryColor, marginLeft: 5, fontSize: h4, fontFamily: fontBold }}>
-                                        12 questions
-                                    </Text>
                                     {/* {this.props.questionsCount} */}
                                 </View>
                             </View>
@@ -114,4 +122,11 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MainRoom_Card;
+export default connect(
+    null,
+    dispatch => ({
+        // onSetTestData: (data) => dispatсh(setTestData(data)),
+        onSetTestTemplateData: (data) => dispatch({ type: 'TEST/SET_TEST_T_DATA', payload: data }),
+        onShowNavBar: (state) => dispatch(showNavBar(state))
+    })
+)(MainRoom_Card);

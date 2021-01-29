@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
         paddingTop:0,
         paddingBottom:0,
         width: width,
-        height: height - navHeight,
+        height: '100%',
         justifyContent: 'center',
         flexDirection: 'row',
-        backgroundColor:'#fff',
+        backgroundColor:'#0000',
         overflow:'visible'
     },
 })

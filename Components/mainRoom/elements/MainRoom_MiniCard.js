@@ -24,10 +24,10 @@ class MainRoom_MiniCard extends Component {
                     <View style={styles.statistics}>
                         <View style={styles.statisticsContent}>
                             <Eye fill={lightColor} width="15" height="15"/>
-                            <Text style={{marginLeft:3,  color:lightColor}} >12k</Text>
+                            <Text style={{marginLeft:3,  color:lightColor}} >{this.props.likes}</Text>
                             
                             <Love fill={lightColor} style={{marginLeft:8}} width="13" height="13"/>
-                            <Text style={{marginLeft:3,  color:lightColor}} >1.3k</Text>        
+                            <Text style={{marginLeft:3,  color:lightColor}} >{this.props.plays}</Text>        
                         </View>
                    
                     </View>

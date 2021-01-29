@@ -16,17 +16,10 @@ class Header extends Component {
     }
 
     render() {
-        const menuButton = this.props.move 
-        ? <HeaderClose style={styles.menuIcon} fill={primaryColor} width="23" height="23"/> 
-        : <HeaderMenu style={styles.menuIcon} fill={primaryColor} width="30" height="30"/> 
+      
 
         return (
             <View style={styles.header}>
-                <TouchableWithoutFeedback onPress={()=>this.props.onMoveSidebar() }>
-                    <View style={styles.menuIconContainer}>
-                   {menuButton}
-                   </View>
-                </TouchableWithoutFeedback>
             </View>
         );
     }

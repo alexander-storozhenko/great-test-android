@@ -5,6 +5,7 @@ export const secondaryColor = "#1c1c1c"
 export const lightColor     = "#f1f1f1"
 
 export const contrastColor = "#377ADF"
+export const checkedColor = "#DF379C"
 
 export const titleColor      = "#1c1c1c"
 export const titleColorLight = "#fff"
@@ -23,13 +24,14 @@ export const fontLight    = 'QuickSand-Light'
 //font-sizes
 
 export const h1 = 48
+export const h1_5 = 34
 export const h2 = 26
 export const h3 = 20
 export const h4 = 14
 
 // room padding
 
-export const roomPadding = 15
+export const roomPadding = 8
 
 //
 
@@ -56,3 +58,7 @@ export const mr_10 = {marginRight:10}
 export const mr_20 = {marginRight:20}
 export const mr_30 = {marginRight:30}
 
+// default card colors
+
+export const firstColor = "#456712"
+export const secondColor = "#001112"

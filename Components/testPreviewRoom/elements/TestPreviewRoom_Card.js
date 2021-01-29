@@ -13,6 +13,7 @@ import Profile from '../../svg/Profile';
 class TestPreviewRoom_Card extends Component {
     render() {
         return (
+            <View style={{paddingRight:5, paddingLeft:5}}>
             <View style={styles.card}>
                 <View style={styles.card_item}>
                     <TestTwo width={30} height={30} fill={secondaryColor}/>
@@ -38,6 +39,7 @@ class TestPreviewRoom_Card extends Component {
                     <Profile width={30} height={30} fill={secondaryColor}/>
                     <Text style={styles.card_item_text}>BAbka_v_tapkah</Text>
                 </View>
+            </View>
             </View>
         );
     }

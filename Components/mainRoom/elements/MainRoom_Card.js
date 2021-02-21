@@ -19,14 +19,11 @@ import { setTestData } from '../../../actions/testsAction';
 class MainRoom_Card extends Component {
     constructor(props) {
         super(props)
-        // this.navigation = props.navigation
     }
 
     onClick = () => {
         this.props.onSetTestTemplateData({ test_t_id: this.props.test_t_id })
         this.props.navigation.navigate('TestPreview')
-        console.log("a",this.props.testTData)
-        // this.props.onSetTestData()
         this.props.onShowNavBar(false)
     }
 
@@ -60,7 +57,6 @@ class MainRoom_Card extends Component {
                                         <Text style={{ fontSize: h2, fontFamily: fontBold, color: titleColorLight }}>
                                             {this.props.title}
                                         </Text>
-
                                     </View>
 
                                     <View style={styles.subTitleContainer}>

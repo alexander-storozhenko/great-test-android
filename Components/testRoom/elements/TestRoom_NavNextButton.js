@@ -6,7 +6,7 @@ import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 import { sendAnswers } from '../../../actions/answersAction';
 import { decreaseQuestionNumber, increaseQuestionNumber } from '../../../actions/questionsAction';
 
-class TestRoom_NavButton extends Component {
+class TestRoom_NavNextButton extends Component {
     constructor(props) {
         super(props)
         this.state = { pressed: false }
@@ -21,7 +21,7 @@ class TestRoom_NavButton extends Component {
 
     onNext = () => {
         
-        this.props.onSendAnswers(this.props.user_answers, this.props.test_id)
+        this.props.onSendAnswers(this.props.answers, this.props.test_id)
         this.props.onIncreaseQuestionNumber()
         this.props.navigation.push('Test', { test_id: this.props.test_id })
     }
@@ -32,13 +32,6 @@ class TestRoom_NavButton extends Component {
         return (
             <View style={{ alignItems: 'flex-end', height: 65 }}>
                 <View style={styles.container}>
-                    <View style={[styles.button, styles.prev]}>
-                        <TouchableNativeFeedback onPress={() => this.onPrev()}>
-                            <View style={styles.text_container}>
-                                <Text style={styles.text}>prev</Text>
-                            </View>
-                        </TouchableNativeFeedback>
-                    </View>
                     <View style={[styles.button, styles.next]}>
                         <TouchableNativeFeedback onPress={() => this.onNext()} style={{ width: '100%', height: '100%' }}>
                             <View style={styles.text_container}>
@@ -77,28 +70,21 @@ const styles = StyleSheet.create({
         fontSize: h3,
         textTransform: 'uppercase'
     },
-    prev: {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        width: '40%'
-    },
     next: {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
         borderLeftWidth: 0,
-        width: '60%'
+        width: '100%'
     }
 })
 
 export default connect(
     state => ({
-        // userAnswers: state.userAnswers,
+        userAnswers: state.userAnswers,
         questionNumber: state.questionNumber
     }),
     dispatch => ({
-        onDecreaseQuestionNumber: () => dispatch({type: 'QUESTION/DECREASE_NUMBER'}),
-        onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),
-        
-        // onSendAnswers: (userAnswers, question_id) => dispatch(sendAnswers(userAnswers, question_id))
+        onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),  
+        onSendAnswers: (userAnswers, question_id) => dispatch(sendAnswers(userAnswers, question_id))
     })
-)(TestRoom_NavButton);
+)(TestRoom_NavNextButton);

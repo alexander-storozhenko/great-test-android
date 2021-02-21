@@ -11,8 +11,11 @@ class TestRoom_OneButton extends Component {
     }
 
     onClick = () => {
+        let user_answers = this.props.user_answers[this.props.question_number];
+        if(user_answers == null || user_answers[this.props.key] == null) {
+            
+        }
         this.setState({ pressed: !this.state.pressed })
-        console.log(this.state.pressed)
     }
 
     render() {
@@ -43,4 +46,11 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TestRoom_OneButton;
+export default connect(
+    state => ({
+        question_number: state.question_number,
+        user_answers: state.user_answers,
+    }),
+    dispatch => ({
+      
+    }) )(TestRoom_OneButton);

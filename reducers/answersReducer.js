@@ -1,5 +1,5 @@
-export const answers = (state = [], action) => {
+export const user_answers = (state = [], action) => {
     if (action.type == 'ANSWERS_SEND/SUCCESS')
-        return [...state.answers, action.payload]
+        return [...state.user_answers, action.payload]
     return state
 }

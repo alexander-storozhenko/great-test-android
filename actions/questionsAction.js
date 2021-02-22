@@ -12,7 +12,7 @@ export const getQuestion = (test_id, question_number) => dispatch => {
     }))
         .then(res => res.json())
         .then(result => {
-            console.log('res',result)
+            // console.log('res',result)
             dispatch({ type: 'QUESTION/GET_SUCCESS', payload: result })
         })
 }

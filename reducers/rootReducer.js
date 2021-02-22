@@ -7,6 +7,7 @@ import { navbarShow } from "./navBar";
 
 import { question, questionNumber, questionLoading } from "./questionReducer";
 import { testPreviewLoading, testPreviewInfo,testTData } from "./testReducer";
+import { user_answers } from "./answersReducer";
 
 export default combineReducers({
     move,
@@ -22,6 +23,8 @@ export default combineReducers({
 
     testPreviewInfo,
     testPreviewLoading,
-    testTData
-    
+    testTData,
+
+    user_answers,
+
 })

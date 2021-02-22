@@ -30,7 +30,7 @@ class MainRoom extends Component {
             return { first: firstColor, second: secondColor }
         return { first: colors[0], second: colors[1] }
     }
-    
+
     onRefresh = () =>{
         this.props.onLoadRecommends()
     }
@@ -51,15 +51,15 @@ class MainRoom extends Component {
                     subTitle={test.sub_title}
                     likes={test.likes}
                     plays={test.plays}
-                    test_t_id={test.test_t_id}
-                    author={test.author.name}
+                    test_t_id={test.id}
+                    author={test.author}
                 />)
             }
             else if (recommend.type === 'carousel' && recommend.tests.length > 1) {
                 items.push(
                     <MainRoom_Carousel key={key}>
                         {recommend.tests.map((t, k) => {
-                            
+
                             return <MainRoom_MiniCard
                                 key={k}
                                 navigation={this.props.navigation}

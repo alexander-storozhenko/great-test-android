@@ -12,23 +12,21 @@ class TestRoom_NavNextButton extends Component {
         this.state = { pressed: false }
     }
 
-    // TODO now calls problems (goBack on xiomi break logic) on every onNext sends answers.  
+    // TODO now calls problems (goBack on xiomi break logic) on every onNext sends answers.
     onPrev = () => {
         // this.props.onDecreaseQuestionNumber();
         // this.props.navigation.goBack()
-      
+
     }
 
     onNext = () => {
-        
-        this.props.onSendAnswers(this.props.answers, this.props.test_id)
+        console.log(this.props.user_answers)
+        this.props.onSendAnswers(this.props.user_answers, this.props.test_id)
         this.props.onIncreaseQuestionNumber()
         this.props.navigation.push('Test', { test_id: this.props.test_id })
     }
 
     render() {
-        console.log(this.props.questionNumber)
-
         return (
             <View style={{ alignItems: 'flex-end', height: 65 }}>
                 <View style={styles.container}>
@@ -71,20 +69,17 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase'
     },
     next: {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-        borderLeftWidth: 0,
         width: '100%'
     }
 })
 
 export default connect(
     state => ({
-        userAnswers: state.userAnswers,
+        user_answers: state.user_answers,
         questionNumber: state.questionNumber
     }),
     dispatch => ({
-        onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),  
+        onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),
         onSendAnswers: (userAnswers, question_id) => dispatch(sendAnswers(userAnswers, question_id))
     })
 )(TestRoom_NavNextButton);

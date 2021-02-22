@@ -11,6 +11,7 @@ import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 import TestRoom_NavNextButton from './elements/TestRoom_NavNextButton';
 
 import { getQuestion } from '../../actions/questionsAction';
+import {setDefaultUserAnswers} from "../../actions/answersAction";
 
 class TestRoom extends Component {
     constructor(props) {
@@ -32,6 +33,7 @@ class TestRoom extends Component {
             data.title = this.props.questionData.data.text
         }
 
+        console.log(this.props.question_number)
         return (
             <View>
                 { this.props.loading ?
@@ -42,15 +44,19 @@ class TestRoom extends Component {
                         <View style={styles.content}>
                             <View style={styles.answers_block}>
                                 <View style={{ flexDirection: 'column', alignSelf: 'center' }}>
-                                    { 
+                                    {
                                         Object.entries(data.answers)
-                                        .map(([key, value]) => <TestRoom_OneButton key={key}>{value}</TestRoom_OneButton>)
+                                        .map(([key, value]) =>
+                                            <TestRoom_OneButton
+                                                test_id={this.props.route.params.test_id}
+                                                id={key}
+                                                key={key}>{value}</TestRoom_OneButton>)
                                     }
                                 </View>
                             </View>
                         </View>
                         <View style={{ position: 'absolute', bottom: 15, width: '100%' }}>
-                            <TestRoom_NavNextButton test_id={this.props.route.params.test_id} navigation={this.props.navigation} />       
+                            <TestRoom_NavNextButton test_id={this.props.route.params.test_id} navigation={this.props.navigation} />
                         </View>
                     </View>
                 }
@@ -91,5 +97,6 @@ export default connect(
         loading: state.questionLoading,
     }),
     dispatch => ({
+        setDefaultUserAnswers: (answers, test_id, question_id) => dispatch(setDefaultUserAnswers(answers,test_id,question_id)),
         onGetQuestion: (test_id, question_number) => dispatch(getQuestion(test_id, question_number))
     }))(TestRoom);

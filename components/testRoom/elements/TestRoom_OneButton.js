@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, View, Text, StyleSheet } from "react-native";
 import { checkedColor, contrastColor, fontBold, h2, primaryColor, secondaryColor } from '../../StyleConstants';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {sendAnswers, storeUserAnswer} from "../../../actions/answersAction";
 
 class TestRoom_OneButton extends Component {
     constructor(props) {
@@ -11,11 +12,9 @@ class TestRoom_OneButton extends Component {
     }
 
     onClick = () => {
-        let user_answers = this.props.user_answers[this.props.question_number];
-        if(user_answers == null || user_answers[this.props.key] == null) {
-            
-        }
         this.setState({ pressed: !this.state.pressed })
+
+        this.props.storeAnswers(!this.state.pressed, this.props.id, null, this.props.question_number)
     }
 
     render() {
@@ -48,9 +47,9 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
-        question_number: state.question_number,
+        question_number: state.questionNumber,
         user_answers: state.user_answers,
     }),
     dispatch => ({
-      
-    }) )(TestRoom_OneButton);
+      storeAnswers: (value, answer_id, test_id, question_number) => dispatch(storeUserAnswer(value, answer_id, test_id, question_number))
+    }))(TestRoom_OneButton);

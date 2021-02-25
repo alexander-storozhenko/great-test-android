@@ -1,5 +1,5 @@
 export const testPreviewInfo = (state = {}, action) => {
-    if (action.type == 'TEST/GET_PREVIEW_INFO_SUCCESS') {
+    if (action.type === 'TEST/GET_PREVIEW_INFO_SUCCESS') {
         return action.payload
     }
 
@@ -7,11 +7,11 @@ export const testPreviewInfo = (state = {}, action) => {
 }
 
 export const testPreviewLoading = (state = false, action) => {
-    return action.type == 'TEST/GET_PREVIEW_INFO_PROGRESS'
+    return action.type === 'TEST/GET_PREVIEW_INFO_PROGRESS'
 }
 
 export const testTData = (state = null, action) => {
-    if (action.type == 'TEST/SET_TEST_T_DATA')
+    if (action.type === 'TEST/SET_TEST_T_DATA')
         return action.payload
     return state
 }

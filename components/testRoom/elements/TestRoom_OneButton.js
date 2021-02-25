@@ -4,6 +4,7 @@ import { Button, View, Text, StyleSheet } from "react-native";
 import { checkedColor, contrastColor, fontBold, h2, primaryColor, secondaryColor } from '../../StyleConstants';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import {sendAnswers, storeUserAnswer} from "../../../actions/answersAction";
+import {QUESTION_TYPE_ONE} from "../../QuestionTypeConstants";
 
 class TestRoom_OneButton extends Component {
     constructor(props) {
@@ -13,12 +14,11 @@ class TestRoom_OneButton extends Component {
 
     onClick = () => {
         this.setState({ pressed: !this.state.pressed })
-
-        this.props.storeAnswers(!this.state.pressed, this.props.id, null, this.props.question_number)
+        this.props.storeAnswers(QUESTION_TYPE_ONE, !this.props.active, this.props.id, null, this.props.question_number)
     }
 
     render() {
-        const backgroundColor = this.state.pressed ? checkedColor : contrastColor
+        const backgroundColor = this.props.active ? checkedColor : contrastColor
         return (
             <View style={{ marginTop: 15 }}>
                 <TouchableWithoutFeedback onPress={() => this.onClick()} style={{ ...styles.button, backgroundColor: backgroundColor }}>
@@ -51,5 +51,6 @@ export default connect(
         user_answers: state.user_answers,
     }),
     dispatch => ({
-      storeAnswers: (value, answer_id, test_id, question_number) => dispatch(storeUserAnswer(value, answer_id, test_id, question_number))
+      storeAnswers: (type, value, answer_id, test_id, question_number) =>
+          dispatch(storeUserAnswer(type, value, answer_id, test_id, question_number))
     }))(TestRoom_OneButton);

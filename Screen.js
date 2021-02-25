@@ -30,7 +30,7 @@ import RecommendsNav from './components/svg/RecommendsNav';
 import SearchNav from './components/svg/SearchNav';
 import Profile from './components/svg/Profile';
 import ProfileNav from './components/svg/ProfileNav';
-import {slideAnimation} from './lib/NavigationAnimations'
+import {opacityAnimation, slideAnimation} from './lib/NavigationAnimations'
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
@@ -48,7 +48,7 @@ function StackNavigator1() {
             <Stack.Navigator>
                 <Stack.Screen options={{ headerShown: false }} name="Main" component={MainRoom} />
 
-               
+
             </Stack.Navigator>
         </Room>
     );
@@ -59,7 +59,7 @@ function TestPreviewNaviagtor() {
     return <Room>
         <Stack.Navigator>
             <Stack.Screen name="TestPreview" component={TestPreviewRoom} options={slideAnimation} />
-            <Stack.Screen  name="Test" component={TestRoom}  options={slideAnimation} />
+            <Stack.Screen  name="Test" component={TestRoom} options={opacityAnimation}  />
 
         </Stack.Navigator>
     </Room>
@@ -112,7 +112,7 @@ function Screen(props) {
             <NavigationContainer theme={navTheme}>
                 <Stack.Navigator initialRouteName="Home">
                     <Stack.Screen options={{ headerShown: false }} name="Home" component={TabNavigator} />
-                    <Stack.Screen options={{ headerShown: false }} name="TestPreview" component={TestPreviewNaviagtor} options={slideAnimation}/>
+                    <Stack.Screen options={{ headerShown: false }} name="TestPreview" component={TestPreviewNaviagtor}  options={slideAnimation}/>
                 </Stack.Navigator>
             </NavigationContainer>
 

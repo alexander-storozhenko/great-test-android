@@ -4,7 +4,7 @@ import { Button, View, Text, StyleSheet } from "react-native";
 import { checkedColor, contrastColor, fontBold, h2, h3, primaryColor, secondaryColor } from '../../StyleConstants';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 import { sendAnswers } from '../../../actions/answersAction';
-import { decreaseQuestionNumber, increaseQuestionNumber } from '../../../actions/questionsAction';
+import {decreaseQuestionNumber, getQuestion, increaseQuestionNumber} from '../../../actions/questionsAction';
 
 class TestRoom_NavNextButton extends Component {
     constructor(props) {
@@ -16,14 +16,14 @@ class TestRoom_NavNextButton extends Component {
     onPrev = () => {
         // this.props.onDecreaseQuestionNumber();
         // this.props.navigation.goBack()
-
     }
 
     onNext = () => {
-        console.log(this.props.user_answers)
-        this.props.onSendAnswers(this.props.user_answers, this.props.test_id)
-        this.props.onIncreaseQuestionNumber()
-        this.props.navigation.push('Test', { test_id: this.props.test_id })
+
+        this.props.onSendAnswers(this.props.user_answers, this.props.test_id,this.props.question_number, this.props.navigation)
+
+        this.props.onGetQuestion(this.props.test_id, this.props.question_number, this.props.navigation)
+        // this.props.onIncreaseQuestionNumber()
     }
 
     render() {
@@ -76,10 +76,11 @@ const styles = StyleSheet.create({
 export default connect(
     state => ({
         user_answers: state.user_answers,
-        questionNumber: state.questionNumber
+        question_number: state.questionNumber
     }),
     dispatch => ({
         onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),
-        onSendAnswers: (userAnswers, question_id) => dispatch(sendAnswers(userAnswers, question_id))
+        onSendAnswers: (userAnswers, test_id, question_number, navigation) => dispatch(sendAnswers(userAnswers, test_id, question_number, navigation)),
+        onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
     })
 )(TestRoom_NavNextButton);

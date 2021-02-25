@@ -1,6 +1,5 @@
 export const question = (state = null, action) => {
     if (action.type === 'QUESTION/GET_SUCCESS') {
-      
         return action.payload
     }
     return state
@@ -16,6 +15,6 @@ export const questionNumber = (state = 0, action) => {
     return state
 }
 
-export const questionLoading = (sate=true, action) => {
+export const questionLoading = (state= false, action) => {
     return action.type === 'QUESTION/GET_PROGRESS'
 }

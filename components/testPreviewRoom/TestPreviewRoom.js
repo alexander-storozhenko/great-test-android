@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button, View, Text, StyleSheet } from "react-native";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Button, View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import TestPreviewRoom_Card from './elements/TestPreviewRoom_Card'
-import { fontBold, h2, mt_20, mt_30, mt_10, secondaryColor } from '../StyleConstants';
+import {fontBold, h2, mt_20, mt_30, mt_10, secondaryColor} from '../StyleConstants';
 import BigButton from '../bigButton/BigButton';
-import { showNavBar } from '../../actions/navBarAction';
-import { getPreviewInfo, setTestData } from '../../actions/testsAction';
-import { navigationRef } from '../../lib/NavigationService';
+import {showNavBar} from '../../actions/navBarAction';
+import {getPreviewInfo, setTestData} from '../../actions/testsAction';
+import {navigationRef} from '../../lib/NavigationService';
+import {getQuestion} from "../../actions/questionsAction";
 
 class TestPreviewRoom extends Component {
     constructor(props) {
@@ -15,22 +16,26 @@ class TestPreviewRoom extends Component {
 
     componentDidMount() {
         this.props.onGetPreviewInfo(this.props.testTData.test_t_id)
-        console.log(' this.props.loading ' +   this.props.loading)
+        console.log(' this.props.loading ' + this.props.loading)
     }
 
     render() {
         return (
             <View>
                 {
-                    this.props.loading ? <Text>Loading...</Text> :
+                    this.props.loading ?
+                        <View style={styles.activity_indicator_container}>
+                            <ActivityIndicator size="large" color={secondaryColor}/>
+                        </View> :
                         <View style={styles.preview}>
                             <Text style={styles.title}>Title test kok kek</Text>
-                            <View style={{ ...mt_10, width: '100%' }}>
-                                <TestPreviewRoom_Card />
+                            <View style={{...mt_10, width: '100%'}}>
+                                <TestPreviewRoom_Card/>
                             </View>
-                            <View style={{ width: '100%', position: 'absolute', bottom: 20 }}>
+                            <View style={{width: '100%', position: 'absolute', bottom: 20}}>
                                 <BigButton onPress={() => {
-                                    this.props.navigation.push('Test', { test_id: this.props.previewInfo.test_id })
+                                    this.props.onGetQuestion(this.props.previewInfo.test_id,0 ,this.props.navigation )
+                                    // this.props.onIncreaseQuestionNumber()
                                 }
                                 }>Start!</BigButton>
                             </View>
@@ -55,6 +60,12 @@ const styles = StyleSheet.create({
         fontSize: h2,
         fontFamily: fontBold,
         color: secondaryColor,
+    },
+    activity_indicator_container: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })
 export default connect(
@@ -64,7 +75,9 @@ export default connect(
         testTData: state.testTData
     }),
     dispatch => ({
+        onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),
         onGetPreviewInfo: (test_t_id) => dispatch(getPreviewInfo(test_t_id)),
         onShowNavBar: (state) => dispatch(showNavBar(state)),
+        onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
     })
 )(TestPreviewRoom);

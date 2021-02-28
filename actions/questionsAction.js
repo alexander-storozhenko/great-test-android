@@ -25,3 +25,6 @@ export const increaseQuestionNumber = (question_number) => dispatch => {
 export const decreaseQuestionNumber = (question_number) => dispatch => {
     dispatch({ type: 'QUESTION/DECREASE_NUMBER', payload: question_number })
 }
+export const resetQuestionNumber = () => dispatch => {
+    dispatch({ type: 'QUESTION/RESET_NUMBER', payload: 0 })
+}

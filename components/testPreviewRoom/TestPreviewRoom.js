@@ -7,7 +7,7 @@ import BigButton from '../bigButton/BigButton';
 import {showNavBar} from '../../actions/navBarAction';
 import {getPreviewInfo, setTestData} from '../../actions/testsAction';
 import {navigationRef} from '../../lib/NavigationService';
-import {getQuestion} from "../../actions/questionsAction";
+import {getQuestion, resetQuestionNumber} from "../../actions/questionsAction";
 
 class TestPreviewRoom extends Component {
     constructor(props) {
@@ -15,8 +15,8 @@ class TestPreviewRoom extends Component {
     }
 
     componentDidMount() {
+        this.props.resetQuestionNumber()
         this.props.onGetPreviewInfo(this.props.testTData.test_t_id)
-        console.log(' this.props.loading ' + this.props.loading)
     }
 
     render() {
@@ -79,5 +79,6 @@ export default connect(
         onGetPreviewInfo: (test_t_id) => dispatch(getPreviewInfo(test_t_id)),
         onShowNavBar: (state) => dispatch(showNavBar(state)),
         onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
+        resetQuestionNumber: () => dispatch(resetQuestionNumber()),
     })
 )(TestPreviewRoom);

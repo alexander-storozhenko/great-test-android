@@ -9,6 +9,8 @@ import { question, questionNumber, questionLoading } from "./questionReducer";
 import { testPreviewLoading, testPreviewInfo,testTData } from "./testReducer";
 import { user_answers } from "./answersReducer";
 
+import { search_progress, search_results } from "./searchReducer";
+
 export default combineReducers({
     move,
 
@@ -26,5 +28,8 @@ export default combineReducers({
     testTData,
 
     user_answers,
+
+    search_progress,
+    search_results,
 
 })

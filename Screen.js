@@ -31,6 +31,7 @@ import SearchNav from './components/svg/SearchNav';
 import Profile from './components/svg/Profile';
 import ProfileNav from './components/svg/ProfileNav';
 import {opacityAnimation, slideAnimation} from './lib/NavigationAnimations'
+import SearchRoom from "./components/searchRoom/SearchRoom";
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
@@ -64,6 +65,16 @@ function TestPreviewNaviagtor() {
         </Stack.Navigator>
     </Room>
 }
+function StackSearchNavigator() {
+    return (
+        <Room>
+            <Stack.Navigator>
+                <Stack.Screen name="Search" component={SearchRoom} options={slideAnimation} />
+            </Stack.Navigator>
+        </Room>
+    );
+}
+
 
 function StackNavigator2() {
     return (
@@ -88,7 +99,7 @@ function TabNavigator() {
         <Tab.Screen options={{
             tabBarLabel: 'Search',
             tabBarIcon: ({ color, size }) => (<SearchNav width={20} height={20} fill={color} />),
-        }} name="Search" component={StackNavigator2} />
+        }} name="Search" component={StackSearchNavigator} onPress={()=>console.log('!!!!!!!!!!!!!!!!!')}/>
         <Tab.Screen options={{
             tabBarLabel: 'Profile',
             tabBarIcon: ({ color, size }) => (<ProfileNav width={20} height={20} fill={color} />),
@@ -99,12 +110,6 @@ function TabNavigator() {
 
 
 function Screen(props) {
-
-    // props.onShowNavBar(true)
-
-    console.log('-------')
-    console.log(props.navbarShow)
-
     return (
         <View style={styles.container}>
             <Header />
@@ -115,9 +120,6 @@ function Screen(props) {
                     <Stack.Screen options={{ headerShown: false }} name="TestPreview" component={TestPreviewNaviagtor}  options={slideAnimation}/>
                 </Stack.Navigator>
             </NavigationContainer>
-
-
-            {/* {props.navbarShow ? <NavBar /> : null} */}
             <StatusBar style="light" />
         </View>
 

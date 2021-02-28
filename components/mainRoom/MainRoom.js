@@ -13,6 +13,7 @@ import { loadRecommends } from '../../actions/recommendsAction';
 import { firstColor, secondColor } from '../StyleConstants';
 import { withNavigation } from 'react-navigation';
 import { showNavBar } from '../../actions/navBarAction';
+import {resetQuestionNumber} from "../../actions/questionsAction";
 
 class MainRoom extends Component {
     constructor(props) {
@@ -38,7 +39,6 @@ class MainRoom extends Component {
     render() {
         let items = []
 
-        console.log(this.props.recommends.length)
         this.props.recommends.map((recommend, key) => {
             if (recommend.type === 'card' && recommend.tests.length === 1) {
 
@@ -100,5 +100,6 @@ export default connect(
     }),
     dispatch => ({
         onShowNavBar: (state)=> dispatch(showNavBar(state)),
-        onLoadRecommends: () => dispatch(loadRecommends())
+        onLoadRecommends: () => dispatch(loadRecommends()),
+
     }))(MainRoom);

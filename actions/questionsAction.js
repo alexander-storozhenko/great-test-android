@@ -5,7 +5,6 @@ const url = 'questions/get'
 
 export const getQuestion = (test_id, question_number, navigation) => dispatch => {
 
-
     fetch(apiDomain + apiPath(url, {
         question_number: question_number,
         test_id: test_id

@@ -5,6 +5,7 @@ import { checkedColor, contrastColor, fontBold, h2, h3, primaryColor, secondaryC
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 import { sendAnswers } from '../../../actions/answersAction';
 import {decreaseQuestionNumber, getQuestion, increaseQuestionNumber} from '../../../actions/questionsAction';
+import {getTestResults} from "../../../actions/testsAction";
 
 class TestRoom_NavNextButton extends Component {
     constructor(props) {
@@ -19,10 +20,13 @@ class TestRoom_NavNextButton extends Component {
     }
 
     onNext = () => {
-
         this.props.onSendAnswers(this.props.user_answers, this.props.test_id,this.props.question_number, this.props.navigation)
-
-        this.props.onGetQuestion(this.props.test_id, this.props.question_number, this.props.navigation)
+        if(this.props.question_number >= this.props.question_count)
+            this.props.onGetTestResults(this.props.test_id, this.props.navigation)
+        else{
+            this.props.onGetQuestion(this.props.test_id, this.props.question_number, this.props.navigation)
+        }
+            // TODO FINISH_SCREEN
         // this.props.onIncreaseQuestionNumber()
     }
 
@@ -76,9 +80,11 @@ const styles = StyleSheet.create({
 export default connect(
     state => ({
         user_answers: state.user_answers,
-        question_number: state.questionNumber
+        question_number: state.questionNumber,
+        question_count: state.questionCount,
     }),
     dispatch => ({
+        onGetTestResults: (test_id, navigation) => dispatch(getTestResults(test_id, navigation)),
         onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),
         onSendAnswers: (userAnswers, test_id, question_number, navigation) => dispatch(sendAnswers(userAnswers, test_id, question_number, navigation)),
         onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),

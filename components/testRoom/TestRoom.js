@@ -106,6 +106,7 @@ export default connect(
     state => ({
         questionData: state.question,
         question_number: state.questionNumber,
+        question_count: state.questionCount,
         loading: state.questionLoading,
         user_answers: state.user_answers,
     }),

@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, View, Text, Dimensions, StyleSheet, TouchableHighlight, TouchableOpacity } from "react-native";
-import { fontBold, fontMedium, h2, h3, h4, lightColor, titleColor, subTitleColor, titleColorLight, subTitleColorLight, primaryColor } from '../../StyleConstants';
+import { fontBold, fontMedium, h2, h3, h4, lightColor, titleColor, subTitleColor, titleColorLight, subTitleColorLight, primaryColor } from '../StyleConstants';
 import Ripple from 'react-native-material-ripple';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableRipple } from 'react-native-paper';
-import Eye from '../../svg/Eye';
-import Love from '../../svg/Love';
+import Eye from '../svg/Eye';
+import Love from '../svg/Love';
 import { Link } from "react-router-native";
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
-import Profile from '../../svg/Profile';
-import TestOne from '../../svg/TestOne';
+import Profile from '../svg/Profile';
+import TestOne from '../svg/TestOne';
 import { color } from 'react-native-reanimated';
-import TestTwo from '../../svg/TestTwo';
-import { showNavBar } from '../../../actions/navBarAction';
-import { setTestData } from '../../../actions/testsAction';
+import TestTwo from '../svg/TestTwo';
+import { showNavBar } from '../../actions/navBarAction';
+import { setTestData } from '../../actions/testsAction';
 
-class MainRoom_Card extends Component {
+class TestCard extends Component {
     constructor(props) {
         super(props)
     }
-
     onClick = () => {
         this.props.onSetTestTemplateData({ test_t_id: this.props.test_t_id })
         this.props.navigation.navigate('TestPreview')
         this.props.onShowNavBar(false)
     }
-
     render() {
         return (
             <View style={styles.card}>
@@ -54,7 +52,7 @@ class MainRoom_Card extends Component {
 
                                 <View style={{ width: '100%', height: "100%" }}>
                                     <View style={styles.titleContainer}>
-                                        <Text style={{ fontSize: h2, fontFamily: fontBold, color: titleColorLight }}>
+                                        <Text style={{ fontSize: h2, fontFamily: fontBold, color: titleColorLight}}>
                                             {this.props.title}
                                         </Text>
                                     </View>
@@ -121,8 +119,7 @@ const styles = StyleSheet.create({
 export default connect(
     null,
     dispatch => ({
-        // onSetTestData: (data) => dispatсh(setTestData(data)),
         onSetTestTemplateData: (data) => dispatch({ type: 'TEST/SET_TEST_T_DATA', payload: data }),
         onShowNavBar: (state) => dispatch(showNavBar(state))
     })
-)(MainRoom_Card);
+)(TestCard);

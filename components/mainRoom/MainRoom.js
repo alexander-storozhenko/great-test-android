@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, View, Text, SafeAreaView, ScrollView, Dimensions,RefreshControl } from "react-native";
 import Header from "../header/Header";
 import Sidebar from '../sidebar/Sidebar';
-import MainRoom_Card from './elements/MainRoom_Card';
+import MainRoom_Card from '../testCard/TestCard';
 
 import MainRoom_MiniCard from './elements/MainRoom_MiniCard';
 import { Link } from 'react-router-native';
@@ -14,6 +14,7 @@ import { firstColor, secondColor } from '../StyleConstants';
 import { withNavigation } from 'react-navigation';
 import { showNavBar } from '../../actions/navBarAction';
 import {resetQuestionNumber} from "../../actions/questionsAction";
+import TestCard from "../testCard/TestCard";
 
 class MainRoom extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class MainRoom extends Component {
         return { first: colors[0], second: colors[1] }
     }
 
-    onRefresh = () =>{
+    onRefresh = () => {
         this.props.onLoadRecommends()
     }
 
@@ -41,9 +42,8 @@ class MainRoom extends Component {
 
         this.props.recommends.map((recommend, key) => {
             if (recommend.type === 'card' && recommend.tests.length === 1) {
-
                 const test = recommend.tests[0]
-                items.push(<MainRoom_Card
+                items.push(<TestCard
                     key={key}
                     navigation={this.props.navigation}
                     title={test.title}
@@ -52,7 +52,7 @@ class MainRoom extends Component {
                     likes={test.likes}
                     plays={test.plays}
                     test_t_id={test.id}
-                    author={test.author}
+                    author={test.author.name}
                 />)
             }
             else if (recommend.type === 'carousel' && recommend.tests.length > 1) {
@@ -75,6 +75,7 @@ class MainRoom extends Component {
                 )
             }
         })
+
 
         return (
             <SafeAreaView style={{ height: '100%', backgroundColor: 'white' }} >

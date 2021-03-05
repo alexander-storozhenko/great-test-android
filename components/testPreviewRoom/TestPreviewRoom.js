@@ -7,7 +7,7 @@ import BigButton from '../bigButton/BigButton';
 import {showNavBar} from '../../actions/navBarAction';
 import {getPreviewInfo, setTestData} from '../../actions/testsAction';
 import {navigationRef} from '../../lib/NavigationService';
-import {getQuestion, resetQuestionNumber} from "../../actions/questionsAction";
+import {getQuestion, resetQuestionNumber, setQuestionCount} from "../../actions/questionsAction";
 
 class TestPreviewRoom extends Component {
     constructor(props) {
@@ -72,7 +72,7 @@ export default connect(
     state => ({
         previewInfo: state.testPreviewInfo,
         loading: state.testPreviewLoading,
-        testTData: state.testTData
+        testTData: state.testTData,
     }),
     dispatch => ({
         onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),

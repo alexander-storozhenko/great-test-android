@@ -12,12 +12,10 @@ class TimerLine extends Component {
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount')
         clearInterval(this.interval)
     }
 
     ticksStart = () => {
-        console.log('kekekekekeke')
         this.interval = setInterval(() => {
                 console.log(this.interval)
                 if (this.state.time === 0) {

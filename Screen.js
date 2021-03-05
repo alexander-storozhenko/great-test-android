@@ -32,6 +32,7 @@ import Profile from './components/svg/Profile';
 import ProfileNav from './components/svg/ProfileNav';
 import {opacityAnimation, slideAnimation} from './lib/NavigationAnimations'
 import SearchRoom from "./components/searchRoom/SearchRoom";
+import FinishScreen from "./components/finishScreen/FinishScreen";
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
@@ -39,9 +40,6 @@ navTheme.colors.background = '#fff';
 const Stack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
-
-
-
 
 function StackNavigator1() {
     return (
@@ -55,16 +53,16 @@ function StackNavigator1() {
     );
 }
 
-
 function TestPreviewNaviagtor() {
     return <Room>
         <Stack.Navigator>
             <Stack.Screen name="TestPreview" component={TestPreviewRoom} options={slideAnimation} />
             <Stack.Screen  name="Test" component={TestRoom} options={opacityAnimation}  />
-
+            <Stack.Screen  name="Finish" component={FinishScreen} options={opacityAnimation}  />
         </Stack.Navigator>
     </Room>
 }
+
 function StackSearchNavigator() {
     return (
         <Room>
@@ -74,7 +72,6 @@ function StackSearchNavigator() {
         </Room>
     );
 }
-
 
 function StackNavigator2() {
     return (
@@ -117,7 +114,7 @@ function Screen(props) {
             <NavigationContainer theme={navTheme}>
                 <Stack.Navigator initialRouteName="Home">
                     <Stack.Screen options={{ headerShown: false }} name="Home" component={TabNavigator} />
-                    <Stack.Screen options={{ headerShown: false }} name="TestPreview" component={TestPreviewNaviagtor}  options={slideAnimation}/>
+                    <Stack.Screen options={slideAnimation} name="TestPreview" component={TestPreviewNaviagtor} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="light" />

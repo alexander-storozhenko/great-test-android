@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {View} from "react-native-web";
+import {View, Text} from "react-native";
 
 class FinishScreen extends Component {
     render() {
         return (
             <View>
-
+                <Text>FINISH</Text>
             </View>
         );
     }

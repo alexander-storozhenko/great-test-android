@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 export default connect(
     state => ({
         question_number: state.questionNumber,
-        user_answers: state.user_answers,
+        user_answers: state.userAnswers,
     }),
     dispatch => ({
       storeAnswers: (type, value, answer_id, test_id, question_number) =>

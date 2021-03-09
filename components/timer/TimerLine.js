@@ -51,7 +51,7 @@ class TimerLine extends Component {
 
 export default connect(
     state => ({
-        user_answers: state.user_answers,
+        user_answers: state.userAnswers,
         question_number: state.questionNumber
     }),
     dispatch => ({

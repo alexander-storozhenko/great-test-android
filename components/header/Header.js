@@ -2,13 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, StyleSheet, Dimensions, TouchableHighlight} from "react-native";
 import {primaryColor, secondaryColor} from "../StyleConstants";
-import {Image} from "react-native-svg";
-import { TouchableWithoutFeedback,TouchableOpacity } from 'react-native';
-import {moveSidebar} from '../../actions/sidebarAction';
-import HeaderMenu from '../svg/HeaderMenu';
-import HeaderClose from '../svg/HeaderClose';
-import {Animated} from 'react-native';
-import Ripple from 'react-native-material-ripple';
 
 class Header extends Component {
     constructor(props){
@@ -16,8 +9,6 @@ class Header extends Component {
     }
 
     render() {
-      
-
         return (
             <View style={styles.header}>
             </View>
@@ -49,7 +40,7 @@ const styles = StyleSheet.create({
         height:30,
     },
     menuIcon:{
-        
+
         color: "#afa",
         // marginTop:20,
         // marginLeft: 20,

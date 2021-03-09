@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, View, Text, SafeAreaView, ScrollView, Dimensions,RefreshControl } from "react-native";
 import Header from "../header/Header";
-import Sidebar from '../sidebar/Sidebar';
 import MainRoom_Card from '../testCard/TestCard';
 
 import MainRoom_MiniCard from './elements/MainRoom_MiniCard';

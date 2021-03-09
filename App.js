@@ -11,9 +11,7 @@ import TestPreviewRoom from "./components/testPreviewRoom/TestPreviewRoom";
 import NavBar from "./components/navBar/NavBar";
 
 import Header from "./components/header/Header";
-import Sidebar from "./components/sidebar/Sidebar";
 import rootReducer from './reducers/rootReducer';
-import MovableContent from './components/movableContent/MovableContent';
 import Room from './components/room/Room';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';

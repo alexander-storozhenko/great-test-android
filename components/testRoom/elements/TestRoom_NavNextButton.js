@@ -13,21 +13,14 @@ class TestRoom_NavNextButton extends Component {
         this.state = { pressed: false }
     }
 
-    // TODO now calls problems (goBack on xiomi break logic) on every onNext sends answers.
-    onPrev = () => {
-        // this.props.onDecreaseQuestionNumber();
-        // this.props.navigation.goBack()
-    }
-
     onNext = () => {
         this.props.onSendAnswers(this.props.user_answers, this.props.test_id,this.props.question_number, this.props.navigation)
-        if(this.props.question_number >= this.props.question_count)
+
+        if (this.props.question_number >= this.props.question_count)
             this.props.onGetTestResults(this.props.test_id, this.props.navigation)
-        else{
+        else
             this.props.onGetQuestion(this.props.test_id, this.props.question_number, this.props.navigation)
-        }
-            // TODO FINISH_SCREEN
-        // this.props.onIncreaseQuestionNumber()
+
     }
 
     render() {
@@ -79,7 +72,7 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
-        user_answers: state.user_answers,
+        user_answers: state.userAnswers,
         question_number: state.questionNumber,
         question_count: state.questionCount,
     }),

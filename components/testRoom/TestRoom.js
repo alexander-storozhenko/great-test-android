@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
 import Header from "../header/Header";
-import Sidebar from '../sidebar/Sidebar';
 import TestRoom_OneButton from './elements/TestRoom_OneButton'
 import TestOne from '../svg/TestOne';
 import {fontBold, h1, h1_5, h2, navHeight, secondaryColor} from '../StyleConstants';
@@ -108,7 +107,7 @@ export default connect(
         question_number: state.questionNumber,
         question_count: state.questionCount,
         loading: state.questionLoading,
-        user_answers: state.user_answers,
+        user_answers: state.userAnswers,
     }),
     dispatch => ({
         setDefaultUserAnswers: (answers, test_id, question_id) => dispatch(setDefaultUserAnswers(answers, test_id, question_id)),

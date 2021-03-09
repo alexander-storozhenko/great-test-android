@@ -7,7 +7,7 @@ import { navbarShow } from "./navBar";
 
 import { question, questionNumber, questionLoading, questionCount } from "./questionReducer";
 import { testPreviewLoading, testPreviewInfo,testTData } from "./testReducer";
-import { user_answers } from "./answersReducer";
+import { userAnswers } from "./answersReducer";
 
 import { search_progress, search_results } from "./searchReducer";
 
@@ -28,7 +28,7 @@ export default combineReducers({
     testPreviewLoading,
     testTData,
 
-    user_answers,
+    userAnswers,
 
     search_progress,
     search_results,

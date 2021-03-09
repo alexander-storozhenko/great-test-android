@@ -1,4 +1,4 @@
-export const user_answers = (state = {}, action) => {
+export const userAnswers = (state = {}, action) => {
     if (action.type === 'ANSWERS_STORE/SET_ONE') {
         const question_number = action.payload.question_number
         if (state.size === 0 || state[question_number] == null) {

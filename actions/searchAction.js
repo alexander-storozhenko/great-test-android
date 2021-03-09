@@ -11,6 +11,4 @@ export const searchData = (fragment) => dispatch => {
         .then(result => {
             dispatch({ type: 'SEARCH/SUCCESS', payload: result })
         })
-
-
 }

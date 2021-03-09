@@ -11,9 +11,7 @@ import TestPreviewRoom from "./components/testPreviewRoom/TestPreviewRoom";
 import NavBar from "./components/navBar/NavBar";
 
 import Header from "./components/header/Header";
-import Sidebar from "./components/sidebar/Sidebar";
 import rootReducer from './reducers/rootReducer';
-import MovableContent from './components/movableContent/MovableContent';
 import Room from './components/room/Room';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
@@ -33,6 +31,7 @@ import ProfileNav from './components/svg/ProfileNav';
 import {opacityAnimation, slideAnimation} from './lib/NavigationAnimations'
 import SearchRoom from "./components/searchRoom/SearchRoom";
 import FinishScreen from "./components/finishScreen/FinishScreen";
+import ProfileRoom from "./components/profileRoom/ProfileRoom";
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
@@ -73,6 +72,16 @@ function StackSearchNavigator() {
     );
 }
 
+function StackProfileRoomNavigator() {
+    return (
+        <Room>
+            <Stack.Navigator>
+                <Stack.Screen name="Profile" component={ProfileRoom} options={slideAnimation} />
+            </Stack.Navigator>
+        </Room>
+    );
+}
+
 function StackNavigator2() {
     return (
         <Stack.Navigator>
@@ -96,11 +105,11 @@ function TabNavigator() {
         <Tab.Screen options={{
             tabBarLabel: 'Search',
             tabBarIcon: ({ color, size }) => (<SearchNav width={20} height={20} fill={color} />),
-        }} name="Search" component={StackSearchNavigator} onPress={()=>console.log('!!!!!!!!!!!!!!!!!')}/>
+        }} name="Search" component={StackSearchNavigator}/>
         <Tab.Screen options={{
             tabBarLabel: 'Profile',
             tabBarIcon: ({ color, size }) => (<ProfileNav width={20} height={20} fill={color} />),
-        }} name="Profile" component={StackNavigator2} />
+        }} name="Profile" component={StackProfileRoomNavigator} />
         {/* <Tab.Screen name="Settings" component={TestPreviewRoom} /> */}
     </Tab.Navigator>
 }

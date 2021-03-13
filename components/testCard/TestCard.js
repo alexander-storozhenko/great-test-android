@@ -28,7 +28,7 @@ class TestCard extends Component {
     render() {
         return (
             <View style={styles.card}>
-                <LinearGradient style={{ borderRadius: 10, position: "relative", width: '100%', height: "100%" }}
+                <LinearGradient style={{ borderRadius: 10, position: "relative", width: '100%', height: '100%' }}
                     colors={[this.props.backgroundColor.first, this.props.backgroundColor.second]}>
 
                     <View style={styles.statistics}>
@@ -48,7 +48,7 @@ class TestCard extends Component {
                     </View>
                     <View style={{ overflow: 'hidden', borderRadius: 10 }}>
                         <TouchableNativeFeedback onPress={() => this.onClick()}>
-                            <View style={{ padding: 10, borderRadius: 10 }}>
+                            <View style={{ padding: 10 }}>
 
                                 <View style={{ width: '100%', height: "100%" }}>
                                     <View style={styles.titleContainer}>

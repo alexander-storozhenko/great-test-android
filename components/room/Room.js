@@ -1,11 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button, View, StyleSheet, Dimensions } from "react-native";
-import {navHeight, roomPadding} from '../StyleConstants';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Button, View, StyleSheet, Dimensions} from "react-native";
+import {headerHeight, navHeight, roomPadding, tabHeight} from '../StyleConstants';
+
 class Room extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        const screenHeight = Dimensions.get('window').height;
+        const height = this.props.full ? screenHeight - roomPadding * 2 : screenHeight - tabHeight - roomPadding * 2
+
         return (
-            <View style={styles.room}>
+            <View style={[styles.room, {height:height}]}>
                 {this.props.children}
             </View>
         );
@@ -13,19 +21,16 @@ class Room extends Component {
 }
 
 const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     room: {
         padding: roomPadding,
-        paddingTop:0,
-        paddingBottom:0,
+        paddingTop: 0,
+        paddingBottom: 0,
         width: width,
-        height: '100%',
         justifyContent: 'center',
         flexDirection: 'row',
-        backgroundColor:'#0000',
-        overflow:'visible'
+        overflow: 'visible'
     },
 })
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, StyleSheet, Dimensions, TouchableHighlight} from "react-native";
-import {primaryColor, secondaryColor} from "../StyleConstants";
+import {headerHeight, primaryColor, secondaryColor} from "../StyleConstants";
 
 class Header extends Component {
     constructor(props){
@@ -20,7 +20,7 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     header: {
-        height:90,
+        height:headerHeight,
         width: width,
         backgroundColor: secondaryColor,
         position:"relative"

@@ -15,7 +15,7 @@ import rootReducer from './reducers/rootReducer';
 import Room from './components/room/Room';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
-import { contrastColor, fontBold, fontMedium, secondaryColor } from './components/StyleConstants';
+import {contrastColor, fontBold, fontMedium, secondaryColor, tabHeight} from './components/StyleConstants';
 import { NativeRouter, Route, Link } from "react-router-native";
 
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
@@ -45,15 +45,13 @@ function StackNavigator1() {
         <Room>
             <Stack.Navigator>
                 <Stack.Screen options={{ headerShown: false }} name="Main" component={MainRoom} />
-
-
             </Stack.Navigator>
         </Room>
     );
 }
 
 function TestPreviewNaviagtor() {
-    return <Room>
+    return <Room full>
         <Stack.Navigator>
             <Stack.Screen name="TestPreview" component={TestPreviewRoom} options={slideAnimation} />
             <Stack.Screen  name="Test" component={TestRoom} options={opacityAnimation}  />
@@ -93,7 +91,7 @@ function StackNavigator2() {
 function TabNavigator() {
     return <Tab.Navigator initialRouteName="Recommends" tabBarOptions={{
         activeTintColor: contrastColor,
-        style: { height: 60 },
+        style: { height: tabHeight },
         tabStyle: {
             paddingVertical: 10
         }
@@ -119,7 +117,6 @@ function Screen(props) {
     return (
         <View style={styles.container}>
             <Header />
-
             <NavigationContainer theme={navTheme}>
                 <Stack.Navigator initialRouteName="Home">
                     <Stack.Screen options={{ headerShown: false }} name="Home" component={TabNavigator} />

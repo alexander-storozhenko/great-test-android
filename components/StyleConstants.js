@@ -33,6 +33,11 @@ export const h4 = 14
 
 export const roomPadding = 8
 
+// main sizes
+
+export const tabHeight = 60
+export const headerHeight = 90
+
 //
 
 export const navHeight = 70

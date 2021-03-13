@@ -4,13 +4,18 @@ import {Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator} fr
 import Logo from '../../../assets/dev_logo.jpg'
 import {fontBold, h1_5,h3, secondColor} from "../../StyleConstants";
 import {TouchableNativeFeedback} from "react-native-web";
-// import Panel_Button from "./panel_elements/Panel_Button";
+import {changeSlide} from "../../../actions/profileActions/profileCarouselAction";
+// import Panel_Button from "./carousel_elements/Panel_Button";
 
 class ProfileRoom_Panel extends Component {
+    componentDidMount() {
+        changeSlide(0)
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Оцененные тесты</Text>
+                <Text style={styles.title}>{this.props.title}</Text>
             </View>
         )
     }
@@ -21,19 +26,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingTop: 5,
         width: '100%',
+        height: 50,
     },
     content: {
         width: '100%',
-
         position: 'relative',
-
     },
     title: {
         // marginBottom:20,
         fontSize: h3,
-
     }
 
 })
 
-export default ProfileRoom_Panel;
+export default connect(
+    state => ({
+        title: state.profileCarouselSlideTitle,
+    }),
+    dispatch => ({
+        changeSlide: (index)=> dispatch(changeSlide(index)),
+
+    }))(ProfileRoom_Panel);

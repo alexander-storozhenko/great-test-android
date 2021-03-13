@@ -4,7 +4,7 @@ import {Button, View,Image, Text, StyleSheet, Dimensions,TouchableNativeFeedback
 import Logo from '../../../assets/dev_logo.jpg'
 import {contrastColor, fontBold, h3, h2, primaryColor, secondColor, h4} from "../../StyleConstants";
 
-class ProfielRoom_ButtonsLine extends Component {
+class ProfileRoom_ButtonsLine extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -18,13 +18,9 @@ class ProfielRoom_ButtonsLine extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
         width:'100%',
-        // backgroundColor:'red',
-
-        // paddingLeft:30,
         paddingTop:15,
     },
     change_info_btn: {
@@ -43,4 +39,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default ProfielRoom_ButtonsLine;
+export default ProfileRoom_ButtonsLine;

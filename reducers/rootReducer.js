@@ -1,15 +1,16 @@
 import {combineReducers} from 'redux'
 
 import {move} from './sidebarReducer'
-import {recommends,recommendsLoading} from './recommendsReducer'
+import {recommends, recommendsLoading} from './recommendsReducer'
 
-import { navbarShow } from "./navBar";
+import {navbarShow} from "./navBar";
 
-import { question, questionNumber, questionLoading, questionCount } from "./questionReducer";
-import { testPreviewLoading, testPreviewInfo,testTData } from "./testReducer";
-import { userAnswers } from "./answersReducer";
+import {question, questionNumber, questionLoading, questionCount} from "./questionReducer";
+import {testPreviewLoading, testPreviewInfo, testTData} from "./testReducer";
+import {userAnswers} from "./answersReducer";
 
-import { search_progress, search_results } from "./searchReducer";
+import {search_progress, search_results} from "./searchReducer";
+import {profileCarouselSlideTitle} from "./profileReducers/profileCarouselReducer";
 
 export default combineReducers({
     move,
@@ -32,5 +33,7 @@ export default combineReducers({
 
     search_progress,
     search_results,
+
+    profileCarouselSlideTitle,
 
 })

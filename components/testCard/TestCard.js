@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, View, Text, Dimensions, StyleSheet, TouchableHighlight, TouchableOpacity } from "react-native";
-import { fontBold, fontMedium, h2, h3, h4, lightColor, titleColor, subTitleColor, titleColorLight, subTitleColorLight, primaryColor } from '../StyleConstants';
+import {
+    fontBold,
+    fontMedium,
+    h2,
+    h3,
+    h4,
+    lightColor,
+    titleColor,
+    subTitleColor,
+    titleColorLight,
+    subTitleColorLight,
+    primaryColor,
+    borderRadius
+} from '../StyleConstants';
 import Ripple from 'react-native-material-ripple';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableRipple } from 'react-native-paper';
@@ -28,7 +41,7 @@ class TestCard extends Component {
     render() {
         return (
             <View style={styles.card}>
-                <LinearGradient style={{ borderRadius: 10, position: "relative", width: '100%', height: '100%' }}
+                <LinearGradient style={{ borderRadius: borderRadius, position: "relative", width: '100%', height: '100%' }}
                     colors={[this.props.backgroundColor.first, this.props.backgroundColor.second]}>
 
                     <View style={styles.statistics}>
@@ -46,7 +59,7 @@ class TestCard extends Component {
                             </View>
                         </View>
                     </View>
-                    <View style={{ overflow: 'hidden', borderRadius: 10 }}>
+                    <View style={{ overflow: 'hidden', borderRadius: borderRadius }}>
                         <TouchableNativeFeedback onPress={() => this.onClick()}>
                             <View style={{ padding: 10 }}>
 
@@ -80,7 +93,7 @@ const styles = StyleSheet.create({
     card: {
         height: 190,
         marginTop: 15,
-        borderRadius: 10,
+        borderRadius: borderRadius,
         // backgroundColor: "#0000",
         elevation: 15,
     },

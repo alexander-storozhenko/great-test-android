@@ -29,6 +29,10 @@ export const h2 = 26
 export const h3 = 20
 export const h4 = 14
 
+// border
+
+export const borderRadius = 5
+
 // room padding
 
 export const roomPadding = 8

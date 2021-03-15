@@ -10,11 +10,14 @@ import ProfileRoom_Panel from "./elements/ProfileRoom_Panel";
 import ProfileRoom_Carousel from "./elements/ProfileRoom_Carousel";
 import Carousel_TestCard from "./elements/carousel_elements/Carousel_TestCard";
 import Carousel_MyTestsPage from "./elements/carousel_elements/Carousel_MyTestsPage";
+import ProfileRoom_SettingsScreen from "./elements/ProfileRoom_SettingsScreen";
 
 class ProfileRoom extends Component {
     render() {
+
         return (
             <View style={styles.container}>
+
                 <View style={styles.user_info}>
                     <View style={styles.info}>
                         <ProfileRoom_Logo/>
@@ -36,6 +39,7 @@ class ProfileRoom extends Component {
                     {/*<Carousel_MyTestsPage/>*/}
                 </ProfileRoom_Carousel>
 
+                {this.props.settings ? <ProfileRoom_SettingsScreen/>: null}
             </View>
         )
     }
@@ -46,6 +50,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
+        position: 'relative'
     },
     user_info: {
         paddingTop: 15,

@@ -1,16 +1,29 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, StyleSheet, Dimensions, TouchableHighlight} from "react-native";
+import {Button, View, StyleSheet, Dimensions, TouchableHighlight, TouchableWithoutFeedback} from "react-native";
 import {headerHeight, primaryColor, secondaryColor} from "../StyleConstants";
+import Header_Settings from "./elements/Header_Settings";
+
 
 class Header extends Component {
     constructor(props){
         super(props)
     }
 
+    rightAccessories = (screen) => {
+        switch (screen) {
+            case 'Профиль':
+                return <Header_Settings/>
+        }
+        return null
+    }
+
     render() {
+        let content = this.rightAccessories('Профиль')
+
         return (
             <View style={styles.header}>
+                {content}
             </View>
         );
     }

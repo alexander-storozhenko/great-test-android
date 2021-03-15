@@ -10,8 +10,7 @@ import {
     ActivityIndicator,
     TouchableNativeFeedback, Animated
 } from "react-native";
-import {lightColor} from "../../../StyleConstants";
-import { LinearGradient } from 'expo-linear-gradient';
+import {borderRadius, lightColor} from "../../../StyleConstants";
 import TestCard_Card from "./test_card_elements/TestCard_Card";
 
 class Carousel_TestCard extends Component {
@@ -29,10 +28,12 @@ class Carousel_TestCard extends Component {
                     rating = '4.7'
                     colors={['#731448', '#8d1e6f']}
                 />
+
+                <View style={{borderRadius: 5, overflow:'hidden'}}>
                 <TouchableNativeFeedback>
-                    <View style={[styles.btn, {right: 65}]}>
-                    </View>
+                    <View style={[styles.btn, {right: 65}]}/>
                 </TouchableNativeFeedback>
+                </View>
                 <TouchableNativeFeedback>
                     <View style={[styles.btn, {right: 0}]}>
                     </View>
@@ -43,14 +44,6 @@ class Carousel_TestCard extends Component {
 }
 
 const styles = StyleSheet.create({
-    card: {
-        // backgroundColor: 'blue',
-        width:'90%',
-        // flex: 1,
-        height: 60,
-        marginBottom: 10,
-        borderRadius: 5,
-    },
     container: {
         width: '100%',
         flexDirection: 'row',
@@ -59,7 +52,7 @@ const styles = StyleSheet.create({
     btn: {
         width: 60,
         height: 60,
-        borderRadius: 5,
+        borderRadius: borderRadius,
         backgroundColor: lightColor,
         // marginLeft: 5,
         right:60,

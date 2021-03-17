@@ -4,10 +4,14 @@ import {Button, View,Image, Text, StyleSheet, Dimensions, ActivityIndicator, Tou
 import {contrastColor, primaryColor} from "../StyleConstants";
 
 class RoundedButton extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <View style={styles.container} >
-                <TouchableNativeFeedback style={{borderRadius: 30}}>
+                <TouchableNativeFeedback style={{borderRadius: 30}} onPress={()=> this.props.action()}>
                     <View style={styles.btn}>
                 <Text style={{color: primaryColor, fontSize: 25}}>+</Text>
                     </View>

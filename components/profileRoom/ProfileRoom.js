@@ -11,13 +11,23 @@ import ProfileRoom_Carousel from "./elements/ProfileRoom_Carousel";
 import Carousel_TestCard from "./elements/carousel_elements/Carousel_TestCard";
 import Carousel_MyTestsPage from "./elements/carousel_elements/Carousel_MyTestsPage";
 import ProfileRoom_SettingsScreen from "./elements/ProfileRoom_SettingsScreen";
+import {showNavBar} from "../../actions/navBarAction";
+import {loadRecommends} from "../../actions/recommendsAction";
+import {setNavigation} from "../../actions/navigationAction";
 
 class ProfileRoom extends Component {
-    render() {
+    constructor(props) {
+        super(props);
+    }
 
+    componentDidMount() {
+        this.props.setNavigation(this.props.navigation)
+    }
+
+
+    render() {
         return (
             <View style={styles.container}>
-
                 <View style={styles.user_info}>
                     <View style={styles.info}>
                         <ProfileRoom_Logo/>
@@ -84,4 +94,8 @@ const styles = StyleSheet.create({
 })
 
 
-export default ProfileRoom;
+export default connect(
+    null,
+    dispatch => ({
+        setNavigation: (current) => dispatch(setNavigation(current))
+    }))(ProfileRoom);

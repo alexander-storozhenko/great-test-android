@@ -1,20 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-    Button,
-    View,
-    Image,
-    Text,
-    StyleSheet,
-    Dimensions,
-    ActivityIndicator,
+    Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator,
     TouchableNativeFeedback, ScrollView
 } from "react-native";
 import {lightColor} from "../../../StyleConstants";
 import Carousel_TestCard from "./Carousel_TestCard";
 import RoundedButton from "../../../roundedButton/RoundedButton";
+import {setNavigation} from "../../../../actions/navigationAction";
 
 class Carousel_MyTestsPage extends Component {
+
+    componentDidMount() {
+        console.log(this.props.navigation)
+    }
+
+    navigate = () => {
+        this.props.navigation.navigate('ConstructorMainInfo')
+    }
 
     render() {
         return (
@@ -27,7 +30,9 @@ class Carousel_MyTestsPage extends Component {
                 </ScrollView>
 
                 <View style={styles.rounded_btn}>
-                    <RoundedButton/>
+                    <RoundedButton action={() => {
+                        this.navigate()
+                    }}/>
                 </View>
             </View>
         )
@@ -62,4 +67,8 @@ const styles = StyleSheet.create({
 
 })
 
-export default Carousel_MyTestsPage;
+export default connect(
+    state => ({
+        navigation: state.currentNavigation,
+    }),
+    null)(Carousel_MyTestsPage);

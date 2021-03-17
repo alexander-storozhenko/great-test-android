@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, StyleSheet, Dimensions} from "react-native";
+import {Button, View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard} from "react-native";
 import {headerHeight, navHeight, roomPadding, tabHeight} from '../StyleConstants';
 
 class Room extends Component {
@@ -13,8 +13,12 @@ class Room extends Component {
         const height = this.props.full ? screenHeight - roomPadding * 2 : screenHeight - tabHeight - roomPadding * 2
 
         return (
+            <View>
+            <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
             <View style={[styles.room, {height:height}]}>
                 {this.props.children}
+            </View>
+            </TouchableWithoutFeedback>
             </View>
         );
     }

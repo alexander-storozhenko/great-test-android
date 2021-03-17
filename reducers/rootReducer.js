@@ -11,6 +11,7 @@ import {userAnswers} from "./answersReducer";
 
 import {search_progress, search_results} from "./searchReducer";
 import {profileCarouselSlideTitle} from "./profileReducers/profileCarouselReducer";
+import {currentNavigation} from "./navigationReducer";
 
 export default combineReducers({
     move,
@@ -36,4 +37,5 @@ export default combineReducers({
 
     profileCarouselSlideTitle,
 
+    currentNavigation,
 })

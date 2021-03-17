@@ -32,6 +32,7 @@ import {opacityAnimation, slideAnimation} from './lib/NavigationAnimations'
 import SearchRoom from "./components/searchRoom/SearchRoom";
 import FinishScreen from "./components/finishScreen/FinishScreen";
 import ProfileRoom from "./components/profileRoom/ProfileRoom";
+import Constructor_MainInfoPage from "./components/contructorRoom/Constructor_MainInfoPage";
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
@@ -75,6 +76,7 @@ function StackProfileRoomNavigator() {
         <Room>
             <Stack.Navigator>
                 <Stack.Screen name="Profile" component={ProfileRoom} options={slideAnimation} />
+                <Stack.Screen name="ConstructorMainInfo" component={Constructor_MainInfoPage} options={slideAnimation} />
             </Stack.Navigator>
         </Room>
     );
@@ -91,7 +93,8 @@ function StackNavigator2() {
 function TabNavigator() {
     return <Tab.Navigator initialRouteName="Recommends" tabBarOptions={{
         activeTintColor: contrastColor,
-        style: { height: tabHeight },
+        keyboardHidesTabBar: true,
+        style: { height: tabHeight, position:'absolute' },
         tabStyle: {
             paddingVertical: 10
         }

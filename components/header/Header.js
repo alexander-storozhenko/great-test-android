@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, StyleSheet, Dimensions, TouchableHighlight, TouchableWithoutFeedback} from "react-native";
+import {Button, View, StyleSheet, Dimensions, TouchableHighlight, TouchableWithoutFeedback, } from "react-native";
+
 import {headerHeight, primaryColor, secondaryColor} from "../StyleConstants";
 import Header_Settings from "./elements/Header_Settings";
+import Header_BackButton from "./elements/Header_BackButton";
+import {backScreens} from "../HeaderSettingsConstants";
 
 
 class Header extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
@@ -20,10 +23,14 @@ class Header extends Component {
 
     render() {
         let content = this.rightAccessories('Профиль')
+        let back = backScreens.includes() ? <View style={styles.back_btn}><Header_BackButton/></View> : null
 
         return (
             <View style={styles.header}>
-                {content}
+                {back}
+                <View style={styles.settings_btn}>
+                    {<Header_Settings/>}
+                </View>
             </View>
         );
     }
@@ -33,26 +40,37 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     header: {
-        height:headerHeight,
+        height: headerHeight,
         width: width,
         backgroundColor: secondaryColor,
-        position:"relative"
+        position: "relative"
     },
-    menuIconContainer:{
-        position:"absolute",
-        bottom:5,
-        left:5,
-        width:60,
-        height:60,
+
+    back_btn: {
+        position: "absolute",
+        bottom: 25,
+        left: 15,
+    },
+    settings_btn: {
+        position: "absolute",
+        bottom: 20,
+        right: 18,
+    },
+    menuIconContainer: {
+        position: "absolute",
+        bottom: 5,
+        left: 5,
+        width: 60,
+        height: 60,
         // backgroundColor:'red',
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    menuButton:{
+    menuButton: {
         width: 30,
-        height:30,
+        height: 30,
     },
-    menuIcon:{
+    menuIcon: {
 
         color: "#afa",
         // marginTop:20,
@@ -60,11 +78,6 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect(
-    state => ({
-        move: state.move,
-    }),
-    dispatch =>({
-        onMoveSidebar: () => dispatch({type: 'SIDEBAR/MOVE'})
-    })
-)(Header);
+export default connect(state => ({
+    // back: state.backButton
+}),null)(Header);

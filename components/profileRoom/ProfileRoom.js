@@ -10,22 +10,27 @@ import ProfileRoom_Panel from "./elements/ProfileRoom_Panel";
 import ProfileRoom_Carousel from "./elements/ProfileRoom_Carousel";
 import Carousel_TestCard from "./elements/carousel_elements/Carousel_TestCard";
 import Carousel_MyTestsPage from "./elements/carousel_elements/Carousel_MyTestsPage";
-import ProfileRoom_SettingsScreen from "./elements/ProfileRoom_SettingsScreen";
+import ProfileRoom_SettingsScreen from "./ProfileRoom_SettingsScreen";
 import {showNavBar} from "../../actions/navBarAction";
 import {loadRecommends} from "../../actions/recommendsAction";
 import {setNavigation} from "../../actions/navigationAction";
-
+import {backHeader} from "../../actions/headerActions";
+import {NavigationEvents} from 'react-navigation'
 class ProfileRoom extends Component {
     constructor(props) {
         super(props);
+
     }
 
     componentDidMount() {
+        this.props.onBack(false)
         this.props.setNavigation(this.props.navigation)
+        console.log(this.props.navigation.canGoBack())
     }
 
 
     render() {
+
         return (
             <View style={styles.container}>
                 <View style={styles.user_info}>
@@ -97,5 +102,6 @@ const styles = StyleSheet.create({
 export default connect(
     null,
     dispatch => ({
+        onBack: (show)=> dispatch(backHeader(show)),
         setNavigation: (current) => dispatch(setNavigation(current))
     }))(ProfileRoom);

@@ -17,8 +17,6 @@ import {LinearGradient} from 'expo-linear-gradient';
 import Love from "../../../../svg/Love";
 import Eye from "../../../../svg/Eye";
 
-// import {Easing} from "react-native-web";
-
 const startPosition = 0
 const endPosition = -130
 

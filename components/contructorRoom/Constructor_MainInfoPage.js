@@ -49,7 +49,7 @@ class Constructor_MainInfoPage extends Component {
     render() {
         return (
             <View>
-                <MainInfoPage_Card/>
+                <MainInfoPage_Card colors={["#6ef6ba","#321321"]}/>
             </View>
         );
     }

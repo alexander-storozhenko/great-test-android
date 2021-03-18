@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard} from "react-native";
 import {headerHeight, navHeight, roomPadding, tabHeight} from '../StyleConstants';
+import Header from "../header/Header";
 
 class Room extends Component {
     constructor(props) {

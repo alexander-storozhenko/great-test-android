@@ -17,8 +17,12 @@ class Header_Settings extends Component {
     render() {
         return (
             <View style={styles.settings}>
-                <TouchableWithoutFeedback onPress={() => {}}>
+                <TouchableWithoutFeedback onPress={() => {
+                    this.props.navigation.navigate('Settings')
+                }}>
+
                     <Settings fill={primaryColor}/>
+
                 </TouchableWithoutFeedback>
             </View>
         );
@@ -27,10 +31,12 @@ class Header_Settings extends Component {
 
 const styles = StyleSheet.create({
     settings: {
-        position: 'absolute',
-        bottom: 25,
-        right: 25,
+        // position: 'absolute',
+        // bottom: 25,
+        // right: 25,
     }
 });
 
-export default Header_Settings;
+export default connect(state => ({
+    navigation: state.currentNavigation
+}), null)(Header_Settings);

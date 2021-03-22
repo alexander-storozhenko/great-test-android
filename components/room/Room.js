@@ -12,14 +12,14 @@ class Room extends Component {
     render() {
         const screenHeight = Dimensions.get('window').height;
         const height = this.props.full ? screenHeight - roomPadding * 2 : screenHeight - tabHeight - roomPadding * 2
-
+       
         return (
             <View>
-            <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+            {/*<TouchableWithoutFeedback style={[styles.room, {height:height}]} onPress={()=>Keyboard.dismiss()}>*/}
             <View style={[styles.room, {height:height}]}>
                 {this.props.children}
             </View>
-            </TouchableWithoutFeedback>
+            {/*</TouchableWithoutFeedback>*/}
             </View>
         );
     }

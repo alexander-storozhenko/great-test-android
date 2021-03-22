@@ -9,7 +9,7 @@ import {
     TouchableHighlight,
     TouchableOpacity,
     TextInput,
-    Keyboard
+    Keyboard, Animated
 } from "react-native";
 import {
     fontBold,
@@ -32,21 +32,21 @@ import {getTextColor} from "../../../lib/ColorsHelper";
 class MainInfoPage_Card extends Component {
     constructor(props) {
         super(props)
-        // this.state = {firstColor: secondColor, secondColor: secondColor}
     }
 
     render() {
+
         return (
             <View style={styles.card}>
-                <LinearGradient style={styles.gradient} colors={[this.props.colors[0], this.props.colors[1]]}>
+                <LinearGradient style={styles.gradient} colors={[this.props.first_color, this.props.second_color]}>
                     <View style={styles.card_content}>
                         <View>
                             <TextInput placeholder={'Название...'}
-                                       style={[{color: getTextColor(this.props.colors[0])}, styles.input, styles.input_title]}/>
+                                       style={[{color: getTextColor(this.props.first_color)}, styles.input, styles.input_title]}/>
                         </View>
                         <View style={styles.description}>
                             <TextInput placeholder={'Описание...'}
-                                       style={[{color: getTextColor(this.props.colors[0])},styles.input, styles.input_description]}/>
+                                       style={[{color: getTextColor(this.props.first_color)},styles.input, styles.input_description]}/>
                         </View>
                     </View>
                 </LinearGradient>
@@ -93,7 +93,10 @@ const styles = StyleSheet.create({
 })
 
 export default connect(
-    null,
+    state => ({
+        first_color: state.constructorCarouselFirstColorBtnClicked.color,
+        second_color: state.constructorCarouselSecondColorBtnClicked.color,
+    }),
     dispatch => ({
 
 

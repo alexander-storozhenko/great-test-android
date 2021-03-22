@@ -14,6 +14,12 @@ import {profileCarouselSlideTitle} from "./profileReducers/profileCarouselReduce
 import {currentNavigation} from "./navigationReducer";
 
 import {backButton} from "./headerReducer";
+import {constructorColorTextBtnClicked} from "./constructorReducer";
+import {
+    constructorCarouselFirstColorBtnClicked,
+    constructorCarouselSecondColorBtnClicked,
+    constructorCarouselColorTypeBtnClicked
+} from './constructorReducers/carouselReducer';
 
 export default combineReducers({
     move,
@@ -42,4 +48,12 @@ export default combineReducers({
     currentNavigation,
 
     backButton,
+
+    constructorColorTextBtnClicked,
+
+    constructorCarouselFirstColorBtnClicked,
+    constructorCarouselSecondColorBtnClicked,
+    constructorCarouselColorTypeBtnClicked,
+
+
 })

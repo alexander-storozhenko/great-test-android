@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     },
     list: {
         width: '100%',
-
     },
     edit_btn: {
         width: 30,

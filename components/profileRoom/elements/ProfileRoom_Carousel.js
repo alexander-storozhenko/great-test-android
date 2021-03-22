@@ -24,7 +24,6 @@ class ProfileRoom_Carousel extends Component {
         return (
             <View  style={styles.container}>
                 <Carousel
-
                     ref={(c) => this._carousel = c}
                     data={children}
                     renderItem={this._renderItem}
@@ -49,15 +48,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: '100%',
-        // height: '100%',
         flex:1,
-        // marginBot: -300,
-        // flexDirection: 'row',
-        // backgroundColor: 'pink',
-        // justifyContent: 'flex-start',
-        // flex:1,
-        // flexGrow: 1,
-        // minHeight:50
     },
     title: {
         marginTop: 20,

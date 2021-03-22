@@ -42,7 +42,7 @@ const Stack = createStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
-function StackNavigator1() {
+function StackMainNavigator() {
     return (
         <Room>
             <Stack.Navigator>
@@ -52,7 +52,7 @@ function StackNavigator1() {
     );
 }
 
-function TestPreviewNaviagtor() {
+function StackTestNavigator() {
     return <Room full>
         <Stack.Navigator>
             <Stack.Screen name="TestPreview" component={TestPreviewRoom} options={slideAnimation} />
@@ -84,14 +84,6 @@ function StackProfileRoomNavigator() {
     );
 }
 
-function StackNavigator2() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen options={{ headerShown: false }} name="TestPreview" component={TestPreviewNaviagtor} />
-        </Stack.Navigator>
-    );
-}
-
 function TabNavigator() {
     return <Tab.Navigator initialRouteName="Recommends" tabBarOptions={{
         activeTintColor: contrastColor,
@@ -104,7 +96,7 @@ function TabNavigator() {
         <Tab.Screen options={{
             tabBarLabel: 'Recommends',
             tabBarIcon: ({ color, size }) => (<RecommendsNav width={20} height={20} fill={color} />),
-        }} name="Recommends" component={StackNavigator1} />
+        }} name="Recommends" component={StackMainNavigator} />
         <Tab.Screen options={{
             tabBarLabel: 'Search',
             tabBarIcon: ({ color, size }) => (<SearchNav width={20} height={20} fill={color} />),
@@ -125,7 +117,7 @@ function Screen(props) {
             <NavigationContainer theme={navTheme}>
                 <Stack.Navigator initialRouteName="Home">
                     <Stack.Screen options={{ headerShown: false }} name="Home" component={TabNavigator} />
-                    <Stack.Screen options={slideAnimation} name="TestPreview" component={TestPreviewNaviagtor} />
+                    <Stack.Screen options={slideAnimation} name="TestPreview" component={StackTestNavigator} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="light" />

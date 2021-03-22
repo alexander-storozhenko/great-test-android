@@ -1,4 +1,4 @@
-import {getLocaledString} from "../../lib/locale/localeString";
+import {getLocaledString} from "../../lib/locale/locale";
 
 export const profileCarouselSlideTitle = (state = null, action) => {
     if (action.type === 'PROFILE_CAROUSEL/CHANGE_SLIDE') {
@@ -6,10 +6,10 @@ export const profileCarouselSlideTitle = (state = null, action) => {
         switch (action.payload.index) {
             //TODO locale string
             case 0:
-                return "Мои тесты" //getLocaledString('profile__carousel', 'profile_carousel_title_1')
+                return getLocaledString('profile_carousel_title_1') //getLocaledString('profile__carousel', 'profile_carousel_title_1')
             case 1:
-                return "Оцененные тесты" //getLocaledString('profile__carousel', 'profile_carousel_title_2')
+                return getLocaledString('profile_carousel_title_2') //getLocaledString('profile__carousel', 'profile_carousel_title_2')
         }
     }
-    return "Мои тесты"
+    return getLocaledString('profile_carousel_title_1')
 }

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, NativeModules } from 'react-native';
 import { connect, Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -10,6 +10,8 @@ import { useFonts } from 'expo-font';
 import { fontBold, fontMedium } from './components/StyleConstants';
 import { DefaultTheme } from '@react-navigation/native';
 import Screen from './Screen'
+import {setLocale} from "./lib/locale/locale";
+import {locale} from "./settings/url";
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
@@ -22,6 +24,9 @@ function App(props) {
         [fontMedium]: require('./assets/fonts/Quicksand-Medium.ttf'),
 
     });
+
+    // setLocale(NativeModules.I18nManager.localeIdentifier.split('_')[0])
+    setLocale('en')
 
     if (!fontsLoaded) return <AppLoading />;
 

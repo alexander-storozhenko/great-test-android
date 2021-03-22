@@ -22,7 +22,7 @@ class ProfileRoom_Carousel extends Component {
         const children = React.Children.toArray(this.props.children)
 
         return (
-            <View  style={styles.container}>
+            <View style={styles.container}>
                 <Carousel
                     ref={(c) => this._carousel = c}
                     data={children}

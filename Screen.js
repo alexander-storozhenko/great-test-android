@@ -32,7 +32,7 @@ import {opacityAnimation, slideAnimation} from './lib/NavigationAnimations'
 import SearchRoom from "./components/searchRoom/SearchRoom";
 import FinishScreen from "./components/finishScreen/FinishScreen";
 import ProfileRoom from "./components/profileRoom/ProfileRoom";
-import Constructor_MainInfoPage from "./components/contructorRoom/Constructor_MainInfoPage";
+import Constructor_MainInfoScreen from "./components/contructorRoom/Constructor_MainInfoScreen";
 import ProfileRoom_SettingsScreen from "./components/profileRoom/ProfileRoom_SettingsScreen";
 
 const navTheme = DefaultTheme;
@@ -77,7 +77,7 @@ function StackProfileRoomNavigator() {
         <Room>
             <Stack.Navigator>
                 <Stack.Screen name="Profile" component={ProfileRoom} options={slideAnimation} />
-                <Stack.Screen name="ConstructorMainInfo" component={Constructor_MainInfoPage} options={slideAnimation} />
+                <Stack.Screen name="ConstructorMainInfo" component={Constructor_MainInfoScreen} options={slideAnimation} />
                 <Stack.Screen name="Settings" component={ProfileRoom_SettingsScreen} back={true} options={slideAnimation} />
             </Stack.Navigator>
         </Room>

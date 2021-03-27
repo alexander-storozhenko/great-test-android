@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button, View, Text, StyleSheet } from "react-native";
-import { checkedColor, contrastColor, fontBold, h2, h3, primaryColor, secondaryColor } from '../../StyleConstants';
-import { TouchableNativeFeedback } from 'react-native-gesture-handler';
-import { sendAnswers } from '../../../actions/answersAction';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Button, View, Text, StyleSheet} from "react-native";
+import {checkedColor, contrastColor, fontBold, h2, h3, primaryColor, secondaryColor} from '../../StyleConstants';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
+import {sendAnswers} from '../../../actions/answersAction';
 import {decreaseQuestionNumber, getQuestion, increaseQuestionNumber} from '../../../actions/questionsAction';
 import {getTestResults} from "../../../actions/testsAction";
 
 class TestRoom_NavNextButton extends Component {
     constructor(props) {
         super(props)
-        this.state = { pressed: false }
+        this.state = {pressed: false}
     }
 
-    onNext = () => {
-        this.props.onSendAnswers(this.props.user_answers, this.props.test_id,this.props.question_number, this.props.navigation)
+    lastQuestion = () => (this.props.question_number >= this.props.question_count)
 
-        if (this.props.question_number >= this.props.question_count)
+
+    onNext = () => {
+        this.props.onSendAnswers(this.props.user_answers, this.props.test_id, this.props.question_number, this.props.navigation)
+
+        if (this.lastQuestion())
             this.props.onGetTestResults(this.props.test_id, this.props.navigation)
         else
             this.props.onGetQuestion(this.props.test_id, this.props.question_number, this.props.navigation)
@@ -25,10 +28,10 @@ class TestRoom_NavNextButton extends Component {
 
     render() {
         return (
-            <View style={{ alignItems: 'flex-end', height: 65 }}>
+            <View style={{alignItems: 'flex-end', height: 65}}>
                 <View style={styles.container}>
                     <View style={[styles.button, styles.next]}>
-                        <TouchableNativeFeedback onPress={() => this.onNext()} style={{ width: '100%', height: '100%' }}>
+                        <TouchableNativeFeedback onPress={() => this.onNext()} style={{width: '100%', height: '100%'}}>
                             <View style={styles.text_container}>
                                 <Text style={styles.text}>next</Text>
                             </View>

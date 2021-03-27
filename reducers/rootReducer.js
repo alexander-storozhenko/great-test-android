@@ -10,7 +10,7 @@ import {testPreviewLoading, testPreviewInfo, testTData} from "./testReducer";
 import {userAnswers} from "./answersReducer";
 
 import {search_progress, search_results} from "./searchReducer";
-import {profileCarouselSlideTitle} from "./profileReducers/profileCarouselReducer";
+import {profileCarouselSlideTitle, profileCarouselLoading, profileCarouselData} from "./profileReducers/profileCarouselReducer";
 import {currentNavigation} from "./navigationReducer";
 
 import {backButton} from "./headerReducer";
@@ -44,6 +44,8 @@ export default combineReducers({
     search_results,
 
     profileCarouselSlideTitle,
+    profileCarouselLoading,
+    profileCarouselData,
 
     currentNavigation,
 
@@ -54,6 +56,5 @@ export default combineReducers({
     constructorCarouselFirstColorBtnClicked,
     constructorCarouselSecondColorBtnClicked,
     constructorCarouselColorTypeBtnClicked,
-
 
 })

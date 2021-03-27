@@ -29,6 +29,7 @@ import {TouchableWithoutFeedback} from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
 import {getTextColor} from "../../../lib/ColorsHelper";
 import Carousel from "react-native-snap-carousel";
+import {getLocaledString} from "../../../lib/locale/locale";
 
 class MainInfoPage_Carousel extends Component {
     constructor(props) {
@@ -51,8 +52,8 @@ class MainInfoPage_Carousel extends Component {
             <View style={styles.container}>
 
                 <View style={styles.carousel_title}>
-                    <Text style={styles.title_main}>Фон карточки</Text>
-                    <Text style={styles.title_sub}>Цвета</Text>
+                    <Text style={styles.title_main}>{getLocaledString('constructor_main_info_carousel_title')}</Text>
+                    <Text style={styles.title_sub}>{getLocaledString('constructor_main_info_carousel_sub_title_1')}</Text>
                 </View>
 
                 {/*TODO to independent component (FullWidthCarousel)*/}

@@ -13,6 +13,9 @@ export const titleColorLight = "#fff"
 export const subTitleColor      = "#6a6a6a"
 export const subTitleColorLight = "#fbfbfb"
 
+export const errorColor = "#AF2929"
+export const successColor = "#A8C143"
+
 //font
 
 export const fontBold     = 'QuickSand-Bold'
@@ -68,6 +71,6 @@ export const mr_20 = {marginRight:20}
 export const mr_30 = {marginRight:30}
 
 // default card colors
-
+//TODO refactor!
 export const firstColor = "#456712"
 export const secondColor = "#001112"

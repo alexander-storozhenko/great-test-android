@@ -11,7 +11,6 @@ const domain = devDomain
 
 export const apiDomain = protocol + domain + ':' + port + '/'
 
-export let locale = 'ru'
 /*
  cur_test: {
      0:{

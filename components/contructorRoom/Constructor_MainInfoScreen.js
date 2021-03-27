@@ -46,7 +46,7 @@ import SeparateLine from "../ui/SeparateLine";
 import BottomButton from "../ui/BottomButton";
 
 
-class Constructor_MainInfoPage extends Component {
+class Constructor_MainInfoScreen extends Component {
     constructor(props) {
         super(props)
     }
@@ -103,4 +103,4 @@ export default connect(
         onSetTestTemplateData: (data) => dispatch({type: 'TEST/SET_TEST_T_DATA', payload: data}),
         onShowNavBar: (state) => dispatch(showNavBar(state))
     })
-)(Constructor_MainInfoPage);
+)(Constructor_MainInfoScreen);

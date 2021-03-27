@@ -4,15 +4,16 @@ import {
     Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator,
     TouchableNativeFeedback, ScrollView
 } from "react-native";
-import {lightColor} from "../../../StyleConstants";
+import {lightColor, secondaryColor} from "../../../StyleConstants";
 import Carousel_TestCard from "./Carousel_TestCard";
 import RoundedButton from "../../../roundedButton/RoundedButton";
 import {setNavigation} from "../../../../actions/navigationAction";
+import {getUserTests} from "../../../../actions/profileActions/profileCarouselAction";
 
 class Carousel_MyTestsPage extends Component {
 
     componentDidMount() {
-        console.log(this.props.navigation)
+        this.props.getUserTests(0)
     }
 
     navigate = () => {
@@ -20,14 +21,25 @@ class Carousel_MyTestsPage extends Component {
     }
 
     render() {
+
+
         return (
             <View style={styles.container}>
-                <ScrollView showsVerticalScrollIndicator={false} style={styles.list}>
-                    <Carousel_TestCard/>
-                    <Carousel_TestCard/>
-                    <Carousel_TestCard/>
-                    <Carousel_TestCard/>
-                </ScrollView>
+                {this.props.loading ?
+                    <ActivityIndicator size="small" color={secondaryColor}/> :
+                    <ScrollView showsVerticalScrollIndicator={false} style={styles.list}>
+                        {  this.props.userTests
+                            ? this.props.userTests.map((test,key) =>
+                                <Carousel_TestCard
+                                    key={key}
+                                    title={test.title}
+                                    plays={test.plays}
+                                    rating={test.rating}
+                                    colors={test.colors}
+                                />)
+                            : <View></View>
+                        }
+                    </ScrollView>}
 
                 <View style={styles.rounded_btn}>
                     <RoundedButton action={() => {
@@ -69,5 +81,9 @@ const styles = StyleSheet.create({
 export default connect(
     state => ({
         navigation: state.currentNavigation,
+        loading: state.profileCarouselLoading,
+        userTests: state.profileCarouselData,
     }),
-    null)(Carousel_MyTestsPage);
+    dispatch => ({
+        getUserTests: (page = 0) => dispatch(getUserTests(page)),
+    }))(Carousel_MyTestsPage);

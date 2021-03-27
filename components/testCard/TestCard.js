@@ -51,7 +51,7 @@ class TestCard extends Component {
                                 <Text style={{ marginLeft: 3, color: lightColor }} >{this.props.plays}</Text>
 
                                 <Love fill={lightColor} style={{ marginLeft: 8 }} width="13" height="13" />
-                                <Text style={{ marginLeft: 3, color: lightColor }} >{this.props.likes}</Text>
+                                <Text style={{ marginLeft: 3, color: lightColor }} >{this.props.rating}</Text>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Profile width={14} height={14} fill={primaryColor} />

@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View,Image, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
 import Logo from '../../../assets/dev_logo.jpg'
-import {fontBold, h1_5, roomPadding, secondColor} from "../../StyleConstants";
+import {fontBold, h1_5, roomPadding, secondaryColor, secondColor} from "../../StyleConstants";
 import Carousel from "react-native-snap-carousel";
 import {showNavBar} from "../../../actions/navBarAction";
 import {loadRecommends} from "../../../actions/recommendsAction";
-import {changeSlide} from "../../../actions/profileActions/profileCarouselAction";
+import {changeSlide, getUserTests} from "../../../actions/profileActions/profileCarouselAction";
 
 class ProfileRoom_Carousel extends Component {
     _renderItem = ({ item, _ }) => (<View style={styles.container}>{item}</View>)

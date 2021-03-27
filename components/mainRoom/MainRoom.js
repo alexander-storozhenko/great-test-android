@@ -27,7 +27,7 @@ class MainRoom extends Component {
     }
 
     getColors(colors) {
-        if (colors.length < 2)
+        if (!colors || colors.length < 2)
             return { first: firstColor, second: secondColor }
         return { first: colors[0], second: colors[1] }
     }
@@ -48,7 +48,7 @@ class MainRoom extends Component {
                     title={test.title}
                     backgroundColor={this.getColors(test.colors)}
                     subTitle={test.sub_title}
-                    likes={test.likes}
+                    rating={test.rating}
                     plays={test.plays}
                     test_t_id={test.id}
                     author={test.author.name}
@@ -65,7 +65,7 @@ class MainRoom extends Component {
                                 title={t.title}
                                 backgroundColor={this.getColors(t.colors)}
                                 subTitle={t.sub_title}
-                                likes={t.likes}
+                                rating={t.rating}
                                 plays={t.plays}
                                 author={t.author.name}
                             />

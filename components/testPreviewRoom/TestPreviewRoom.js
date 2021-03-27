@@ -28,7 +28,7 @@ class TestPreviewRoom extends Component {
                             <ActivityIndicator size="large" color={secondaryColor}/>
                         </View> :
                         <View style={styles.preview}>
-                            <Text style={styles.title}>Title test kok kek</Text>
+                            <Text style={styles.title}>Title test </Text>
                             <View style={{...mt_10, width: '100%'}}>
                                 <TestPreviewRoom_Card/>
                             </View>

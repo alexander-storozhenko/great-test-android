@@ -26,7 +26,7 @@ function App(props) {
     });
 
     // setLocale(NativeModules.I18nManager.localeIdentifier.split('_')[0])
-    setLocale('en')
+    setLocale('ru')
 
     if (!fontsLoaded) return <AppLoading />;
 

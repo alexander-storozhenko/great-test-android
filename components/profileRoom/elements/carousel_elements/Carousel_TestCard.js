@@ -23,10 +23,10 @@ class Carousel_TestCard extends Component {
         return (
             <View style={styles.container}>
                 <TestCard_Card
-                    title = 'тест тест тест а б с д'
-                    plays = '3.7k'
-                    rating = '4.7'
-                    colors={['#731448', '#8d1e6f']}
+                    title = {this.props.title}
+                    plays = {this.props.plays}
+                    rating = {this.props.rating}
+                    colors={this.props.colors}
                 />
 
                 <View style={{borderRadius: 5, overflow:'hidden'}}>

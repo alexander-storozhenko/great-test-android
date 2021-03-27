@@ -16,8 +16,17 @@ import TimerLine from "../timer/TimerLine";
 class TestRoom extends Component {
     constructor(props) {
         super(props)
-        this.state = { start_loading: true }
+        this.state = { start_loading: true, goBack: true }
     }
+
+    componentDidMount() {
+        this.props.navigation.addListener('beforeRemove', (e) => {
+            if (e.data.action.type === 'GO_BACK') e.preventDefault()
+        })
+    }
+
+
+    // onClick = () => this.setState({goBack})
 
     render() {
         let data = {

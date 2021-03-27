@@ -13,3 +13,14 @@ export const profileCarouselSlideTitle = (state = null, action) => {
     }
     return getLocaledString('profile_carousel_title_1')
 }
+
+export const profileCarouselLoading = (state = false, action) => {
+    return action.type === 'PROFILE_CAROUSEL/LOADING'
+}
+
+export const profileCarouselData = (state = [], action) => {
+    if(action.type === 'PROFILE_CAROUSEL/SUCCESS') {
+        return action.payload
+    }
+    return state
+}

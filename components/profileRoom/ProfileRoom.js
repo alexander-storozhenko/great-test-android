@@ -50,7 +50,7 @@ class ProfileRoom extends Component {
 
                 <ProfileRoom_Carousel>
                     <Carousel_MyTestsPage/>
-                    <Carousel_MyTestsPage/>
+                    {/*<Carousel_MyTestsPage/>*/}
                     {/*<Carousel_MyTestsPage/>*/}
                 </ProfileRoom_Carousel>
 

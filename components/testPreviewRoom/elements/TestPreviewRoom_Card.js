@@ -37,7 +37,7 @@ class TestPreviewRoom_Card extends Component {
                 </View>
                 <View style={styles.card_item}>
                     <Profile width={30} height={30} fill={secondaryColor}/>
-                    <Text style={styles.card_item_text}>BAbka_v_tapkah</Text>
+                    <Text style={styles.card_item_text}>test_user</Text>
                 </View>
             </View>
             </View>
@@ -46,7 +46,7 @@ class TestPreviewRoom_Card extends Component {
 }
 const styles = StyleSheet.create({
     card: {
-        
+
         borderRadius: 15,
         paddingTop:10,
         padding: 30,

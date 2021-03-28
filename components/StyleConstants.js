@@ -13,8 +13,8 @@ export const titleColorLight = "#fff"
 export const subTitleColor      = "#6a6a6a"
 export const subTitleColorLight = "#fbfbfb"
 
-export const errorColor = "#AF2929"
-export const successColor = "#A8C143"
+export const errorColor = "#E53963"
+export const successColor = "#A5D440"
 
 //font
 

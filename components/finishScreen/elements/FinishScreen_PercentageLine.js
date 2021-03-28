@@ -18,15 +18,15 @@ const DURATION = 3000 //ms
 class FinishScreen_PercentageLine extends Component {
     constructor(props) {
         super(props);
-        this.state = {lineWidthAnim: new Animated.Value(0), positiveValue: 0}
-        this.interval = null
+        this.state = {lineWidthAnim: new Animated.Value(0), positiveValue: 0, trueAnswers: 0}
+        this.intervalAnswers = null
+        this.intervalPercents = null
     }
 
-    percent = () => (Math.min(1, Math.max(0, this.props.percent)))
+    percent = (this.props.trueValue / this.props.allValue)
 
     animate = (containerWidth) => {
-        const targetValue = this.percent() * containerWidth
-
+        const targetValue = this.percent * containerWidth
         Animated.timing(this.state.lineWidthAnim,
             {
                 toValue: targetValue,
@@ -37,16 +37,25 @@ class FinishScreen_PercentageLine extends Component {
     }
 
     componentDidMount() {
-        let value = 0
+        let percentsValue = 0
+        let trueAnswersValue = 0
 
-        const intervalValue = Math.round(DURATION / (this.percent() + 0.01) / 100)
+        const intervalPercentsValue = Math.round(DURATION / (this.percent + 0.01) / 100)
+        const intervalTrueAnswersValue = Math.round(DURATION / (this.props.trueValue + 0.01) )
 
-        this.interval = setInterval(() => {
-            if (value >= this.percent() * 100)
-                return clearInterval(this.interval)
+        this.intervalPercents = setInterval(() => {
+            if (percentsValue >= this.percent * 100)
+                return clearInterval(this.intervalPercents)
 
-            this.setState({positiveValue: ++value})
-        }, intervalValue)
+            this.setState({positiveValue: ++percentsValue})
+        }, intervalPercentsValue)
+
+        this.intervalAnswers = setInterval(() => {
+            if (trueAnswersValue >= this.props.trueValue)
+                return clearInterval(this.intervalAnswers)
+
+            this.setState({trueAnswers: ++trueAnswersValue})
+        }, intervalTrueAnswersValue)
     }
 
 
@@ -61,7 +70,9 @@ class FinishScreen_PercentageLine extends Component {
                         style={[styles.negative_line, {transform: [{translateX: this.state.lineWidthAnim}]}]}/>
 
                 </View>
-
+                <View style={styles.answers_text_container}>
+                    <Text style={styles.answers_text}>{this.state.trueAnswers}/{this.props.allValue}</Text>
+                </View>
                 <Animated.View style={{transform: [{translateX: this.state.lineWidthAnim}]}}>
                     <ArrowUp fill={secondaryColor} style={styles.positive_arrow}/>
                     <View style={styles.text_container}>
@@ -110,7 +121,19 @@ const styles = StyleSheet.create({
     },
     positive_percent: {
         fontSize: h3,
+    },
+    answers_text_container:{
+        position:'absolute',
+        width:'100%',
+        height:'100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    answers_text:{
+        fontSize: h3,
+        color: 'white'
     }
+
 })
 
 export default FinishScreen_PercentageLine;

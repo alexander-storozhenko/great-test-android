@@ -34,6 +34,7 @@ import FinishScreen from "./components/finishScreen/FinishScreen";
 import ProfileRoom from "./components/profileRoom/ProfileRoom";
 import Constructor_MainInfoScreen from "./components/contructorRoom/Constructor_MainInfoScreen";
 import ProfileRoom_SettingsScreen from "./components/profileRoom/ProfileRoom_SettingsScreen";
+import Constructor_ParamsScreen from "./components/contructorRoom/Constructor_ParamsScreen";
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
@@ -53,7 +54,7 @@ function StackMainNavigator() {
 }
 
 function StackTestNavigator() {
-    return <Room full>
+    return <Room padding full>
         <Stack.Navigator>
             <Stack.Screen name="TestPreview" component={TestPreviewRoom} options={slideAnimation} />
             <Stack.Screen  name="Test" component={TestRoom} options={opacityAnimation}  />
@@ -64,7 +65,7 @@ function StackTestNavigator() {
 
 function StackSearchNavigator() {
     return (
-        <Room>
+        <Room padding>
             <Stack.Navigator>
                 <Stack.Screen name="Search" component={SearchRoom} options={slideAnimation} />
             </Stack.Navigator>
@@ -74,10 +75,11 @@ function StackSearchNavigator() {
 
 function StackProfileRoomNavigator() {
     return (
-        <Room>
+        <Room padding>
             <Stack.Navigator>
                 <Stack.Screen name="Profile" component={ProfileRoom} options={slideAnimation} />
                 <Stack.Screen name="ConstructorMainInfo" component={Constructor_MainInfoScreen} options={slideAnimation} />
+                <Stack.Screen name="ConstructorParams" component={Constructor_ParamsScreen} options={slideAnimation} />
                 <Stack.Screen name="Settings" component={ProfileRoom_SettingsScreen} back={true} options={slideAnimation} />
             </Stack.Navigator>
         </Room>

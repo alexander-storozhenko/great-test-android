@@ -6,7 +6,6 @@ import {connect} from "react-redux";
 import {backHeader} from "../../actions/headerActions";
 import {borderRadius, errorColor, h2, h3, h4, lightColor, successColor} from "../StyleConstants";
 import FinishScreen_Slider from "./elements/FinishScreen_Slider";
-import BigButton from "../bigButton/BigButton";
 
 class FinishScreen extends Component {
     componentDidMount() {
@@ -33,11 +32,11 @@ class FinishScreen extends Component {
                 </View>
 
                 <View style={styles.to_home_content}>
-                <View style={styles.rate_test}>
-                    <Text style={styles.rate_test_text}>You can rate the test</Text>
-                </View>
+                    <View style={styles.rate_test}>
+                        <Text style={styles.rate_test_text}>You can rate the test</Text>
+                    </View>
 
-                <FinishScreen_Slider/>
+                    <FinishScreen_Slider/>
                 </View>
             </View>
         );
@@ -68,24 +67,24 @@ const styles = StyleSheet.create({
         paddingRight: 20,
     },
     rate_test: {
-        width:'100%',
-        height:40,
+        width: '100%',
+        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: lightColor
     },
-    rate_test_text:{
+    rate_test_text: {
         fontSize: 17
     },
-    to_home_content:{
-        position:'absolute',
-        bottom:0,
-        width:'100%',
+    to_home_content: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
     },
-    container:{
+    container: {
         position: 'relative',
-        width:'100%',
-        height:'100%',
+        width: '100%',
+        height: '100%',
     }
 })
 

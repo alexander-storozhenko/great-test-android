@@ -5,7 +5,7 @@ import ProfileRoom_Logo from "./elements/ProfileRoom_Logo";
 import ProfileRoom_UserInfo from "./elements/ProfileRoom_UserInfo";
 import ProfileRoom_UserStatistics from "./elements/ProfileRoom_UserStatistics";
 import ProfileRoom_ButtonsLine from "./elements/ProfileRoom_ButtonsLine";
-import {lightColor} from "../StyleConstants";
+import {contrastColor, lightColor} from "../StyleConstants";
 import ProfileRoom_Panel from "./elements/ProfileRoom_Panel";
 import ProfileRoom_Carousel from "./elements/ProfileRoom_Carousel";
 import Carousel_TestCard from "./elements/carousel_elements/Carousel_TestCard";
@@ -16,6 +16,9 @@ import {loadRecommends} from "../../actions/recommendsAction";
 import {setNavigation} from "../../actions/navigationAction";
 import {backHeader} from "../../actions/headerActions";
 import {NavigationEvents} from 'react-navigation'
+import Like from "../svg/Like";
+import Eye from "../svg/Eye";
+
 class ProfileRoom extends Component {
     constructor(props) {
         super(props);
@@ -28,16 +31,24 @@ class ProfileRoom extends Component {
         console.log(this.props.navigation.canGoBack())
     }
 
-
     render() {
-
         return (
             <View style={styles.container}>
                 <View style={styles.user_info}>
                     <View style={styles.info}>
-                        <ProfileRoom_Logo/>
-                        <View style={styles.right_info}>
-                            <ProfileRoom_UserInfo name={"BOGDANBBsdsdsdOfasfGD"}/>
+                        <View style={styles.left_content}>
+                            <ProfileRoom_Logo/>
+                            <View style={styles.user_stats}>
+                                <Eye width={20} height={20} fill={ contrastColor}  style={{marginTop:5}}/>
+                                <Text style={{marginLeft:4,marginTop:4, color: contrastColor}}>1555</Text>
+                                <Like width={20} height={20} fill={contrastColor} style={{marginLeft:7}}/>
+                                <Text style={{marginLeft:4,marginTop:4, color: contrastColor}}>3.7</Text>
+
+                            </View>
+                        </View>
+
+                        <View style={styles.right_content}>
+                            <ProfileRoom_UserInfo name={"BOGDAN_54"}/>
                             <ProfileRoom_UserStatistics/>
                             <ProfileRoom_ButtonsLine/>
                         </View>
@@ -54,7 +65,7 @@ class ProfileRoom extends Component {
                     {/*<Carousel_MyTestsPage/>*/}
                 </ProfileRoom_Carousel>
 
-                {this.props.settings ? <ProfileRoom_SettingsScreen/>: null}
+                {this.props.settings ? <ProfileRoom_SettingsScreen/> : null}
             </View>
         )
     }
@@ -62,7 +73,6 @@ class ProfileRoom extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
         width: '100%',
         height: '100%',
         position: 'relative'
@@ -71,7 +81,6 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         paddingLeft: 15,
         height: 160,
-        width: '100%',
     },
     info: {
         width: '100%',
@@ -80,9 +89,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         // backgroundColor: 'green'
     },
-    right_info: {
+    left_content: {
+        flexDirection: 'column'
+    },
+    user_stats: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 5,
+    },
+    right_content: {
         // width: '100%',
-        paddingLeft: 30,
+        paddingLeft: 20,
         justifyContent: 'space-between'
     },
     sep: {
@@ -102,6 +120,6 @@ const styles = StyleSheet.create({
 export default connect(
     null,
     dispatch => ({
-        onBack: (show)=> dispatch(backHeader(show)),
+        onBack: (show) => dispatch(backHeader(show)),
         setNavigation: (current) => dispatch(setNavigation(current))
     }))(ProfileRoom);

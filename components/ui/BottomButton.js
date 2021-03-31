@@ -16,7 +16,7 @@ class BottomButton extends Component {
     render() {
         return (
             <View style={styles.btn}>
-                <TouchableNativeFeedback >
+                <TouchableNativeFeedback onPress={()=> this.props.onPress()} >
                     <View>
                         <Text style={styles.btn_text}>{this.props.children}</Text>
                     </View>

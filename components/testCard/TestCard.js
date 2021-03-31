@@ -92,7 +92,6 @@ class TestCard extends Component {
 const styles = StyleSheet.create({
     card: {
         height: 190,
-        marginTop: 15,
         borderRadius: borderRadius,
         // backgroundColor: "#0000",
         elevation: 15,

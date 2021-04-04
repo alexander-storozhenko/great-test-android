@@ -2,14 +2,20 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator,TouchableNativeFeedback} from "react-native";
 import {borderRadius, h3, primaryColor} from "../../StyleConstants";
+import {showNavBar} from "../../../actions/navBarAction";
 
 class RecommendCard_Button extends Component {
+    onClick = () => {
+        this.props.onSetTestTemplateData({ test_t_id: this.props.test_t_id })
+        this.props.navigation.navigate('TestPreview')
+    }
+
     render() {
         return (
             <View style={[{borderColor: this.props.color},styles.btn]}>
-                <TouchableNativeFeedback>
+                <TouchableNativeFeedback onPress={()=> this.onClick()}>
                     <View style={styles.btn_text_container}>
-                        <Text style={[{color: this.props.color},styles.btn_text]}>Play!</Text>
+                        <Text style={[{color: this.props.color}, styles.btn_text]}>Play!</Text>
                     </View>
                 </TouchableNativeFeedback>
             </View>
@@ -38,4 +44,9 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RecommendCard_Button;
+export default connect(
+    null,
+    dispatch => ({
+        onSetTestTemplateData: (data) => dispatch({ type: 'TEST/SET_TEST_T_DATA', payload: data }),
+    })
+)(RecommendCard_Button)

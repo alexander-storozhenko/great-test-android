@@ -24,7 +24,7 @@ function App(props) {
         [fontMedium]: require('./assets/fonts/Quicksand-Medium.ttf'),
 
     });
-
+    console.disableYellowBox = true;
     // setLocale(NativeModules.I18nManager.localeIdentifier.split('_')[0])
     setLocale('ru')
 

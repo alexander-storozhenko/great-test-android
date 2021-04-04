@@ -6,6 +6,8 @@ import {headerHeight, primaryColor, secondaryColor} from "../StyleConstants";
 import Header_Settings from "./elements/Header_Settings";
 import Header_BackButton from "./elements/Header_BackButton";
 import {backScreens} from "../HeaderSettingsConstants";
+import Header_Debug from "./elements/Header_Debug";
+import {env} from "../../settings/url";
 
 
 class Header extends Component {
@@ -28,8 +30,11 @@ class Header extends Component {
         return (
             <View style={styles.header}>
                 {back}
+
                 <View style={styles.settings_btn}>
-                    {<Header_Settings/>}
+                    {env ==='dev' ? <Header_Debug/> : null}
+                    {/*{//TODO set custom header }*/}
+                    {/*{<Header_Settings/>}*/}
                 </View>
             </View>
         );
@@ -79,5 +84,5 @@ const styles = StyleSheet.create({
 });
 
 export default connect(state => ({
-    // back: state.backButton
+
 }),null)(Header);

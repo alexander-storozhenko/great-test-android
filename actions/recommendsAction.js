@@ -11,6 +11,15 @@ export const loadRecommends = () => dispatch => {
         .then(result => {
             dispatch({ type: 'RECOMMENDS_LOADING/SUCCESS', payload: result })
         })
+}
 
+// DEBUG
+export const addRecommend = () => dispatch => {
+    dispatch({ type: 'RECOMMENDS_ADD/PROGRESS' })
 
+    fetch(apiDomain + apiPath(url), { method: 'POST'})
+        .then(res => res.json())
+        .then(result => {
+            dispatch({ type: 'RECOMMENDS_ADD/SUCCESS'})
+        })
 }

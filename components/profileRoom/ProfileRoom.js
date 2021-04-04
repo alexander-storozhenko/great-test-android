@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
+import {Button, View, Text, StyleSheet} from "react-native";
 import ProfileRoom_Logo from "./elements/ProfileRoom_Logo";
 import ProfileRoom_UserInfo from "./elements/ProfileRoom_UserInfo";
 import ProfileRoom_UserStatistics from "./elements/ProfileRoom_UserStatistics";
@@ -8,21 +8,16 @@ import ProfileRoom_ButtonsLine from "./elements/ProfileRoom_ButtonsLine";
 import {contrastColor, lightColor} from "../StyleConstants";
 import ProfileRoom_Panel from "./elements/ProfileRoom_Panel";
 import ProfileRoom_Carousel from "./elements/ProfileRoom_Carousel";
-import Carousel_TestCard from "./elements/carousel_elements/Carousel_TestCard";
 import Carousel_MyTestsPage from "./elements/carousel_elements/Carousel_MyTestsPage";
 import ProfileRoom_SettingsScreen from "./ProfileRoom_SettingsScreen";
-import {showNavBar} from "../../actions/navBarAction";
-import {loadRecommends} from "../../actions/recommendsAction";
 import {setNavigation} from "../../actions/navigationAction";
 import {backHeader} from "../../actions/headerActions";
-import {NavigationEvents} from 'react-navigation'
 import Like from "../svg/Like";
 import Eye from "../svg/Eye";
 
 class ProfileRoom extends Component {
     constructor(props) {
         super(props);
-
     }
 
     componentDidMount() {

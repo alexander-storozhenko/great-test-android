@@ -25,7 +25,6 @@ class TestRoom extends Component {
         })
     }
 
-
     // onClick = () => this.setState({goBack})
 
     render() {
@@ -33,7 +32,6 @@ class TestRoom extends Component {
             answers: [],
             title: '',
         }
-
         const test_id = this.props.route.params.test_id
         const question_number = this.props.question_number
         const user_data = this.props.user_answers[question_number]?.data
@@ -45,6 +43,7 @@ class TestRoom extends Component {
         }
 
         return (
+
             <View>
                 {this.props.loading ?
                     <ActivityIndicator size="small" color={secondaryColor}/> :

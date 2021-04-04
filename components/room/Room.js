@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard} from "react-native";
+import {Button, View,Text, StyleSheet, Dimensions, TouchableWithoutFeedback, Keyboard} from "react-native";
 import {headerHeight, navHeight, roomPadding, tabHeight} from '../StyleConstants';
 import Header from "../header/Header";
+import DebugPanel from "../debugPanel/DebugPanel";
+import {env} from "../../settings/url";
 
 class Room extends Component {
     constructor(props) {
@@ -15,11 +17,13 @@ class Room extends Component {
 
         return (
             <View>
-            {/*<TouchableWithoutFeedback style={[styles.room, {height:height}]} onPress={()=>Keyboard.dismiss()}>*/}
-            <View style={[styles.room, {padding: this.props.padding ? roomPadding : 0, height:height}]}>
-                {this.props.children}
-            </View>
-            {/*</TouchableWithoutFeedback>*/}
+                {/*<TouchableWithoutFeedback style={[styles.room, {height:height}]} onPress={()=>Keyboard.dismiss()}>*/}
+                <View style={[styles.room, {padding: this.props.padding ? roomPadding : 0, height: height}]}>
+                    {this.props.children}
+                    <DebugPanel/>
+                </View>
+
+                {/*</TouchableWithoutFeedback>*/}
             </View>
         );
     }
@@ -29,11 +33,12 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     room: {
+        position: 'relative',
         paddingTop: 0,
         paddingBottom: 0,
         width: width,
         justifyContent: 'center',
-        flexDirection: 'row',
+        flexDirection: 'column',
         overflow: 'visible'
     },
 })

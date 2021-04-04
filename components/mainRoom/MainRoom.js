@@ -27,26 +27,22 @@ class MainRoom extends Component {
         this.props.onShowNavBar(true)
     }
 
-    getColors(colors) {
-        if (!colors || colors.length < 2)
-            return {first: firstColor, second: secondColor}
-        return {first: colors[0], second: colors[1]}
-    }
-
     onRefresh = () => {
         this.props.onLoadRecommends()
     }
 
     items = () => {
+
         let items = []
         this.props.recommends.map((recommend, key) => {
             if (recommend.type === 'card' && recommend.tests.length === 1) {
                 const test = recommend.tests[0]
-                items.push(<TestCard
+                console.log(test.colors)
+                items.push(<RecommendCard
                     key={key}
                     navigation={this.props.navigation}
                     title={test.title}
-                    backgroundColor={this.getColors(test.colors)}
+                    backgroundColors={test.colors}
                     subTitle={test.sub_title}
                     rating={test.rating}
                     plays={test.plays}
@@ -83,14 +79,8 @@ class MainRoom extends Component {
                     <RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh}/>}>
                     <View style={{width: '100%',height: '100%'}}>
 
-                        {/*{this.items().map(r => r)}*/}
-                        <RecommendCard/>
-                        <RecommendCard/>
-                        <RecommendCard/>
-                        <RecommendCard/>
-                        <RecommendCard/>
-                        <RecommendCard/>
-                        <RecommendCard/>
+                        {this.items().map(r => r)}
+
                         {/* <MainRoom_MiniTest question="What time is it? asd ads asda asdads asdasd " /> */}
                     </View>
                 </ScrollView>

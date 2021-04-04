@@ -13,14 +13,14 @@ import {
 } from "react-native";
 import RecommendCard_Button from "./elements/RecommendCard_Button";
 import {LinearGradient} from 'expo-linear-gradient';
-import {h2, h3} from "../StyleConstants";
+import {h2, h3, lightColor} from "../StyleConstants";
 import {getTextColor} from "../../lib/ColorsHelper";
-import {} from "react-native-web";
 import BookMark from "../svg/BookMark";
 
+//TODO not independent
 class RecommendCard extends Component {
 
-    colors = this.props.colors && this.props.colors[0] && this.props.colors[1] ? this.props.colors : ['#0023DC', '#08ACB7']
+    colors = this.props.backgroundColors && this.props.backgroundColors[0] && this.props.backgroundColors[1] ? this.props.backgroundColors : ['#0023DC', '#08ACB7']
 
     render() {
         const color = getTextColor("#111")
@@ -31,11 +31,11 @@ class RecommendCard extends Component {
                 <TouchableNativeFeedback>
                     <View style={styles.touchable_container}>
                         <View style={styles.text_container}>
-                            <Text style={[{color: color}, styles.title]}>Anime test</Text>
-                            <Text style={[{color: color}, styles.subtitle]}>Lorem ipsum doe fkrela?</Text>
+                            <Text style={[{color: color}, styles.title]}>{this.props.title}</Text>
+                            <Text style={[{color: color}, styles.subtitle]}>{this.props.subTitle}</Text>
                         </View>
                         <BookMark fill={color} style={styles.bookmark}/>
-                        <RecommendCard_Button color={color}/>
+                        <RecommendCard_Button test_t_id={this.props.test_t_id} color={color} navigation={this.props.navigation}/>
                     </View>
                 </TouchableNativeFeedback>
 
@@ -74,7 +74,9 @@ const styles = StyleSheet.create({
         fontSize: h2
     },
     subtitle: {
-        fontSize: h3
+        marginTop: 5,
+        fontSize: h3,
+        color: lightColor
     },
     btn: {
         position: 'absolute',

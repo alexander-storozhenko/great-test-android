@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 
 import {move} from './sidebarReducer'
-import {recommends, recommendsLoading} from './recommendsReducer'
+import {recommends, recommendsLoading, recommendsAdded, recommendsAddLoading} from './recommendsReducer'
 
 import {navbarShow} from "./navBar";
 
@@ -21,11 +21,14 @@ import {
     constructorCarouselColorTypeBtnClicked
 } from './constructorReducers/carouselReducer';
 
+import {panelOpen} from './debugReducer'
 export default combineReducers({
     move,
 
     recommends,
     recommendsLoading,
+    recommendsAdded,
+    recommendsAddLoading,
 
     navbarShow,
 
@@ -57,4 +60,5 @@ export default combineReducers({
     constructorCarouselSecondColorBtnClicked,
     constructorCarouselColorTypeBtnClicked,
 
+    panelOpen,
 })

@@ -1,10 +1,10 @@
-const env = 'dev'
+export const env = 'dev'
 
 const protocol = 'http://'
 
 const port = '3000'
 
-const devDomain = '192.168.0.11'
+const devDomain = '192.168.0.10'
 const prodDomain = '127.0.0.1'
 
 const domain = devDomain

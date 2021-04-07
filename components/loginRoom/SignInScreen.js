@@ -5,6 +5,7 @@ import {borderRadius, fontBold, h3, headerHeight, primaryColor, secondaryColor} 
 import OutMiddleButton from "../ui/OutMiddleButton";
 import {signIn} from "../../actions/loginActions/signInAction";
 import SignInScreen_SignInButton from "./elements/SignInScreen_SignInButton";
+import {navigate, replace} from "../../lib/NavigationService";
 
 class SignInScreen extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class SignInScreen extends Component {
                         <TextInput style={styles.input} onChange={(event) => this.onNameInputChange(event)}/>
                         <Text style={[styles.title, {marginTop: 10}]}>Password</Text>
                         <TextInput secureTextEntry={true} style={styles.input} onChange={(event) => this.onPasswordInputChange(event)}/>
-                        <SignInScreen_SignInButton onPress={this.onClick}/>
+                        <SignInScreen_SignInButton onPress={this.props.onSignIn}/>
                     </View>
                 </View>
             </View>

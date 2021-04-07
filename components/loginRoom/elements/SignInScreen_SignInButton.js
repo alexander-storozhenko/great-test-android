@@ -25,7 +25,7 @@ class SignInScreen_SignInButton extends Component {
     render() {
         return (
             <View>
-                <TouchableNativeFeedback>
+                <TouchableNativeFeedback onPress={this.props.onPress}>
                     <View style={styles.btn}>
                         <Text style={styles.text}>Sign In</Text>
                     </View>

@@ -22,8 +22,6 @@ class Carousel_MyTestsPage extends Component {
     }
 
     render() {
-
-
         return (
             <View style={styles.container}>
                 {this.props.loading ?
@@ -38,14 +36,12 @@ class Carousel_MyTestsPage extends Component {
                                     rating={test.rating}
                                     colors={test.colors}
                                 />)
-                            : <View></View>
+                            : <View/>
                         }
                     </ScrollView>}
 
                 <View style={styles.rounded_btn}>
-                    <RoundedButton action={() => {
-                        this.navigate()
-                    }}/>
+                    <RoundedButton action={this.navigate}/>
                 </View>
             </View>
         )

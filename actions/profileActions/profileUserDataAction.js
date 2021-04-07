@@ -3,8 +3,8 @@ import {accessible, apiPath} from "../../lib/Requests";
 
 const url = 'profile/user_data'
 
-export const getUserData = (page = 0) => dispatch => {
-    dispatch({type: 'PROFILE/USER_DATA/LOADING'})
+export const getUserData = () => dispatch => {
+    dispatch({type: 'PROFILE/USER_DATA/PROGRESS', payload: {loading: true}})
 
     fetch(apiDomain + apiPath(url))
         .then(res => {
@@ -12,6 +12,7 @@ export const getUserData = (page = 0) => dispatch => {
                 return res.json()
         })
         .then(result => {
+            console.log(result)
             dispatch({ type: 'PROFILE/USER_DATA/SUCCESS', payload: result })
         })
 }

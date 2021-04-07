@@ -73,16 +73,6 @@ function StackSearchNavigator() {
     );
 }
 
-function StackLoginNavigator(){
-    return (
-        <Room>
-            <Stack.Navigator>
-                <Stack.Screen name="KEK" component={SignInScreen} options={slideAnimation} />
-            </Stack.Navigator>
-        </Room>
-    )
-}
-
 function StackProfileRoomNavigator() {
 
 
@@ -95,7 +85,7 @@ function StackProfileRoomNavigator() {
                 <Stack.Screen name="ConstructorMainInfo" component={Constructor_MainInfoScreen} options={slideAnimation} />
                 <Stack.Screen name="ConstructorParams" component={Constructor_ParamsScreen} options={slideAnimation} />
                 <Stack.Screen name="Settings" component={ProfileRoom_SettingsScreen} back={true} options={slideAnimation} />
-                <Stack.Screen name="Login" options={slideAnimation} component={StackLoginNavigator} />
+                <Stack.Screen name="Login" options={slideAnimation} component={SignInScreen} />
             </Stack.Navigator>
         </Room>
     );

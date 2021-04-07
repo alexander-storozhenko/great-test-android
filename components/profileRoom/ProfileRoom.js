@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, Text, StyleSheet} from "react-native";
+import {Button, View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import ProfileRoom_Logo from "./elements/ProfileRoom_Logo";
 import ProfileRoom_UserInfo from "./elements/ProfileRoom_UserInfo";
 import ProfileRoom_UserStatistics from "./elements/ProfileRoom_UserStatistics";
 import ProfileRoom_ButtonsLine from "./elements/ProfileRoom_ButtonsLine";
-import {contrastColor, lightColor} from "../StyleConstants";
+import {contrastColor, lightColor, secondaryColor} from "../StyleConstants";
 import ProfileRoom_Panel from "./elements/ProfileRoom_Panel";
 import ProfileRoom_Carousel from "./elements/ProfileRoom_Carousel";
 import Carousel_MyTestsPage from "./elements/carousel_elements/Carousel_MyTestsPage";
@@ -15,6 +15,7 @@ import {backHeader} from "../../actions/headerActions";
 import Like from "../svg/Like";
 import Eye from "../svg/Eye";
 import {currentScreenName, navigate, navigation, replace} from "../../lib/NavigationService";
+import {getUserData} from "../../actions/profileActions/profileUserDataAction";
 
 class ProfileRoom extends Component {
     constructor(props) {
@@ -24,17 +25,16 @@ class ProfileRoom extends Component {
 
     componentDidMount() {
         // this.props.onBack(false)
-
+        this.props.getUserData()
         // root tab component need to set navigation
         this.props.setNavigation(this.props.navigation)
     }
 
 
     render() {
-        if(this.props.route?.params?.status === 403)
+        if (this.props.route?.params?.status === 403)
             // need to return empty view or view without API request because it will call recursive logout
             return <View/>
-
 
         return (
             <View style={styles.container}>
@@ -42,17 +42,22 @@ class ProfileRoom extends Component {
                     <View style={styles.info}>
                         <View style={styles.left_content}>
                             <ProfileRoom_Logo/>
-                            <View style={styles.user_stats}>
-                                <Eye width={20} height={20} fill={contrastColor} style={{marginTop: 5}}/>
-                                <Text style={{marginLeft: 4, marginTop: 4, color: contrastColor}}>1555</Text>
-                                <Like width={20} height={20} fill={contrastColor} style={{marginLeft: 7}}/>
-                                <Text style={{marginLeft: 4, marginTop: 4, color: contrastColor}}>3.7</Text>
+                            {
+                                !this.props.userData
+                                    ? <ActivityIndicator size="small" color={secondaryColor}/>
+                                    :
+                                    <View style={styles.user_stats}>
+                                        <Eye width={20} height={20} fill={contrastColor} style={{marginTop: 5}}/>
+                                        <Text style={{marginLeft: 4, marginTop: 4, color: contrastColor}}>{this.props.userData.plays}</Text>
+                                        <Like width={20} height={20} fill={contrastColor} style={{marginLeft: 7}}/>
+                                        <Text style={{marginLeft: 4, marginTop: 4, color: contrastColor}}>{this.props.userData.likes}</Text>
+                                    </View>
+                            }
 
-                            </View>
                         </View>
 
                         <View style={styles.right_content}>
-                            <ProfileRoom_UserInfo name={"BOGDAN_54"}/>
+                            <ProfileRoom_UserInfo name={this.props.userData ? this.props.userData.user_name : '...' }/>
                             <ProfileRoom_UserStatistics/>
                             <ProfileRoom_ButtonsLine/>
                         </View>
@@ -121,8 +126,12 @@ const styles = StyleSheet.create({
 })
 
 export default connect(
-    null,
+    state => ({
+        userDataLoading: state.profileUserDataProgress,
+        userData: state.profileUserData,
+    }),
     dispatch => ({
         onBack: (show) => dispatch(backHeader(show)),
-        setNavigation: (current) => dispatch(setNavigation(current))
+        setNavigation: (current) => dispatch(setNavigation(current)),
+        getUserData: () => dispatch(getUserData()),
     }))(ProfileRoom);

@@ -12,6 +12,7 @@ import TestRoom_NavNextButton from './elements/TestRoom_NavNextButton';
 import {getQuestion} from '../../actions/questionsAction';
 import {setDefaultUserAnswers} from "../../actions/answersAction";
 import TimerLine from "../timer/TimerLine";
+import {getTestResults} from "../../actions/testsAction";
 
 class TestRoom extends Component {
     constructor(props) {
@@ -23,6 +24,17 @@ class TestRoom extends Component {
         this.props.navigation.addListener('beforeRemove', (e) => {
             if (e.data.action.type === 'GO_BACK') e.preventDefault()
         })
+    }
+
+    lastQuestion = () => (this.props.question_number >= this.props.question_count)
+
+
+    onNextQuestion = () => {
+        // this.props.onSendAnswers(this.props.user_answers, this.props.test_id, this.props.question_number, this.props.navigation)
+        if (this.lastQuestion())
+            this.props.onGetTestResults(this.props.route.params.test_id, this.props.navigation)
+        else
+            this.props.onGetQuestion(this.props.route.params.test_id, this.props.question_number, this.props.navigation)
     }
 
     // onClick = () => this.setState({goBack})
@@ -49,8 +61,9 @@ class TestRoom extends Component {
                     <ActivityIndicator size="small" color={secondaryColor}/> :
                     <View style={{width: '100%', height: '100%', position: 'relative'}}>
                         <TimerLine
-                            start_time={30}
+                            start_time={2}
                             test_id={test_id}
+                            onTimerExpire={this.onNextQuestion}
                             navigation={this.props.navigation}
 
                         />
@@ -73,7 +86,7 @@ class TestRoom extends Component {
                             </View>
                         </View>
                         <View style={{position: 'absolute', bottom: 15, width: '100%'}}>
-                            <TestRoom_NavNextButton test_id={this.props.route.params.test_id}
+                            <TestRoom_NavNextButton onPress={this.onNextQuestion} test_id={this.props.route.params.test_id}
                                                     navigation={this.props.navigation}/>
                         </View>
                     </View>
@@ -116,8 +129,11 @@ export default connect(
         question_count: state.questionCount,
         loading: state.questionLoading,
         user_answers: state.userAnswers,
+
     }),
     dispatch => ({
         setDefaultUserAnswers: (answers, test_id, question_id) => dispatch(setDefaultUserAnswers(answers, test_id, question_id)),
-        callLoading: ()=> dispatch({type: 'QUESTION/GET_PROGRESS'})
+        callLoading: ()=> dispatch({type: 'QUESTION/GET_PROGRESS'}),
+        onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
+        onGetTestResults: (test_id, navigation) => dispatch(getTestResults(test_id, navigation)),
     }))(TestRoom);

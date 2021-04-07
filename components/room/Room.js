@@ -20,9 +20,10 @@ class Room extends Component {
                 {/*<TouchableWithoutFeedback style={[styles.room, {height:height}]} onPress={()=>Keyboard.dismiss()}>*/}
                 <View style={[styles.room, {padding: this.props.padding ? roomPadding : 0, height: height}]}>
                     {this.props.children}
-                    <DebugPanel/>
-                </View>
 
+
+                </View>
+                <DebugPanel/>
                 {/*</TouchableWithoutFeedback>*/}
             </View>
         );
@@ -41,6 +42,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         overflow: 'visible'
     },
+    debug_panel_container:{
+        width: '100%',
+        justifyContent: 'center'
+    }
 })
 
 export default Room;

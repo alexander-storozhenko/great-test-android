@@ -17,23 +17,17 @@ class TimerLine extends Component {
 
     ticksStart = () => {
         this.interval = setInterval(() => {
-                console.log(this.interval)
-                if (this.state.time === 0) {
-                    this.props.onSendAnswers(this.props.user_answers, this.props.test_id, this.props.question_number, this.props.navigation)
-                    this.props.onGetQuestion(this.props.test_id, this.props.question_number, this.props.navigation)
+                if (this.state.time === 1) {
+                    this.props.onTimerExpire()
                     return;
                 }
 
                 const time = this.state.time - 1
                 this.setState({time: time})
-
         }, 1000)
-
-
     }
 
     componentDidMount() {
-        console.log('componentDidMount')
         this.setState({time: this.props.start_time})
         this.ticksStart()
     }
@@ -55,7 +49,7 @@ export default connect(
         question_number: state.questionNumber
     }),
     dispatch => ({
-        onSendAnswers: (userAnswers, test_id, question_number, navigation) => dispatch(sendAnswers(userAnswers, test_id, question_number, navigation)),
+        // onSendAnswers: (userAnswers, test_id, question_number, navigation) => dispatch(sendAnswers(userAnswers, test_id, question_number, navigation)),
         onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
     })
 )(TimerLine);

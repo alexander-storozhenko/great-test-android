@@ -9,6 +9,7 @@ import Carousel_TestCard from "./Carousel_TestCard";
 import RoundedButton from "../../../roundedButton/RoundedButton";
 import {setNavigation} from "../../../../actions/navigationAction";
 import {getUserTests} from "../../../../actions/profileActions/profileCarouselAction";
+import {navigate} from "../../../../lib/NavigationService";
 
 class Carousel_MyTestsPage extends Component {
 
@@ -17,7 +18,7 @@ class Carousel_MyTestsPage extends Component {
     }
 
     navigate = () => {
-        this.props.navigation.navigate('ConstructorMainInfo')
+        navigate('ConstructorMainInfo')
     }
 
     render() {

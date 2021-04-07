@@ -11,6 +11,8 @@ import {userAnswers} from "./answersReducer";
 
 import {search_progress, search_results} from "./searchReducer";
 import {profileCarouselSlideTitle, profileCarouselLoading, profileCarouselData} from "./profileReducers/profileCarouselReducer";
+import {profileUserDataProgress, profileUserData} from './profileReducers/profileUserDataReducer';
+
 import {currentNavigation} from "./navigationReducer";
 
 import {backButton} from "./headerReducer";
@@ -21,7 +23,11 @@ import {
     constructorCarouselColorTypeBtnClicked
 } from './constructorReducers/carouselReducer';
 
-import {panelOpen} from './debugReducer'
+import {panelOpen} from './debugReducer';
+
+import {signInProgress, accessToken} from './loginReducer';
+
+
 export default combineReducers({
     move,
 
@@ -50,6 +56,9 @@ export default combineReducers({
     profileCarouselLoading,
     profileCarouselData,
 
+    profileUserDataProgress,
+    profileUserData,
+
     currentNavigation,
 
     backButton,
@@ -61,4 +70,7 @@ export default combineReducers({
     constructorCarouselColorTypeBtnClicked,
 
     panelOpen,
+
+    signInProgress,
+    accessToken,
 })

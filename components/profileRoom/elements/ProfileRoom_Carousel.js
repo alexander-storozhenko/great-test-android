@@ -12,7 +12,6 @@ class ProfileRoom_Carousel extends Component {
     _renderItem = ({ item, _ }) => (<View style={styles.container}>{item}</View>)
 
     _changeSlide = (index) => {
-        console.log(index)
         this.props.changeSlide(index)
     }
 

@@ -14,19 +14,28 @@ import {setNavigation} from "../../actions/navigationAction";
 import {backHeader} from "../../actions/headerActions";
 import Like from "../svg/Like";
 import Eye from "../svg/Eye";
+import {currentScreenName, navigate, navigation, replace} from "../../lib/NavigationService";
 
 class ProfileRoom extends Component {
     constructor(props) {
         super(props);
+        this.state = {forbidden: false}
     }
 
     componentDidMount() {
-        this.props.onBack(false)
+        // this.props.onBack(false)
+
+        // root tab component need to set navigation
         this.props.setNavigation(this.props.navigation)
-        console.log(this.props.navigation.canGoBack())
     }
 
+
     render() {
+        if(this.props.route?.params?.status === 403)
+            // need to return empty view or view without API request because it will call recursive logout
+            return <View/>
+
+
         return (
             <View style={styles.container}>
                 <View style={styles.user_info}>
@@ -34,10 +43,10 @@ class ProfileRoom extends Component {
                         <View style={styles.left_content}>
                             <ProfileRoom_Logo/>
                             <View style={styles.user_stats}>
-                                <Eye width={20} height={20} fill={ contrastColor}  style={{marginTop:5}}/>
-                                <Text style={{marginLeft:4,marginTop:4, color: contrastColor}}>1555</Text>
-                                <Like width={20} height={20} fill={contrastColor} style={{marginLeft:7}}/>
-                                <Text style={{marginLeft:4,marginTop:4, color: contrastColor}}>3.7</Text>
+                                <Eye width={20} height={20} fill={contrastColor} style={{marginTop: 5}}/>
+                                <Text style={{marginLeft: 4, marginTop: 4, color: contrastColor}}>1555</Text>
+                                <Like width={20} height={20} fill={contrastColor} style={{marginLeft: 7}}/>
+                                <Text style={{marginLeft: 4, marginTop: 4, color: contrastColor}}>3.7</Text>
 
                             </View>
                         </View>
@@ -110,7 +119,6 @@ const styles = StyleSheet.create({
     }
 
 })
-
 
 export default connect(
     null,

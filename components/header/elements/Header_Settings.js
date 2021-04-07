@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Button, View, StyleSheet, Dimensions, TouchableHighlight, TouchableWithoutFeedback} from "react-native";
 import {headerHeight, primaryColor, secondaryColor} from "../../StyleConstants";
 import Settings from "../../svg/Settings";
+import {navigate} from "../../../lib/NavigationService";
 
 
 class Header_Settings extends Component {
@@ -18,7 +19,7 @@ class Header_Settings extends Component {
         return (
             <View style={styles.settings}>
                 <TouchableWithoutFeedback onPress={() => {
-                    this.props.navigation.navigate('Settings')
+                    navigate('Settings')
                 }}>
 
                     <Settings fill={primaryColor}/>

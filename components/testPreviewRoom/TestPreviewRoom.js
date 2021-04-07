@@ -5,9 +5,8 @@ import TestPreviewRoom_Card from './elements/TestPreviewRoom_Card'
 import {fontBold, h2, mt_20, mt_30, mt_10, secondaryColor} from '../StyleConstants';
 import BigButton from '../bigButton/BigButton';
 import {showNavBar} from '../../actions/navBarAction';
-import {getPreviewInfo, setTestData} from '../../actions/testsAction';
-import {navigationRef} from '../../lib/NavigationService';
-import {getQuestion, resetQuestionNumber, setQuestionCount} from "../../actions/questionsAction";
+import {getPreviewInfo} from '../../actions/testsAction';
+import {getQuestion, resetQuestionNumber} from "../../actions/questionsAction";
 
 class TestPreviewRoom extends Component {
     constructor(props) {

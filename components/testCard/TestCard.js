@@ -28,6 +28,7 @@ import { color } from 'react-native-reanimated';
 import TestTwo from '../svg/TestTwo';
 import { showNavBar } from '../../actions/navBarAction';
 import { setTestData } from '../../actions/testsAction';
+import {navigate} from "../../lib/NavigationService";
 
 class TestCard extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class TestCard extends Component {
     }
     onClick = () => {
         this.props.onSetTestTemplateData({ test_t_id: this.props.test_t_id })
-        this.props.navigation.navigate('TestPreview')
+        navigate('TestPreview')
         this.props.onShowNavBar(false)
     }
     render() {

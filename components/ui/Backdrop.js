@@ -9,6 +9,7 @@ import {borderRadius, lightColor, secondaryColor} from "../StyleConstants";
 import {Animated} from "react-native";
 
 const CONTAINER_HEIGHT = 500
+const CLOSE_STATE_LENGTH = 400
 const DURATION = 300
 
 class Backdrop extends Component {
@@ -49,8 +50,7 @@ class Backdrop extends Component {
 
         onPanResponderRelease: () => {
             this.pan.flattenOffset();
-            this.direction = this.pan.y._value < CONTAINER_HEIGHT / 3 ? this.open() : this.close()
-
+            this.direction = this.pan.y._value < CONTAINER_HEIGHT - CLOSE_STATE_LENGTH ? this.open() : this.close()
         }
     });
 

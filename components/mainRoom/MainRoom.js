@@ -15,6 +15,7 @@ import {showNavBar} from '../../actions/navBarAction';
 import {resetQuestionNumber} from "../../actions/questionsAction";
 import TestCard from "../testCard/TestCard";
 import RecommendCard from "../recommendCard/RecommendCard";
+import {setNavigation} from "../../actions/navigationAction";
 
 class MainRoom extends Component {
     constructor(props) {
@@ -25,6 +26,9 @@ class MainRoom extends Component {
     componentDidMount() {
         this.props.onLoadRecommends()
         this.props.onShowNavBar(true)
+
+        // root tab component need set navigation
+        this.props.setNavigation(this.props.navigation)
     }
 
     onRefresh = () => {
@@ -37,7 +41,6 @@ class MainRoom extends Component {
         this.props.recommends.map((recommend, key) => {
             if (recommend.type === 'card' && recommend.tests.length === 1) {
                 const test = recommend.tests[0]
-                console.log(test.colors)
                 items.push(<RecommendCard
                     key={key}
                     navigation={this.props.navigation}
@@ -98,5 +101,5 @@ export default connect(
     dispatch => ({
         onShowNavBar: (state) => dispatch(showNavBar(state)),
         onLoadRecommends: () => dispatch(loadRecommends()),
-
+        setNavigation: (current) => dispatch(setNavigation(current))
     }))(MainRoom);

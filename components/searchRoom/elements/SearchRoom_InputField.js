@@ -7,21 +7,21 @@ import {searchData} from "../../../actions/searchAction";
 class SearchRoom_InputField extends Component {
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
+       this.input = React.createRef();
     }
 
     onTextInputChange = (event) => {
-        console.log(event.nativeEvent.text.trim().toLowerCase())
         this.props.searchData(event.nativeEvent.text.trim().toLowerCase())
     }
 
     render() {
+        this.input?.current?.focus()
+
         return (
             <View>
                 <View style={styles.text_input_container}>
                     <TextInput
+                        ref={this.input}
                         onChange={(event)=> this.onTextInputChange(event)}
                         autoFocus={true}
                         style={styles.text_input}

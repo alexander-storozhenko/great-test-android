@@ -35,7 +35,7 @@ import ProfileRoom from "./components/profileRoom/ProfileRoom";
 import Constructor_MainInfoScreen from "./components/contructorRoom/Constructor_MainInfoScreen";
 import ProfileRoom_SettingsScreen from "./components/profileRoom/ProfileRoom_SettingsScreen";
 import Constructor_ParamsScreen from "./components/contructorRoom/Constructor_ParamsScreen";
-
+import SignInScreen from './components/loginRoom/SignInScreen'
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
 
@@ -73,14 +73,29 @@ function StackSearchNavigator() {
     );
 }
 
+function StackLoginNavigator(){
+    return (
+        <Room>
+            <Stack.Navigator>
+                <Stack.Screen name="KEK" component={SignInScreen} options={slideAnimation} />
+            </Stack.Navigator>
+        </Room>
+    )
+}
+
 function StackProfileRoomNavigator() {
+
+
     return (
         <Room padding>
             <Stack.Navigator>
+                {/*<Stack.Screen name="Login" component={StackLoginNavigator} options={slideAnimation}/>*/}
                 <Stack.Screen name="Profile" component={ProfileRoom} options={slideAnimation} />
+
                 <Stack.Screen name="ConstructorMainInfo" component={Constructor_MainInfoScreen} options={slideAnimation} />
                 <Stack.Screen name="ConstructorParams" component={Constructor_ParamsScreen} options={slideAnimation} />
                 <Stack.Screen name="Settings" component={ProfileRoom_SettingsScreen} back={true} options={slideAnimation} />
+                <Stack.Screen name="Login" options={slideAnimation} component={StackLoginNavigator} />
             </Stack.Navigator>
         </Room>
     );
@@ -118,8 +133,10 @@ function Screen(props) {
             <Header />
             <NavigationContainer theme={navTheme}>
                 <Stack.Navigator initialRouteName="Home">
+
                     <Stack.Screen options={{ headerShown: false }} name="Home" component={TabNavigator} />
                     <Stack.Screen options={slideAnimation} name="TestPreview" component={StackTestNavigator} />
+
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="light" />

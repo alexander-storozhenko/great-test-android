@@ -28,7 +28,6 @@ class DebugPanel extends Component {
     }
 
     render() {
-        console.log(this.props.panelOpen)
         return (
             <View style={{position: 'absolute', width:'100%', bottom: 0}}>
                 <Backdrop onChange={this.props.onOpen} open={this.props.panelOpen}>

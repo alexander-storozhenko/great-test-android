@@ -13,25 +13,14 @@ class TestRoom_NavNextButton extends Component {
         this.state = {pressed: false}
     }
 
-    lastQuestion = () => (this.props.question_number >= this.props.question_count)
 
-
-    onNext = () => {
-        this.props.onSendAnswers(this.props.user_answers, this.props.test_id, this.props.question_number, this.props.navigation)
-
-        if (this.lastQuestion())
-            this.props.onGetTestResults(this.props.test_id, this.props.navigation)
-        else
-            this.props.onGetQuestion(this.props.test_id, this.props.question_number, this.props.navigation)
-
-    }
 
     render() {
         return (
             <View style={{alignItems: 'flex-end', height: 65}}>
                 <View style={styles.container}>
                     <View style={[styles.button, styles.next]}>
-                        <TouchableNativeFeedback onPress={() => this.onNext()} style={{width: '100%', height: '100%'}}>
+                        <TouchableNativeFeedback onPress={this.props.onPress} style={{width: '100%', height: '100%'}}>
                             <View style={styles.text_container}>
                                 <Text style={styles.text}>next</Text>
                             </View>

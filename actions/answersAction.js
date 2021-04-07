@@ -6,7 +6,7 @@ const url = 'questions/set_answers'
 
 export const sendAnswers = (answers, test_id, question_number, navigation) => dispatch => {
     // dispatch({type: 'ANSWERS_SEND/PROGRESS'})
-    dispatch({ type: 'QUESTION/GET_PROGRESS' })
+    // dispatch({ type: 'QUESTION/GET_PROGRESS' })
     fetch(apiDomain + apiPath(url), { method: 'POST'})
         .then(res => res.json())
         .then(result => {

@@ -5,11 +5,23 @@ import {connect} from "react-redux";
 import SearchRoom_Card from "./elements/SearchRoom_Card";
 import {firstColor, secondaryColor, secondColor} from "../StyleConstants";
 import TestCard from "../testCard/TestCard";
+import {setNavigation} from "../../actions/navigationAction";
+import {navigation} from "../../lib/NavigationService";
 
 class SearchRoom extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {focus: true}
+    }
+
+    componentDidMount() {
+        // root tab component need set navigation
+        this.props.setNavigation(this.props.navigation)
+
+        // need to refresh screen to call focus()
+        this.props.navigation.addListener('focus', () => {
+            this.setState({focus: false}, () => this.setState({focus: true}))
+        });
     }
 
     getColors(colors) {
@@ -19,10 +31,9 @@ class SearchRoom extends Component {
     }
 
     render() {
-
         let results = this.props.results.cards
         const best_result = results?.shift()
-        console.log(best_result?.author)
+
         let best_card = best_result ?
             <TestCard
                 key={0}
@@ -39,7 +50,7 @@ class SearchRoom extends Component {
         const cards = results?.map((result, key) => <SearchRoom_Card key={key}/>)
         return (
             <View>
-                <SearchRoom_InputField/>
+                <SearchRoom_InputField focus={this.state.focus}/>
                 {this.props.progress ? <ActivityIndicator size="small" color={secondaryColor}/> :
                     <View>{best_card}{cards}</View>}
             </View>
@@ -53,4 +64,6 @@ export default connect(
         progress: state.search_progress,
         results: state.search_results
     }),
-    dispatch => ({}))(SearchRoom);
+    dispatch => ({
+        setNavigation: (current) => dispatch(setNavigation(current))
+    }))(SearchRoom);

@@ -27,7 +27,6 @@ class FinishScreen_Slider extends Component {
                     maximumTrackTintColor={secondaryColor}
                     thumbTintColor={contrastColor}
                     step={2}
-                    onValueChange={() => console.log('')}
                 />
                 <Text style={styles.like}>👍</Text>
             </View>

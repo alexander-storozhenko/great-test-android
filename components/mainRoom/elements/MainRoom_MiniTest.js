@@ -18,16 +18,16 @@ class MainRoom_MiniTest extends Component {
             <View style={styles.miniTest}>
 
                 <Text style={styles.title}>{this.props.question}</Text>
-                <MiniTest_Button onPress={() => console.log('kekekekekekeke1k')}>
+                <MiniTest_Button>
                     Russia
                     </MiniTest_Button>
-                <MiniTest_Button onPress={() => console.log('kekekekekekeke1k')}>
+                <MiniTest_Button>
                     Belgia
                     </MiniTest_Button>
-                <MiniTest_Button onPress={() => console.log('kekekekekekeke1k')}>
+                <MiniTest_Button>
                     England
                     </MiniTest_Button>
-                <MiniTest_Button onPress={() => console.log('kekekekekekeke1k')}>
+                <MiniTest_Button>
                     America
                     </MiniTest_Button>
             </View>

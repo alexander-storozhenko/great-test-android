@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 import {Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator,TouchableNativeFeedback} from "react-native";
 import {borderRadius, h3, primaryColor} from "../../StyleConstants";
 import {showNavBar} from "../../../actions/navBarAction";
+import {navigate} from "../../../lib/NavigationService";
 
 class RecommendCard_Button extends Component {
     onClick = () => {
         this.props.onSetTestTemplateData({ test_t_id: this.props.test_t_id })
-        this.props.navigation.navigate('TestPreview')
+        navigate('TestPreview')
     }
 
     render() {

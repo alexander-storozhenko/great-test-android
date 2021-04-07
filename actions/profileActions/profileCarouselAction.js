@@ -1,5 +1,6 @@
 import {apiDomain} from "../../settings/url";
-import {apiPath} from "../../lib/Requests";
+import {accessible, apiPath} from "../../lib/Requests";
+import {navigate, navigateToLogin, replace} from "../../lib/NavigationService";
 
 const url = 'profile/user_tests'
 
@@ -11,9 +12,11 @@ export const getUserTests = (page = 0) => dispatch => {
     dispatch({type: 'PROFILE_CAROUSEL/LOADING'})
 
     fetch(apiDomain + apiPath(url))
-        .then(res => res.json())
+        .then(res => {
+            if(accessible(res)) return res.json()
+            navigateToLogin()
+        })
         .then(result => {
-            console.log(result[0].title)
             dispatch({ type: 'PROFILE_CAROUSEL/SUCCESS', payload: result })
         })
 }

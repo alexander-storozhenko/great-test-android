@@ -20,15 +20,12 @@ class TestRoom_NavButton extends Component {
     }
 
     onNext = () => {
-        
         this.props.onSendAnswers(this.props.user_answers, this.props.test_id)
-        this.props.onIncreaseQuestionNumber()
+        // this.props.onIncreaseQuestionNumber()
         this.props.navigation.push('Test', { test_id: this.props.test_id })
     }
 
     render() {
-        console.log(this.props.questionNumber)
-
         return (
             <View style={{ alignItems: 'flex-end', height: 65 }}>
                 <View style={styles.container}>

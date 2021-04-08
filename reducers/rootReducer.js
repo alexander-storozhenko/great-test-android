@@ -11,7 +11,7 @@ import {userAnswers} from "./answersReducer";
 
 import {search_progress, search_results} from "./searchReducer";
 import {profileCarouselSlideTitle, profileCarouselLoading, profileCarouselData} from "./profileReducers/profileCarouselReducer";
-import {profileUserDataProgress, profileUserData} from './profileReducers/profileUserDataReducer';
+import {profileUserData} from './profileReducers/profileUserDataReducer';
 
 import {currentNavigation} from "./navigationReducer";
 
@@ -56,7 +56,6 @@ export default combineReducers({
     profileCarouselLoading,
     profileCarouselData,
 
-    profileUserDataProgress,
     profileUserData,
 
     currentNavigation,

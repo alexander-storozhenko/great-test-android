@@ -12,7 +12,6 @@ export const getUserData = () => dispatch => {
                 return res.json()
         })
         .then(result => {
-            console.log(result)
             dispatch({ type: 'PROFILE/USER_DATA/SUCCESS', payload: result })
         })
 }

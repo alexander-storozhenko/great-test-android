@@ -19,6 +19,9 @@ class TestPreviewRoom extends Component {
     }
 
     render() {
+        const data = this.props.previewInfo?.data
+        const options = data?.options
+
         return (
             <View>
                 {
@@ -27,9 +30,12 @@ class TestPreviewRoom extends Component {
                             <ActivityIndicator size="large" color={secondaryColor}/>
                         </View> :
                         <View style={styles.preview}>
-                            <Text style={styles.title}>Title test </Text>
+                            <Text style={styles.title}>{data?.title}</Text>
                             <View style={{...mt_10, width: '100%'}}>
-                                <TestPreviewRoom_Card/>
+                                <TestPreviewRoom_Card
+                                    question_count={options?.question_count}
+                                    author_name={options?.author_name}
+                                />
                             </View>
                             <View style={{width: '100%', position: 'absolute', bottom: 20}}>
                                 <BigButton onPress={() => {

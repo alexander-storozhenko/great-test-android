@@ -22,9 +22,10 @@ class Carousel_MyTestsPage extends Component {
     }
 
     render() {
+        console.log(this.props.userTests )
         return (
             <View style={styles.container}>
-                {this.props.loading ?
+                {this.props.userTests.length === 0 ?
                     <ActivityIndicator size="small" color={secondaryColor}/> :
                     <ScrollView showsVerticalScrollIndicator={false} style={styles.list}>
                         {  this.props.userTests

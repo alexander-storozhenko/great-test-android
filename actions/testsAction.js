@@ -10,11 +10,12 @@ export const getPreviewInfo = (test_t_id) => dispatch => {
 
     fetch(apiDomain + apiPath(preview_info_url, {test_t_id: test_t_id}))
         .then(res => {
-            if (accessible(res)) return res.json()
+            if (!accessible(res)) return res.json()
             navigateToLogin()
+            return Promise.reject('Forbidden')
         })
         .then(result => {
-            dispatch({type: 'QUESTION/COUNT', payload: result.data.question_count})
+            dispatch({type: 'QUESTION/COUNT', payload: result.data.options.question_count})
             dispatch({type: 'TEST/GET_PREVIEW_INFO_SUCCESS', payload: result})
         })
 }

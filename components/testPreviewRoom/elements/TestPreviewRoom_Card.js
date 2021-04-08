@@ -17,7 +17,7 @@ class TestPreviewRoom_Card extends Component {
             <View style={styles.card}>
                 <View style={styles.card_item}>
                     <TestTwo width={30} height={30} fill={secondaryColor}/>
-                    <Text style={styles.card_item_text}>21 questions</Text>
+                    <Text style={styles.card_item_text}>{this.props.question_count} questions</Text>
                 </View>
                 <View style={styles.card_item}>
                     <TestOne width={30} height={30} fill={secondaryColor}/>
@@ -37,7 +37,7 @@ class TestPreviewRoom_Card extends Component {
                 </View>
                 <View style={styles.card_item}>
                     <Profile width={30} height={30} fill={secondaryColor}/>
-                    <Text style={styles.card_item_text}>test_user</Text>
+                    <Text style={styles.card_item_text}>{this.props.author_name}</Text>
                 </View>
             </View>
             </View>

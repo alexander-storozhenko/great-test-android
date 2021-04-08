@@ -8,7 +8,7 @@ import {
     h2,
     h3,
     h4,
-    lightColor,
+    lightColor, roomPadding,
     secondaryColor,
     successColor
 } from "../StyleConstants";
@@ -29,7 +29,7 @@ class DebugPanel extends Component {
 
     render() {
         return (
-            <View style={{position: 'absolute', width:'100%', bottom: 0}}>
+            <View style={styles.container}>
                 <Backdrop onChange={this.props.onOpen} open={this.props.panelOpen}>
                     <View>
                         <View style={styles.row}>
@@ -45,6 +45,13 @@ class DebugPanel extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        position: 'absolute',
+        width: '100%',
+        bottom: 0,
+        paddingLeft: roomPadding,
+        paddingRight: roomPadding,
+    },
     row: {
         flexDirection: 'row',
     },
@@ -78,11 +85,6 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: '100%',
     },
-    container: {
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-    }
 })
 
 export default connect(

@@ -24,8 +24,14 @@ class ProfileRoom extends Component {
     }
 
     componentDidMount() {
-        // this.props.onBack(false)
+        this.props.navigation.addListener('focus', (e) => {
+            if(this.props.route?.params?.from_login )
+                this.props.getUserData()
+        })
+
         this.props.getUserData()
+        // this.props.onBack(false)
+        // this.props.getUserData()
         // root tab component need to set navigation
         this.props.setNavigation(this.props.navigation)
     }

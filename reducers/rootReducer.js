@@ -25,7 +25,7 @@ import {
 
 import {panelOpen} from './debugReducer';
 
-import {signInProgress, accessToken} from './loginReducer';
+import {signInProgress, accessToken, loginIncorrect} from './loginReducer';
 import {testResults} from './resultsReducer';
 
 
@@ -75,6 +75,7 @@ export default combineReducers({
 
     signInProgress,
     accessToken,
+    loginIncorrect,
 
     testResults
 })

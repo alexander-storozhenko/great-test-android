@@ -18,13 +18,15 @@ import {getTextColor} from "../../lib/ColorsHelper";
 import BookMark from "../svg/BookMark";
 import {rootPath} from "../../lib/Requests";
 
+const GRADIENT_OPACITY = 0.83
+
 //TODO not independent
 class RecommendCard extends Component {
 
     colors = this.props.backgroundColors && this.props.backgroundColors[0] && this.props.backgroundColors[1] ? this.props.backgroundColors : ['#0023DC', '#08ACB7']
 
     render() {
-        const color = getTextColor("#111")
+        const color = getTextColor(this.colors[0])
         return (
             <View style={styles.container}>
                 {this.props.image_url ? <ImageBackground style={styles.image} source={{uri: rootPath(this.props.image_url ) }}/> : null }
@@ -49,12 +51,12 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: 190,
-        marginTop:-1
+        marginTop:-1 // "fix" rendering bug
     },
     gradient: {
         width: '100%',
         height: '100%',
-        opacity: 0.7,
+        opacity: GRADIENT_OPACITY,
         position: 'absolute',
     },
     image:{
@@ -77,7 +79,6 @@ const styles = StyleSheet.create({
     subtitle: {
         marginTop: 5,
         fontSize: h3,
-        color: lightColor
     },
     btn: {
         position: 'absolute',

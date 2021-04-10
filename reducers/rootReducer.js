@@ -7,10 +7,10 @@ import {navbarShow} from "./navBar";
 
 import {question, questionNumber, questionLoading, questionCount} from "./questionReducer";
 import {testPreviewLoading, testPreviewInfo, testTData} from "./testReducer";
-import {userAnswers} from "./answersReducer";
+import {userAnswers, answersSendProgress} from "./answersReducer";
 
 import {search_progress, search_results} from "./searchReducer";
-import {profileCarouselSlideTitle, profileCarouselLoading, profileCarouselData} from "./profileReducers/profileCarouselReducer";
+import {profileCarouselSlideTitle, profileCarouselLoading, profileCarouselData, profileCarouselItemSelected} from "./profileReducers/profileCarouselReducer";
 import {profileUserData} from './profileReducers/profileUserDataReducer';
 
 import {currentNavigation} from "./navigationReducer";
@@ -26,6 +26,7 @@ import {
 import {panelOpen} from './debugReducer';
 
 import {signInProgress, accessToken} from './loginReducer';
+import {testResults} from './resultsReducer';
 
 
 export default combineReducers({
@@ -48,6 +49,7 @@ export default combineReducers({
     testTData,
 
     userAnswers,
+    answersSendProgress,
 
     search_progress,
     search_results,
@@ -55,6 +57,7 @@ export default combineReducers({
     profileCarouselSlideTitle,
     profileCarouselLoading,
     profileCarouselData,
+    profileCarouselItemSelected,
 
     profileUserData,
 
@@ -72,4 +75,6 @@ export default combineReducers({
 
     signInProgress,
     accessToken,
+
+    testResults
 })

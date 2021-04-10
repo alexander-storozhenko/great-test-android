@@ -31,6 +31,7 @@ class Carousel_MyTestsPage extends Component {
                         {  this.props.userTests
                             ? this.props.userTests.map((test,key) =>
                                 <Carousel_TestCard
+                                    id={key}
                                     key={key}
                                     title={test.title}
                                     plays={test.plays}

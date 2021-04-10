@@ -24,10 +24,10 @@ class DebugPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {visible: false}
-        this.ref = React.createRef();
     }
 
     render() {
+        console.log(this.props.recommendsLoading )
         return (
             <View style={styles.container}>
                 <Backdrop onChange={this.props.onOpen} open={this.props.panelOpen}>

@@ -6,11 +6,11 @@ export const question = (state = null, action) => {
 }
 
 export const questionNumber = (state = 0, action) => {
-    if (action.type === 'QUESTION/INCREASE_NUMBER') {
+    if (action.type === 'QUESTION/INCREASE_NUMBER')
         state += 1
-    } else if (action.type === 'QUESTION/DECREASE_NUMBER') {
+    else if (action.type === 'QUESTION/DECREASE_NUMBER')
         state -= 1
-    } else if (action.type === 'QUESTION/RESET_NUMBER')
+    else if (action.type === 'QUESTION/RESET_NUMBER')
         state = 0
     return state
 }

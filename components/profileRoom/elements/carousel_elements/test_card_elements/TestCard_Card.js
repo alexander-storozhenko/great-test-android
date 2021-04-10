@@ -16,6 +16,9 @@ import {borderRadius, fontBold, lightColor, primaryColor} from "../../../../Styl
 import {LinearGradient} from 'expo-linear-gradient';
 import Love from "../../../../svg/Love";
 import Eye from "../../../../svg/Eye";
+import {sendAnswers} from "../../../../../actions/answersAction";
+import {getQuestion} from "../../../../../actions/questionsAction";
+import {selectItem} from "../../../../../actions/profileActions/profileCarouselAction";
 
 const startPosition = 0
 const endPosition = -130
@@ -32,13 +35,31 @@ class TestCard_Card extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.id === this.props.selectedItemId)
+            this.animateClose()
+        else this.animateOpen()
+    }
+
+    animateClose = () => {
+        Animated.spring(this.state.startPosition, {
+            toValue: new Animated.Value(endPosition),
+            useNativeDriver: true
+        }).start();
+    }
+
+    animateOpen = () => {
+        Animated.spring(this.state.startPosition, {
+            toValue: new Animated.Value(startPosition),
+            useNativeDriver: true
+        }).start();
+    }
+
     onClick = () => {
-        if (this.state.opened) this.state.endPosition.setValue(startPosition)
-        else this.state.endPosition.setValue(endPosition)
-
-        this.setState({opened: !this.state.opened})
-
-        Animated.spring(this.state.startPosition, {toValue: this.state.endPosition, useNativeDriver: true}).start();
+        if (this.props.id === this.props.selectedItemId)
+            this.props.onSelectItem(null)
+        else
+            this.props.onSelectItem(this.props.id)
     }
 
     render() {
@@ -46,7 +67,7 @@ class TestCard_Card extends Component {
             <Animated.View style={[styles.card, {transform: [{translateX: this.state.startPosition}]}]}>
                 <LinearGradient style={{borderRadius: 5, width: '100%', height: '100%', position: "relative"}}
                                 colors={this.props.colors}>
-                    <View style={{borderRadius: 5,overflow: 'hidden', width: '100%'}}>
+                    <View style={{borderRadius: 5, overflow: 'hidden', width: '100%'}}>
                         <TouchableNativeFeedback style={{borderRadius: 5}} onPress={() => {
                             this.onClick()
                         }}><View>
@@ -143,4 +164,11 @@ const styles = StyleSheet.create({
 
 })
 
-export default TestCard_Card;
+export default connect(
+    state => ({
+        selectedItemId: state.profileCarouselItemSelected
+    }),
+    dispatch => ({
+        onSelectItem: (id) => dispatch(selectItem(id))
+    })
+)(TestCard_Card)

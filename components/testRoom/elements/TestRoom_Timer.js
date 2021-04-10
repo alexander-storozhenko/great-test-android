@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
-import {sendAnswers} from "../../actions/answersAction";
-import {getQuestion} from "../../actions/questionsAction";
+import {sendAnswers} from "../../../actions/answersAction";
+import {getQuestion} from "../../../actions/questionsAction";
 
-class TimerLine extends Component {
+class TestRoom_Timer extends Component {
     constructor(props) {
         super(props);
         this.state = {time: 0}
@@ -17,13 +17,13 @@ class TimerLine extends Component {
 
     ticksStart = () => {
         this.interval = setInterval(() => {
-                if (this.state.time === 1) {
-                    this.props.onTimerExpire()
-                    return;
-                }
+            if (this.state.time === 1) {
+                this.props.onTimerExpire()
+                return;
+            }
 
-                const time = this.state.time - 1
-                this.setState({time: time})
+            const time = this.state.time - 1
+            this.setState({time: time})
         }, 1000)
     }
 
@@ -52,4 +52,4 @@ export default connect(
         // onSendAnswers: (userAnswers, test_id, question_number, navigation) => dispatch(sendAnswers(userAnswers, test_id, question_number, navigation)),
         onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
     })
-)(TimerLine);
+)(TestRoom_Timer);

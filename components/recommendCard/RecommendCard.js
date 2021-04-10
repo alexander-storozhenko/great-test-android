@@ -16,6 +16,7 @@ import {LinearGradient} from 'expo-linear-gradient';
 import {h2, h3, lightColor} from "../StyleConstants";
 import {getTextColor} from "../../lib/ColorsHelper";
 import BookMark from "../svg/BookMark";
+import {rootPath} from "../../lib/Requests";
 
 //TODO not independent
 class RecommendCard extends Component {
@@ -26,7 +27,7 @@ class RecommendCard extends Component {
         const color = getTextColor("#111")
         return (
             <View style={styles.container}>
-                <ImageBackground style={styles.image} source={{uri: 'https://reactjs.org/logo-og.png'}}/>
+                {this.props.image_url ? <ImageBackground style={styles.image} source={{uri: rootPath(this.props.image_url ) }}/> : null }
                 <LinearGradient start={[0, 0]} end={[0.2, 1]} style={styles.gradient} colors={this.colors}/>
                 <TouchableNativeFeedback>
                     <View style={styles.touchable_container}>

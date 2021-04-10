@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import FinishScreen_PercentageLine from "./elements/FinishScreen_PercentageLine";
 import {getLocaledString} from "../../lib/locale/locale";
 import {connect} from "react-redux";
 import {backHeader} from "../../actions/headerActions";
-import {borderRadius, errorColor, h2, h3, h4, lightColor, successColor} from "../StyleConstants";
+import {borderRadius, errorColor, h2, h3, h4, lightColor, secondaryColor, successColor} from "../StyleConstants";
 import FinishScreen_Slider from "./elements/FinishScreen_Slider";
+import OutBigButton from "../ui/OutBigButton";
+import {navigate} from "../../lib/NavigationService";
 
 class FinishScreen extends Component {
     componentDidMount() {
@@ -15,29 +17,37 @@ class FinishScreen extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.title_container}>
-                    <Text style={styles.title}>{getLocaledString('finish_test_title')}😀</Text>
-                </View>
-                <View style={styles.statistics_container}>
+        return (<View>
+                {
+                    this.props.results ?
+                        <View style={styles.container}>
 
-                    <View style={styles.percentage_line}>
-                        <FinishScreen_PercentageLine allValue={150} trueValue={70}/>
-                    </View>
+                            <View style={styles.title_container}>
+                                <Text style={styles.title}>{getLocaledString('finish_test_title')}😀</Text>
+                            </View>
+                            <View style={styles.statistics_container}>
 
-                    <Text style={styles.statistics_text}>Author's grade: A</Text>
-                    <Text style={styles.statistics_text}>Lasted time: 3 min 40 sec</Text>
+                                <View style={styles.percentage_line}>
+                                    <FinishScreen_PercentageLine allValue={this.props.results.data.question_count}
+                                                                 trueValue={this.props.results.data.results}/>
+                                </View>
 
-                </View>
+                                <Text style={styles.statistics_text}>Author's grade: A</Text>
+                                <Text style={styles.statistics_text}>Lasted time: 3 min 40 sec</Text>
 
-                <View style={styles.to_home_content}>
-                    <View style={styles.rate_test}>
-                        <Text style={styles.rate_test_text}>You can rate the test</Text>
-                    </View>
+                            </View>
 
-                    <FinishScreen_Slider/>
-                </View>
+                            <View style={styles.to_home_content}>
+                                <View style={styles.rate_test}>
+                                    <Text style={styles.rate_test_text}>You can rate the test</Text>
+                                </View>
+
+                                <FinishScreen_Slider/>
+                                <OutBigButton onPress={() => navigate('Main')}>To home</OutBigButton>
+                            </View>
+                        </View>
+                        : <ActivityIndicator size="small" color={secondaryColor}/>
+                }
             </View>
         );
     }
@@ -78,7 +88,7 @@ const styles = StyleSheet.create({
     },
     to_home_content: {
         position: 'absolute',
-        bottom: 0,
+        bottom: 15,
         width: '100%',
     },
     container: {
@@ -89,5 +99,5 @@ const styles = StyleSheet.create({
 })
 
 export default connect(state => ({
-    // navigation: state.currentNavigation
+    results: state.testResults
 }), null)(FinishScreen);

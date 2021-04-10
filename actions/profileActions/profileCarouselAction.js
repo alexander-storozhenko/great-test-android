@@ -20,3 +20,7 @@ export const getUserTests = (page = 0) => dispatch => {
             dispatch({ type: 'PROFILE_CAROUSEL/SUCCESS', payload: result })
         })
 }
+
+export const selectItem = (id) => dispatch => {
+    dispatch({type: 'PROFILE_CAROUSEL/ITEM_SELECTED', payload: {id: id}})
+}

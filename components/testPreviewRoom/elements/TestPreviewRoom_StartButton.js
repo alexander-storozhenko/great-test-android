@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Button, View,Text, StyleSheet } from "react-native";
-import { contrastColor, fontBold, h2, h3, primaryColor } from '../StyleConstants';
+import { contrastColor, fontBold, h2, h3, primaryColor } from '../../StyleConstants';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
-class BigButton extends Component {
+class TestPreviewRoom_StartButton extends Component {
     render() {
         return (
             <TouchableNativeFeedback style={styles.button} onPress={()=>{this.props.onPress()}}>
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         backgroundColor: contrastColor,
         color: primaryColor,
         width: '100%',
-        height: 60,
+        height: 65,
         borderRadius: 5,
         justifyContent:'center',
         elevation: 8
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default BigButton;
+export default TestPreviewRoom_StartButton;

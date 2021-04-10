@@ -24,3 +24,10 @@ export const profileCarouselData = (state = [], action) => {
     }
     return state
 }
+
+export const profileCarouselItemSelected = (state = null, action) => {
+    if(action.type === 'PROFILE_CAROUSEL/ITEM_SELECTED') {
+        return action.payload.id
+    }
+    return state
+}

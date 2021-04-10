@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, Text, StyleSheet, ActivityIndicator} from "react-native";
-import ProfileRoom_Logo from "./elements/ProfileRoom_Logo";
+import ProfileRoom_Avatar from "./elements/ProfileRoom_Avatar";
 import ProfileRoom_UserInfo from "./elements/ProfileRoom_UserInfo";
 import ProfileRoom_UserStatistics from "./elements/ProfileRoom_UserStatistics";
 import ProfileRoom_ButtonsLine from "./elements/ProfileRoom_ButtonsLine";
@@ -41,9 +41,9 @@ class ProfileRoom extends Component {
                 <View style={styles.user_info}>
                     <View style={styles.info}>
                         <View style={styles.left_content}>
-                            <ProfileRoom_Logo/>
+                            <ProfileRoom_Avatar url={this.props.userData?.avatar_url}/>
                             {
-                                !this.props.userData
+                                this.props.userData === [] || !this.props.userData
                                     ? <ActivityIndicator size="small" color={secondaryColor}/>
                                     :
                                     <View style={styles.user_stats}>
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
-        userDataLoading: state.profileUserDataProgress,
+        // userDataLoading: state.profileUserDataProgress,
         userData: state.profileUserData,
     }),
     dispatch => ({

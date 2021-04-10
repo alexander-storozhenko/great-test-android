@@ -1,23 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
-import Header from "../header/Header";
+import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import TestRoom_OneButton from './elements/TestRoom_OneButton'
-import TestOne from '../svg/TestOne';
 import {fontBold, h1, h1_5, h2, navHeight, secondaryColor} from '../StyleConstants';
-import {TouchableNativeFeedback} from 'react-native-gesture-handler';
-// import TestRoom_NavButton from './elements/TestRoom_NavButton';
 import TestRoom_NavNextButton from './elements/TestRoom_NavNextButton';
-
-import {getQuestion} from '../../actions/questionsAction';
-import {setDefaultUserAnswers} from "../../actions/answersAction";
-import TimerLine from "../timer/TimerLine";
-import {getTestResults} from "../../actions/testsAction";
+import {getQuestion, sendAnswersAndGetNextQuestion} from '../../actions/questionsAction';
+import {sendAnswersAndGetTestResults} from "../../actions/resultsAction";
+import TestRoom_Timer from "./elements/TestRoom_Timer";
+import OutBigButton from "../ui/OutBigButton";
+import {navigate} from "../../lib/NavigationService";
 
 class TestRoom extends Component {
     constructor(props) {
         super(props)
-        this.state = { start_loading: true, goBack: true }
+        this.state = {start_loading: true, goBack: true}
     }
 
     componentDidMount() {
@@ -28,51 +24,48 @@ class TestRoom extends Component {
 
     lastQuestion = () => (this.props.question_number >= this.props.question_count)
 
-
     onNextQuestion = () => {
-        // this.props.onSendAnswers(this.props.user_answers, this.props.test_id, this.props.question_number, this.props.navigation)
+        const question_number = this.props.question_number
+        const user_answers = this.props.user_answers[question_number].data
+        const test_id = this.props.route.params.test_id
+
         if (this.lastQuestion())
-            this.props.onGetTestResults(this.props.route.params.test_id, this.props.navigation)
+            this.props.onSendAnswersAndGetTestResults(user_answers, test_id, question_number)
         else
-            this.props.onGetQuestion(this.props.route.params.test_id, this.props.question_number, this.props.navigation)
+            this.props.onSendAnswersAndGetNextQuestion(user_answers, test_id, question_number)
     }
 
-    // onClick = () => this.setState({goBack})
-
     render() {
-        let data = {
-            answers: [],
-            title: '',
-        }
+        let answers, title;
+
         const test_id = this.props.route.params.test_id
         const question_number = this.props.question_number
         const user_data = this.props.user_answers[question_number]?.data
         const active = !user_data ? {} : user_data
 
         if (!this.props.loading && this.props.questionData) {
-            data.answers = this.props.questionData.data.answers
-            data.title = this.props.questionData.data.text
+            answers = this.props.questionData.data.answers
+            title = this.props.questionData.data.text
         }
 
         return (
-
             <View>
                 {this.props.loading ?
                     <ActivityIndicator size="small" color={secondaryColor}/> :
                     <View style={{width: '100%', height: '100%', position: 'relative'}}>
-                        <TimerLine
-                            start_time={2}
+                        <TestRoom_Timer
+                            start_time={1000}
                             test_id={test_id}
                             onTimerExpire={this.onNextQuestion}
                             navigation={this.props.navigation}
 
                         />
-                        <Text style={styles.title}>{data.title}</Text>
+                        <Text style={styles.title}>{title}</Text>
                         <View style={styles.content}>
                             <View style={styles.answers_block}>
                                 <View style={{flexDirection: 'column', alignSelf: 'center'}}>
                                     {
-                                        Object.entries(data.answers)
+                                        Object.entries(answers)
                                             .map(([key, value]) =>
                                                 <TestRoom_OneButton
                                                     test_id={test_id}
@@ -86,8 +79,11 @@ class TestRoom extends Component {
                             </View>
                         </View>
                         <View style={{position: 'absolute', bottom: 15, width: '100%'}}>
-                            <TestRoom_NavNextButton onPress={this.onNextQuestion} test_id={this.props.route.params.test_id}
-                                                    navigation={this.props.navigation}/>
+                            <TestRoom_NavNextButton
+                                disable={this.props.answersSendLoading}
+                                onPress={this.onNextQuestion}
+                                test_id={this.props.route.params.test_id}
+                                navigation={this.props.navigation}/>
                         </View>
                     </View>
                 }
@@ -99,13 +95,8 @@ class TestRoom extends Component {
 const styles = StyleSheet.create({
     answers_block: {
         width: '100%',
-        // height: '100%',
         marginTop: 40,
         justifyContent: 'center',
-
-        // alignItems:'s',
-        // backgroundColor:'red',
-        // marginBottom:120
     },
     content: {
         width: '100%',
@@ -115,13 +106,12 @@ const styles = StyleSheet.create({
     },
     title: {
         marginTop: 20,
-        // marginBottom:20,
         fontSize: h1_5,
         fontFamily: fontBold,
         textAlign: 'center',
     }
-
 })
+
 export default connect(
     state => ({
         questionData: state.question,
@@ -129,11 +119,12 @@ export default connect(
         question_count: state.questionCount,
         loading: state.questionLoading,
         user_answers: state.userAnswers,
-
+        answersSendLoading: state.answersSendProgress,
     }),
     dispatch => ({
         setDefaultUserAnswers: (answers, test_id, question_id) => dispatch(setDefaultUserAnswers(answers, test_id, question_id)),
-        callLoading: ()=> dispatch({type: 'QUESTION/GET_PROGRESS'}),
-        onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
-        onGetTestResults: (test_id, navigation) => dispatch(getTestResults(test_id, navigation)),
+        callLoading: () => dispatch({type: 'QUESTION/GET_PROGRESS'}),
+        onGetQuestion: (answers, test_id, question_number,) => dispatch(getQuestion(answers, test_id, question_number)),
+        onSendAnswersAndGetTestResults: (answers, test_id, question_number) => dispatch(sendAnswersAndGetTestResults(answers, test_id, question_number)),
+        onSendAnswersAndGetNextQuestion: (answers, test_id, question_number) => dispatch(sendAnswersAndGetNextQuestion(answers, test_id, question_number)),
     }))(TestRoom);

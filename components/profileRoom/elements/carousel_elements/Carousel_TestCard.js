@@ -23,6 +23,7 @@ class Carousel_TestCard extends Component {
         return (
             <View style={styles.container}>
                 <TestCard_Card
+                    id={this.props.id}
                     title = {this.props.title}
                     plays = {this.props.plays}
                     rating = {this.props.rating}

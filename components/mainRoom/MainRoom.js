@@ -46,6 +46,7 @@ class MainRoom extends Component {
                     navigation={this.props.navigation}
                     title={test.title}
                     backgroundColors={test.colors}
+                    image_url={test.image_url}
                     subTitle={test.sub_title}
                     rating={test.rating}
                     plays={test.plays}

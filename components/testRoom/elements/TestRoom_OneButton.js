@@ -14,7 +14,7 @@ class TestRoom_OneButton extends Component {
 
     onClick = () => {
         this.setState({ pressed: !this.state.pressed })
-        this.props.storeAnswers(QUESTION_TYPE_ONE, !this.props.active, this.props.id, null, this.props.question_number)
+        this.props.storeAnswers(QUESTION_TYPE_ONE, !this.props.active, this.props.id, this.props.test_id, this.props.question_number)
     }
 
     render() {

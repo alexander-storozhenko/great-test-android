@@ -3,15 +3,10 @@
 export const primaryColor   = "#fff"
 export const secondaryColor = "#1c1c1c"
 export const lightColor     = "#f1f1f1"
+export const disableColor   = "#a0a0a0"
 
 export const contrastColor = "#377ADF"
 export const checkedColor = "#DF379C"
-
-export const titleColor      = "#1c1c1c"
-export const titleColorLight = "#fff"
-
-export const subTitleColor      = "#6a6a6a"
-export const subTitleColorLight = "#fbfbfb"
 
 export const errorColor = "#E53963"
 export const successColor = "#A5D440"

@@ -1,17 +1,23 @@
-import {apiPath} from '../lib/Requests'
+import {apiPath, defaultHeaders} from '../lib/Requests'
 import {apiDomain} from '../settings/url'
 import {getQuestion} from "./questionsAction";
 
 const url = 'questions/set_answers'
 
-export const sendAnswers = (answers, test_id, question_number, navigation) => dispatch => {
-    // dispatch({type: 'ANSWERS_SEND/PROGRESS'})
-    // dispatch({ type: 'QUESTION/GET_PROGRESS' })
-    fetch(apiDomain + apiPath(url), { method: 'POST'})
+export const sendAnswers = (answers, test_id, question_number, callback = () => {}) => {
+    fetch(apiDomain + apiPath(url),
+        {
+            headers: defaultHeaders,
+            method: 'PATCH',
+            body: JSON.stringify({
+                answers: JSON.stringify(answers),
+                question_number: JSON.stringify(question_number),
+                test_id: JSON.stringify(test_id)
+            })
+        })
         .then(res => res.json())
-        .then(result => {
-            // dispatch({type: 'ANSWERS_SEND/SUCCESS', payload: {[test_id]: answers}})
-            //
+        .then( _ => {
+            callback()
         })
 }
 

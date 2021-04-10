@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {Button, View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import TestPreviewRoom_Card from './elements/TestPreviewRoom_Card'
 import {fontBold, h2, mt_20, mt_30, mt_10, secondaryColor} from '../StyleConstants';
-import BigButton from '../bigButton/BigButton';
 import {showNavBar} from '../../actions/navBarAction';
 import {getPreviewInfo} from '../../actions/testsAction';
 import {getQuestion, resetQuestionNumber} from "../../actions/questionsAction";
+import TestPreviewRoom_StartButton from "./elements/TestPreviewRoom_StartButton";
 
 class TestPreviewRoom extends Component {
     constructor(props) {
@@ -37,12 +37,12 @@ class TestPreviewRoom extends Component {
                                     author_name={options?.author_name}
                                 />
                             </View>
-                            <View style={{width: '100%', position: 'absolute', bottom: 20}}>
-                                <BigButton onPress={() => {
-                                    this.props.onGetQuestion(this.props.previewInfo.test_id,0 ,this.props.navigation )
-                                    // this.props.onIncreaseQuestionNumber()
+                            <View style={{width: '100%', position: 'absolute', bottom: 15}}>
+                                <TestPreviewRoom_StartButton onPress={() => {
+                                    this.props.onGetQuestion(this.props.previewInfo.test_id, 1 )
+                                    console.log(this.props.question_number)
                                 }
-                                }>Start!</BigButton>
+                                }>Start!</TestPreviewRoom_StartButton>
                             </View>
                         </View>
                 }
@@ -78,12 +78,13 @@ export default connect(
         previewInfo: state.testPreviewInfo,
         loading: state.testPreviewLoading,
         testTData: state.testTData,
+        question_number: state.questionNumber,
     }),
     dispatch => ({
         onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),
         onGetPreviewInfo: (test_t_id) => dispatch(getPreviewInfo(test_t_id)),
         onShowNavBar: (state) => dispatch(showNavBar(state)),
-        onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
+        onGetQuestion: (test_id, question_number) => dispatch(getQuestion(test_id, question_number)),
         resetQuestionNumber: () => dispatch(resetQuestionNumber()),
     })
 )(TestPreviewRoom);

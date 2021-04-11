@@ -31,7 +31,7 @@ import {getTextColor} from "../../../lib/ColorsHelper";
 import Carousel from "react-native-snap-carousel";
 import {getLocaledString} from "../../../lib/locale/locale";
 
-class MainInfoPage_Carousel extends Component {
+class MainInfoScreen_Carousel extends Component {
     constructor(props) {
         super(props)
         // this.state = {firstColor: secondColor, secondColor: secondColor}
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
 export default connect(
     null,
     dispatch => ({})
-)(MainInfoPage_Carousel);
+)(MainInfoScreen_Carousel);

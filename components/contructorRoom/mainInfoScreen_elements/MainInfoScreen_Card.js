@@ -25,19 +25,40 @@ import {
     primaryColor,
     borderRadius, secondColor, firstColor
 } from '../../StyleConstants';
-import {TouchableWithoutFeedback} from "react-native";
+import {TouchableWithoutFeedback,     ImageBackground} from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
 import {getTextColor} from "../../../lib/ColorsHelper";
+import Card_ImageButton from "./card_elements/Card_ImageButton";
+import * as ImagePicker from 'expo-image-picker';
+import {apiDomain} from "../../../settings/url";
+import {apiPath, rootPath} from "../../../lib/Requests";
+import {saveCard, saveImage} from "../../../actions/constructorActions/mainInfoScreenAction";
 
-class MainInfoPage_Card extends Component {
+
+class MainInfoScreen_Card extends Component {
     constructor(props) {
         super(props)
     }
 
-    render() {
+    onLoadImage = async () => {
+        let image = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 2.1],
+            quality: 1,
+        })
 
+        if(!image.cancelled)
+            this.props.onStoreImg(image.uri)
+    }
+
+    render() {
         return (
             <View style={styles.card}>
+                {this.props.image ?
+                    <View style={styles.img_container}>
+                        <ImageBackground style={styles.image} source={{uri: this.props.image }}/>
+                    </View> : null}
                 <LinearGradient style={styles.gradient} colors={[this.props.first_color, this.props.second_color]}>
                     <View style={styles.card_content}>
                         <View>
@@ -48,6 +69,9 @@ class MainInfoPage_Card extends Component {
                             <TextInput placeholder={'Описание...'}
                                        style={[{color: getTextColor(this.props.first_color)},styles.input, styles.input_description]}/>
                         </View>
+                    </View>
+                    <View style={styles.img_btn}>
+                        <Card_ImageButton onPress={this.onLoadImage}/>
                     </View>
                 </LinearGradient>
             </View>
@@ -86,19 +110,39 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderRadius: borderRadius,
+        opacity: 0.83,
     },
     description:{
         paddingTop: 10,
+    },
+    img_btn:{
+        position: 'absolute',
+        bottom: 0,
+        right: 0
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'contain',
+
+    },
+    img_container: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        borderRadius: borderRadius,
+        overflow: 'hidden'
     }
+
 })
 
 export default connect(
     state => ({
         first_color: state.constructorCarouselFirstColorBtnClicked.color,
         second_color: state.constructorCarouselSecondColorBtnClicked.color,
+        image: state.constructorCardImage,
     }),
     dispatch => ({
-
-
+        onStoreImg: (uri) => dispatch({type: 'CONSTRUCTOR/CARD/STORE_IMG', payload: uri})
     })
-)(MainInfoPage_Card);
+)(MainInfoScreen_Card);

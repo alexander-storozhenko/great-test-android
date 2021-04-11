@@ -29,7 +29,7 @@ import TextColorPicker_Button from "./textColorPicker_elements/TextColorPicker_B
 import Constructor_SmallButton from "./carousel_elements/colorsPage_elements/ColorsPage_SmallButton";
 
 
-class MainInfoPage_TextColorPicker extends Component {
+class MainInfoScreen_TextColorPicker extends Component {
     constructor(props) {
         super(props)
     }
@@ -74,4 +74,4 @@ export default connect(
         onSetTestTemplateData: (data) => dispatch({ type: 'TEST/SET_TEST_T_DATA', payload: data }),
         onShowNavBar: (state) => dispatch(showNavBar(state))
     })
-)(MainInfoPage_TextColorPicker);
+)(MainInfoScreen_TextColorPicker);

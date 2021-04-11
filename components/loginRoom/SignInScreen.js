@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, StyleSheet, Dimensions, TouchableHighlight, Text, TextInput} from "react-native";
-import {borderRadius, fontBold, h3, headerHeight, primaryColor, secondaryColor} from "../StyleConstants";
-import OutMiddleButton from "../ui/OutMiddleButton";
+import {
+    borderRadius,
+    errorColor,
+    fontBold, fontRegular,
+    h3,
+    h4,
+    headerHeight,
+    primaryColor,
+    secondaryColor
+} from "../StyleConstants";
 import {signIn} from "../../actions/loginActions/signInAction";
 import SignInScreen_SignInButton from "./elements/SignInScreen_SignInButton";
-import {goBack, navigate, replace} from "../../lib/NavigationService";
 
 class SignInScreen extends Component {
     constructor(props) {
@@ -40,7 +47,7 @@ class SignInScreen extends Component {
                         <TextInput style={styles.input} onChange={(event) => this.onNameInputChange(event)}/>
                         <Text style={[styles.title, {marginTop: 10}]}>Password</Text>
                         <TextInput secureTextEntry={true} style={styles.input} onChange={(event) => this.onPasswordInputChange(event)}/>
-                        {this.props.loginIncorrect ? <Text>Incorrect login or password!</Text> : null }
+                        {this.props.loginIncorrect ? <Text style={styles.login_error_text}>Incorrect login or password!</Text> : null }
                         <SignInScreen_SignInButton onPress={this.onClick}/>
                     </View>
                 </View>
@@ -65,6 +72,11 @@ const styles = StyleSheet.create({
         marginTop: 10,
         height: 40,
         padding: 5,
+    },
+    login_error_text:{
+        color: errorColor,
+        fontSize: h4,
+        fontFamily: fontRegular
     }
 });
 

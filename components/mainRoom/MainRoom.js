@@ -16,7 +16,7 @@ import {resetQuestionNumber} from "../../actions/questionsAction";
 import TestCard from "../testCard/TestCard";
 import RecommendCard from "../recommendCard/RecommendCard";
 import {setNavigation} from "../../actions/navigationAction";
-
+import Slider from '../ui/Slider'
 class MainRoom extends Component {
     constructor(props) {
         super(props)
@@ -85,7 +85,7 @@ class MainRoom extends Component {
 
                         {this.items().map(r => r)}
 
-                        {/* <MainRoom_MiniTest question="What time is it? asd ads asda asdads asdasd " /> */}
+                        {/* <MainRoom_MiniTest question="What time is it? " /> */}
                     </View>
                 </ScrollView>
             </SafeAreaView>

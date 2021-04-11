@@ -23,9 +23,10 @@ import {
     constructorCarouselColorTypeBtnClicked
 } from './constructorReducers/carouselReducer';
 
+import {constructorSaveCard, constructorCardImage} from './constructorReducers/cardReducer';
 import {panelOpen} from './debugReducer';
 
-import {signInProgress, accessToken, loginIncorrect} from './loginReducer';
+import {signInProgress, loginIncorrect} from './loginReducer';
 import {testResults} from './resultsReducer';
 
 
@@ -70,11 +71,12 @@ export default combineReducers({
     constructorCarouselFirstColorBtnClicked,
     constructorCarouselSecondColorBtnClicked,
     constructorCarouselColorTypeBtnClicked,
+    constructorSaveCard,
+    constructorCardImage,
 
     panelOpen,
 
     signInProgress,
-    accessToken,
     loginIncorrect,
 
     testResults

@@ -44,9 +44,9 @@ import MainInfoPage_Carousel from "./mainInfoScreen_elements/MainInfoScreen_Caro
 import Carousel_ColorsPage from "./mainInfoScreen_elements/carousel_elements/Carousel_ColorsPage";
 import SeparateLine from "../ui/SeparateLine";
 import BottomButton from "../ui/BottomButton";
+import Params_QuestionTypeBox from "./paramsScreen_elements/Params_QuestionTypeBox";
 
-
-class Constructor_MainInfoScreen extends Component {
+class Constructor_TestPage extends Component {
     constructor(props) {
         super(props)
     }
@@ -54,22 +54,9 @@ class Constructor_MainInfoScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <MainInfoPage_Card colors={["#6ef6ba", "#321321"]}/>
-                {/*<View style={{marginTop: 20}}>*/}
-                {/*    <MainInfoPage_TextColorPicker/>*/}
-                {/*</View>*/}
-
-                <View style={{marginTop: 20}}><SeparateLine/></View>
-                <View style={styles.carousel_container}>
-                    <MainInfoPage_Carousel>
-                        <Carousel_ColorsPage/>
-                    </MainInfoPage_Carousel>
-                </View>
-                <View style={styles.next_btn_container}>
-                    <View style={styles.next_btn}>
-                        <BottomButton onPress={()=> this.props.navigation.navigate('ConstructorParams')}>Далее</BottomButton>
-                    </View>
-                </View>
+                <Text style={styles.title}>Тип вопроса 🛠</Text>
+                <Params_QuestionTypeBox/>
+                <Text style={styles.title}>Время на ответ ⏱</Text>
             </View>
         );
     }
@@ -81,19 +68,11 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    carousel_container: {
-        paddingTop:10
-    },
-    next_btn_container: {
-        position: 'absolute',
-        bottom: 10,
-        width: '100%',
-    },
-    next_btn: {
-        position: 'relative',
-        width: '100%',
-        flexDirection:'row',
-        justifyContent: 'center'
+    title:{
+        fontSize: h3,
+        paddingTop: 10,
+        paddingBottom: 10,
+
     }
 })
 
@@ -103,4 +82,4 @@ export default connect(
         onSetTestTemplateData: (data) => dispatch({type: 'TEST/SET_TEST_T_DATA', payload: data}),
         onShowNavBar: (state) => dispatch(showNavBar(state))
     })
-)(Constructor_MainInfoScreen);
+)(Constructor_ParamsScreen);

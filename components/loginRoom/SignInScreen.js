@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, StyleSheet, Dimensions, TouchableHighlight, Text, TextInput} from "react-native";
+import {Button, View, StyleSheet, Text, TextInput} from "react-native";
 import {
     borderRadius,
     errorColor,
     fontBold, fontRegular,
     h3,
     h4,
-    headerHeight,
-    primaryColor,
-    secondaryColor
 } from "../StyleConstants";
 import {signIn} from "../../actions/loginActions/signInAction";
 import SignInScreen_SignInButton from "./elements/SignInScreen_SignInButton";

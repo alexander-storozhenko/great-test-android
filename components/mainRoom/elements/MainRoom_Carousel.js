@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button, View, Text, Dimensions, StyleSheet } from "react-native";
-import { fontBold, fontMedium, h2, h3, h4, lightColor, titleColor, subTitleColor, titleColorLight, subTitleColorLight } from '../../StyleConstants';
-import Ripple from 'react-native-material-ripple';
-import { LinearGradient } from 'expo-linear-gradient';
-import Eye from '../../svg/Eye';
-import Love from '../../svg/Love';
-import { Link } from "react-router-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 import {roomPadding} from '../../StyleConstants';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 
@@ -15,15 +8,16 @@ class MainRoom_Carousel extends Component {
         super(props)
     }
 
-    _renderItem = ({ item, index }) => {
+    _renderItem = ({ item, _ }) => {
         return (
             <View>
                 {item}
             </View>
         );
     }
+
     get pagination() {
-        const { entries, activeSlide } = [1,2];
+        const { entries } = [1,2];
         return (
             <Pagination
                 dotsLength={entries.length}

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, Text, StyleSheet, ActivityIndicator} from "react-native";
+import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import TestPreviewRoom_Card from './elements/TestPreviewRoom_Card'
-import {fontBold, h2, mt_20, mt_30, mt_10, secondaryColor} from '../StyleConstants';
+import {fontBold, h2, mt_30, mt_10, secondaryColor} from '../StyleConstants';
 import {showNavBar} from '../../actions/navBarAction';
 import {getPreviewInfo} from '../../actions/testsAction';
 import {getQuestion, resetQuestionNumber} from "../../actions/questionsAction";
@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
         position: 'relative',
         height: "100%",
         backgroundColor: "white",
-        // justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
     },

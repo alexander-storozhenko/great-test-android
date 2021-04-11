@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, StyleSheet, Dimensions, TouchableHighlight, TouchableWithoutFeedback, } from "react-native";
-
-import {headerHeight, primaryColor, secondaryColor} from "../StyleConstants";
+import {View, StyleSheet, Dimensions} from "react-native";
+import {headerHeight, secondaryColor} from "../StyleConstants";
 import Header_Settings from "./elements/Header_Settings";
-import Header_BackButton from "./elements/Header_BackButton";
-import {backScreens} from "../HeaderSettingsConstants";
 import Header_Debug from "./elements/Header_Debug";
 import {env} from "../../settings/url";
 
@@ -24,13 +21,8 @@ class Header extends Component {
     }
 
     render() {
-        let content = this.rightAccessories('Профиль')
-        let back = backScreens.includes() ? <View style={styles.back_btn}><Header_BackButton/></View> : null
-
         return (
             <View style={styles.header}>
-                {back}
-
                 <View style={styles.settings_btn}>
                     {env ==='dev' ? <Header_Debug/> : null}
                     {/*{//TODO set custom header }*/}
@@ -67,7 +59,6 @@ const styles = StyleSheet.create({
         left: 5,
         width: 60,
         height: 60,
-        // backgroundColor:'red',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -76,10 +67,7 @@ const styles = StyleSheet.create({
         height: 30,
     },
     menuIcon: {
-
         color: "#afa",
-        // marginTop:20,
-        // marginLeft: 20,
     }
 });
 

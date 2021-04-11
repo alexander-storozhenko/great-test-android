@@ -1,10 +1,7 @@
 import {apiDomain} from "../../settings/url";
 import {apiPath, defaultHeaders} from "../../lib/Requests";
-import {getData, storeData} from "../../lib/AsyncStorageHelper";
-import {navigate} from "../../lib/NavigationService";
 
 const url = 'constructor/save_card'
-const image_url = 'constructor/save_image'
 
 export const saveCard = (image, colors) => dispatch => {
     // dispatch({ type: 'CONSTRUCTOR/MAIN_INFO/SAVE/PROGRESS', payload: {progress: true} })

@@ -1,35 +1,11 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {
-    Button,
     View,
-    Text,
-    Dimensions,
     StyleSheet,
-    TouchableHighlight,
-    TouchableOpacity,
-    TextInput,
-    Keyboard, Animated
+    Animated
 } from "react-native";
-import {
-    fontBold,
-    fontMedium,
-    h2,
-    h3,
-    h4,
-    lightColor,
-    titleColor,
-    subTitleColor,
-    titleColorLight,
-    subTitleColorLight,
-    primaryColor,
-    borderRadius, secondColor, firstColor, contrastColor, secondaryColor
-} from '../../../../StyleConstants';
+import {contrastColor, secondaryColor} from '../../../../StyleConstants';
 import {TouchableWithoutFeedback} from "react-native";
-import {
-    carouselSetFirstColorBtn,
-    carouselSetSecondColorBtn
-} from "../../../../../actions/constructorActions/carouselPageAction";
 
 class ColorsPage_RoundButton extends Component {
     constructor(props) {

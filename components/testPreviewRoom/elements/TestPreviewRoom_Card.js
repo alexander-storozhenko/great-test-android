@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button, View, Text,StyleSheet } from "react-native";
-import Eye from '../../svg/Eye';
-import {fontBold, h3, h4, lightColor, ml_10, ml_20, mt_10,mt_30,mt_20, secondaryColor} from '../../StyleConstants'
+import { View, Text,StyleSheet } from "react-native";
+import {fontBold, h3, lightColor, ml_20, mt_30,mt_20, secondaryColor} from '../../StyleConstants'
 import TestTwo from '../../svg/TestTwo';
 import TestOne from '../../svg/TestOne';
 import Chronometer from '../../svg/Chronometer';

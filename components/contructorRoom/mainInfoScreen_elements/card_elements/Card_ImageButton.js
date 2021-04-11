@@ -45,9 +45,6 @@ const styles = StyleSheet.create({
     input: {
         width: 200,
         height: 40,
-        // borderBottomColor: lightColor,
-        // borderBottomWidth: 2,
-
     },
     input_title:{
         fontFamily: fontBold,

@@ -3,12 +3,8 @@ import {View, Text, StyleSheet, Animated, Easing} from "react-native";
 import {
     borderRadius,
     errorColor,
-    fontBold,
-    h1_5,
     h3,
-    h4,
     secondaryColor,
-    secondColor,
     successColor
 } from "../../StyleConstants";
 import ArrowUp from "../../svg/ArrowUp";

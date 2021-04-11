@@ -5,13 +5,9 @@ import {
     borderRadius,
     contrastColor,
     fontBold,
-    h3,
-    headerHeight,
-    primaryColor,
-    secondaryColor
+    h3
 } from "../../StyleConstants";
 import {getTextColor} from "../../../lib/ColorsHelper";
-
 
 class SignInScreen_SignInButton extends Component {
     constructor(props) {
@@ -20,7 +16,6 @@ class SignInScreen_SignInButton extends Component {
     }
 
     onClick = () => this.props.onSignIn(this.state.name, this.state.password)
-
 
     render() {
         return (

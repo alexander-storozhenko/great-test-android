@@ -1,28 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-    Button,
     View,
     Text,
-    Dimensions,
-    StyleSheet,
-    TouchableHighlight,
-    TouchableOpacity,
-    Keyboard,
-    TouchableWithoutFeedback, TouchableNativeFeedback, Animated
+    StyleSheet,TouchableNativeFeedback
 } from "react-native";
 import {
-    fontBold,
-    fontMedium,
-    h2,
     h3,
-    h4,
-    lightColor,
-    titleColor,
-    subTitleColor,
-    titleColorLight,
-    subTitleColorLight,
-    primaryColor,
     borderRadius, secondaryColor, contrastColor
 } from '../../../../StyleConstants';
 import {

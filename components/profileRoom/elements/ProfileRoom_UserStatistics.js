@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
-import Logo from '../../../assets/dev_logo.jpg'
-import {contrastColor, fontBold, h3, h2, primaryColor, secondColor} from "../../StyleConstants";
+import {View, Text, StyleSheet} from "react-native";
+import {contrastColor, h3, primaryColor, secondColor} from "../../StyleConstants";
 
 class ProfileRoom_UserStatistics extends Component {
     render() {
@@ -14,13 +12,9 @@ class ProfileRoom_UserStatistics extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
-        // width:'100%',
-        // backgroundColor:'red',
         paddingTop:10,
-
     },
     name_container: {
         width: '100%',
@@ -50,7 +44,6 @@ const styles = StyleSheet.create({
         color: contrastColor,
         fontSize: h3
     }
-
 })
 
 export default ProfileRoom_UserStatistics;

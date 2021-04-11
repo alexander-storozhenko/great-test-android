@@ -3,8 +3,6 @@ import {combineReducers} from 'redux'
 import {move} from './sidebarReducer'
 import {recommends, recommendsLoading, recommendsAdded, recommendsAddLoading} from './recommendsReducer'
 
-import {navbarShow} from "./navBar";
-
 import {question, questionNumber, questionLoading, questionCount} from "./questionReducer";
 import {testPreviewLoading, testPreviewInfo, testTData} from "./testReducer";
 import {userAnswers, answersSendProgress} from "./answersReducer";

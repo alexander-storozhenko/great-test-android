@@ -14,7 +14,6 @@ import {
     borderRadius, roomPadding
 } from "../StyleConstants";
 import Switch from "../switch/Switch";
-import Close from "../svg/Close";
 import {backHeader} from "../../actions/headerActions";
 
 class ProfileRoom_SettingsScreen extends Component {
@@ -29,18 +28,7 @@ class ProfileRoom_SettingsScreen extends Component {
                         <Text style={styles.box_row_text}>Звуки/эффекты</Text>
                         <Switch actionOn={() => console.log('on!')} actionOff={() => console.log('off!')}/>
                     </View>
-
-                    {/*TODO to independent component*/}
-                    {/*<View style={styles.close_btn_container}>*/}
-                    {/*    <TouchableWithoutFeedback style={styles.close_btn} onPress={() => console.log('close!')}>*/}
-                    {/*        <View style={styles.close_btn}>*/}
-                    {/*            <Close width={20} height={20} fill={secondColor}/>*/}
-                    {/*        </View>*/}
-                    {/*    </TouchableWithoutFeedback>*/}
-                    {/*</View>*/}
-
                 </View>
-
             </View>
         )
     }
@@ -53,15 +41,10 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         position: 'relative',
-        // height: '100%',
-        backgroundColor: "#fffa", // primaryColor with opacity
-        // position: 'absolute',
-        // justifyContent: 'center',
+        backgroundColor: lightColor,
         alignItems: 'center'
-
     },
     close_btn_container:{
-
         position: 'absolute',
         top: 10,
         right: 10,
@@ -75,7 +58,6 @@ const styles = StyleSheet.create({
     box_container: {
         flex: 1,
         width: '100%',
-        // minHeight: 200,
         backgroundColor: lightColor,
         borderRadius: borderRadius,
         borderWidth: 2,

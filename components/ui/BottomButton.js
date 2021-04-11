@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {
     View,
     StyleSheet,
     Text, TouchableNativeFeedback
 } from "react-native";
-import {borderRadius, contrastColor, h3, lightColor, primaryColor} from "../StyleConstants";
+import {borderRadius, contrastColor, h3, primaryColor} from "../StyleConstants";
 
 
 class BottomButton extends Component {

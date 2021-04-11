@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import {
-    Button,
     View,
-    Text,
     StyleSheet,
     TouchableWithoutFeedback,
-    TouchableNativeFeedback,
     Animated
 } from "react-native";
-import {borderRadius, contrastColor, fontBold, h2, h3, lightColor, primaryColor, secondColor} from '../StyleConstants';
+import {borderRadius, contrastColor, primaryColor, secondColor} from '../StyleConstants';
 
 const switchWidth = 80
 const btnWidth = 40

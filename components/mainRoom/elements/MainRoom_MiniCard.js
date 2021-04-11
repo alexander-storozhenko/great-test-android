@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button, View, Text, Dimensions, StyleSheet } from "react-native";
-import { fontBold, fontMedium, h2, h3,h4, lightColor, titleColor, subTitleColor, titleColorLight, subTitleColorLight } from '../../StyleConstants';
+import { View, Text, StyleSheet } from "react-native";
+import { fontBold, fontMedium, h2, h3,h4, lightColor, titleColorLight, subTitleColorLight } from '../../StyleConstants';
 import Ripple from 'react-native-material-ripple';
 import { LinearGradient } from 'expo-linear-gradient';
 import Eye from '../../svg/Eye';
 import Love from '../../svg/Love';
-import {Link } from "react-router-native";
 
 class MainRoom_MiniCard extends Component {
     constructor(props) {

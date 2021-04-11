@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { Button, View,Text, StyleSheet } from "react-native";
+import {Text, StyleSheet } from "react-native";
 import {
     borderRadius,
-    contrastColor,
     fontBold,
-    h2,
     h3,
-    lightColor,
-    primaryColor,
     secondaryColor,
     disableColor
 } from '../StyleConstants';

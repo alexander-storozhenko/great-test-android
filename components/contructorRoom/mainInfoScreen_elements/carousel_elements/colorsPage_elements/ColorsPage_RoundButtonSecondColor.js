@@ -1,31 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {
-    Button,
-    View,
-    Text,
-    Dimensions,
-    StyleSheet,
-    TouchableHighlight,
-    TouchableOpacity,
-    TextInput,
-    Keyboard, Animated
-} from "react-native";
-import {
-    fontBold,
-    fontMedium,
-    h2,
-    h3,
-    h4,
-    lightColor,
-    titleColor,
-    subTitleColor,
-    titleColorLight,
-    subTitleColorLight,
-    primaryColor,
-    borderRadius, secondColor, firstColor, contrastColor, secondaryColor
-} from '../../../../StyleConstants';
-import {TouchableWithoutFeedback} from "react-native";
+import {Animated} from "react-native";
+
 import {carouselSetSecondColorBtn} from "../../../../../actions/constructorActions/carouselPageAction";
 import ColorsPage_RoundButton from "./ColorsPage_RoundButton";
 

@@ -26,8 +26,6 @@ class MainRoom extends Component {
     componentDidMount() {
         this.props.onLoadRecommends()
         this.props.onShowNavBar(true)
-
-        // root tab component need set navigation
         this.props.setNavigation(this.props.navigation)
     }
 
@@ -36,8 +34,8 @@ class MainRoom extends Component {
     }
 
     items = () => {
-
         let items = []
+
         this.props.recommends.map((recommend, key) => {
             if (recommend.type === 'card' && recommend.tests.length === 1) {
                 const test = recommend.tests[0]

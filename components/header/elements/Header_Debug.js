@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, StyleSheet, Dimensions, TouchableHighlight, TouchableWithoutFeedback} from "react-native";
-import {headerHeight, primaryColor, secondaryColor} from "../../StyleConstants";
-import Settings from "../../svg/Settings";
+import {View, StyleSheet, TouchableWithoutFeedback} from "react-native";
+import {primaryColor} from "../../StyleConstants";
 import {openDebugPanel} from "../../../actions/debugAction";
 import Bug from "../../svg/Bug";
-
 
 class Header_Debug extends Component {
     constructor(props) {
@@ -17,7 +15,7 @@ class Header_Debug extends Component {
 
     render() {
         return (
-            <View style={styles.settings}>
+            <View>
                 <TouchableWithoutFeedback onPress={this.onPress}>
                     <Bug height={30} width={30} fill={primaryColor}/>
                 </TouchableWithoutFeedback>
@@ -25,14 +23,6 @@ class Header_Debug extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    settings: {
-        // position: 'absolute',
-        // bottom: 25,
-        // right: 25,
-    }
-});
 
 export default connect(state => ({
     panelOpen: state.panelOpen

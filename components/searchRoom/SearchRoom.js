@@ -6,7 +6,6 @@ import SearchRoom_Card from "./elements/SearchRoom_Card";
 import {firstColor, secondaryColor, secondColor} from "../StyleConstants";
 import TestCard from "../testCard/TestCard";
 import {setNavigation} from "../../actions/navigationAction";
-import {navigation} from "../../lib/NavigationService";
 
 class SearchRoom extends Component {
     constructor(props) {

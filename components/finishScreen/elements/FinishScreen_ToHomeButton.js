@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ActivityIndicator, TouchableNativeFeedback} from "react-native";
+import {View, Text, StyleSheet, TouchableNativeFeedback} from "react-native";
 import {
     borderRadius,
-    errorColor,
     fontBold,
-    h2,
     h3,
-    h4,
-    lightColor,
     secondaryColor,
-    successColor
 } from "../../StyleConstants";
 
 class FinishScreen_ToHomeButton extends Component {

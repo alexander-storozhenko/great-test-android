@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Button, View,Image, Text, StyleSheet, Dimensions,TouchableNativeFeedback, ActivityIndicator} from "react-native";
-import Logo from '../../../assets/dev_logo.jpg'
-import {contrastColor, fontBold, h3, h2, primaryColor, secondColor, h4} from "../../StyleConstants";
+import {View, Text, StyleSheet,TouchableNativeFeedback} from "react-native";
+import {secondColor, h4} from "../../StyleConstants";
 
 class ProfileRoom_ButtonsLine extends Component {
     render() {

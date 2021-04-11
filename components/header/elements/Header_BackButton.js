@@ -6,6 +6,7 @@ import {headerHeight, primaryColor, secondaryColor} from "../../StyleConstants";
 import Back from "../../svg/Back";
 import {TouchableNativeFeedback} from "react-native";
 import {backHeader} from "../../../actions/headerActions";
+import {goBack} from "../../../lib/NavigationService";
 
 
 class Header_BackButton extends Component {
@@ -13,22 +14,17 @@ class Header_BackButton extends Component {
         super(props)
     }
 
-    onClick = () => {
+    onClick = () => goBack()
 
-        this.props.navigation.goBack()
-        // this.props.onBack(false)
-    }
     render() {
 
         return (
-            <TouchableNativeFeedback style={styles.btn} onPress={()=> this.onClick()}>
+            <TouchableNativeFeedback style={styles.btn} onPress={this.onClick}>
                 <Back width={20} height={20} fill={primaryColor}/>
             </TouchableNativeFeedback>
         );
     }
 }
-
-const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     btn: {
@@ -43,7 +39,6 @@ const styles = StyleSheet.create({
         left: 5,
         width: 60,
         height: 60,
-        // backgroundColor:'red',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -52,10 +47,7 @@ const styles = StyleSheet.create({
         height: 30,
     },
     menuIcon: {
-
         color: "#afa",
-        // marginTop:20,
-        // marginLeft: 20,
     }
 });
 
@@ -63,5 +55,5 @@ export default connect(state => ({
     navigation: state.currentNavigation
 }), dispatch => ({
 
-    onBack: (show)=> dispatch({type: 'HEADER/BACK', payload: {show: show}}),
+    onBack: (show) => dispatch({type: 'HEADER/BACK', payload: {show: show}}),
 }))(Header_BackButton);

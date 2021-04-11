@@ -1,15 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Animated, Easing, PanResponder, Dimensions} from "react-native";
+import {View, Text, StyleSheet} from "react-native";
 import {
-    borderRadius, contrastColor,
-    errorColor,
-    fontBold,
-    h1_5,
-    h3,
-    h4, lightColor,
-    secondaryColor,
-    secondColor,
-    successColor
+    contrastColor,
+    secondaryColor
 } from "../../StyleConstants";
 import Slider from "@react-native-community/slider";
 

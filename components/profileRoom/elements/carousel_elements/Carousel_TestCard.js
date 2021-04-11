@@ -1,20 +1,13 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {
-    Button,
     View,
-    Image,
-    Text,
     StyleSheet,
-    Dimensions,
-    ActivityIndicator,
-    TouchableNativeFeedback, Animated
+    TouchableNativeFeedback
 } from "react-native";
 import {borderRadius, lightColor} from "../../../StyleConstants";
 import TestCard_Card from "./test_card_elements/TestCard_Card";
 
 class Carousel_TestCard extends Component {
-
     constructor(props) {
         super(props);
     }
@@ -55,7 +48,6 @@ const styles = StyleSheet.create({
         height: 60,
         borderRadius: borderRadius,
         backgroundColor: lightColor,
-        // marginLeft: 5,
         right:60,
         position: 'absolute'
     },

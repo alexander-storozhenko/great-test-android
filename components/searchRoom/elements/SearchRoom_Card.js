@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
-import {StyleSheet, TextInput, View} from "react-native";
-import {fontLight, fontMedium, fontRegular, lightColor} from "../../StyleConstants";
+import {StyleSheet, View} from "react-native";
+import {fontMedium, lightColor} from "../../StyleConstants";
 
 class SearchRoom_Card extends Component {
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-        // this.setState({focus: true})
     }
 
     render() {
@@ -33,7 +29,6 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius:5,
         backgroundColor: lightColor,
-        // color: '#acacac',
         width: '100%'
     }
 })

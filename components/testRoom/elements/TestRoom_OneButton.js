@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, Text, StyleSheet} from "react-native";
-import {checkedColor, contrastColor, fontBold, h2, primaryColor, secondaryColor} from '../../StyleConstants';
+import {View, Text, StyleSheet} from "react-native";
+import {checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../StyleConstants';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {sendAnswers, storeUserAnswer} from "../../../actions/answersAction";
-import {QUESTION_TYPE_ONE} from "../../QuestionTypeConstants";
+import {storeUserAnswer} from "../../../actions/answersAction";
 
 class TestRoom_OneButton extends Component {
     constructor(props) {
@@ -15,7 +14,7 @@ class TestRoom_OneButton extends Component {
     onClick = () => {
         if (!this.props.answersSendLoading) {
             this.setState({pressed: !this.state.pressed})
-            this.props.storeAnswers(QUESTION_TYPE_ONE, !this.props.active, this.props.id, this.props.test_id, this.props.question_number)
+            this.props.storeAnswers('one', !this.props.active, this.props.id, this.props.test_id, this.props.question_number)
         }
     }
 

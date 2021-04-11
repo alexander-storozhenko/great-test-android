@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
-import Logo from '../../../assets/dev_logo.jpg'
-import {fontBold, h1_5,h3, secondColor} from "../../StyleConstants";
-import {TouchableNativeFeedback} from "react-native-web";
+import {View, Text, StyleSheet} from "react-native";
+import {h3} from "../../StyleConstants";
 import {changeSlide} from "../../../actions/profileActions/profileCarouselAction";
-// import Panel_Button from "./carousel_elements/Panel_Button";
 
 class ProfileRoom_Panel extends Component {
     componentDidMount() {
@@ -33,7 +30,6 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     title: {
-        // marginBottom:20,
         fontSize: h3,
     }
 

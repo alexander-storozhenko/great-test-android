@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
-import {sendAnswers} from "../../../actions/answersAction";
+import {View, Text} from "react-native";
 import {getQuestion} from "../../../actions/questionsAction";
 
 class TestRoom_Timer extends Component {
@@ -49,7 +48,6 @@ export default connect(
         question_number: state.questionNumber
     }),
     dispatch => ({
-        // onSendAnswers: (userAnswers, test_id, question_number, navigation) => dispatch(sendAnswers(userAnswers, test_id, question_number, navigation)),
         onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
     })
 )(TestRoom_Timer);

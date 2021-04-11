@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, View, Text, StyleSheet } from "react-native";
-import { checkedColor, contrastColor, fontBold, h2, h3, primaryColor, secondaryColor } from '../../StyleConstants';
+import { View, Text, StyleSheet } from "react-native";
+import { fontBold, h3, secondaryColor } from '../../StyleConstants';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
-import { sendAnswers } from '../../../actions/answersAction';
-import { decreaseQuestionNumber, increaseQuestionNumber } from '../../../actions/questionsAction';
 
 class TestRoom_NavButton extends Component {
     constructor(props) {

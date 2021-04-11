@@ -1,33 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-    Button,
     View,
-    Text,
-    Dimensions,
     StyleSheet,
-    TouchableHighlight,
-    TouchableOpacity,
-    TextInput,
-    Keyboard
 } from "react-native";
-import {
-    fontBold,
-    fontMedium,
-    h2,
-    h3,
-    h4,
-    lightColor,
-    titleColor,
-    subTitleColor,
-    titleColorLight,
-    subTitleColorLight,
-    primaryColor,
-    borderRadius, secondColor, firstColor
-} from '../../../../StyleConstants';
-import {TouchableWithoutFeedback} from "react-native";
-import {LinearGradient} from 'expo-linear-gradient';
-import ColorsPage_RoundButton from "./ColorsPage_RoundButtonFirstColor";
 import ColorsPage_RoundButtonFirstColor from "./ColorsPage_RoundButtonFirstColor";
 import ColorsPage_RoundButtonSecondColor from "./ColorsPage_RoundButtonSecondColor";
 

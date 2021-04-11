@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, View,Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { contrastColor, fontBold, h2, h3, primaryColor } from '../../StyleConstants';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 

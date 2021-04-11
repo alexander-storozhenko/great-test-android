@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, Text, StyleSheet, ActivityIndicator} from "react-native";
+import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import ProfileRoom_Avatar from "./elements/ProfileRoom_Avatar";
 import ProfileRoom_UserInfo from "./elements/ProfileRoom_UserInfo";
 import ProfileRoom_UserStatistics from "./elements/ProfileRoom_UserStatistics";
@@ -14,7 +14,6 @@ import {setNavigation} from "../../actions/navigationAction";
 import {backHeader} from "../../actions/headerActions";
 import Like from "../svg/Like";
 import Eye from "../svg/Eye";
-import {currentScreenName, navigate, navigation, replace} from "../../lib/NavigationService";
 import {getUserData} from "../../actions/profileActions/profileUserDataAction";
 
 class ProfileRoom extends Component {
@@ -30,8 +29,7 @@ class ProfileRoom extends Component {
         })
 
         this.props.getUserData()
-        // this.props.onBack(false)
-        // this.props.getUserData()
+
         // root tab component need to set navigation
         this.props.setNavigation(this.props.navigation)
     }

@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button, View, Text, Dimensions, StyleSheet, TouchableHighlight } from "react-native";
-import { fontBold, fontMedium, h2, h3, h4, lightColor, titleColor, contrastColor, fontRegular } from '../../StyleConstants';
-import Ripple from 'react-native-material-ripple';
-import { LinearGradient } from 'expo-linear-gradient';
-import Eye from '../../svg/Eye';
-import Love from '../../svg/Love';
-import { Link } from "react-router-native";
+import { Text, StyleSheet, TouchableHighlight } from "react-native";
+import { fontMedium, h3, lightColor, contrastColor } from '../../StyleConstants';
 
 class MiniTest_Button extends Component {
     constructor(props) {

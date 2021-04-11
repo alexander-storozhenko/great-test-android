@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import TestRoom_OneButton from './elements/TestRoom_OneButton'
-import {fontBold, h1, h1_5, h2, navHeight, secondaryColor} from '../StyleConstants';
+import {fontBold, h1_5, secondaryColor} from '../StyleConstants';
 import TestRoom_NavNextButton from './elements/TestRoom_NavNextButton';
 import {getQuestion, sendAnswersAndGetNextQuestion} from '../../actions/questionsAction';
 import {sendAnswersAndGetTestResults} from "../../actions/resultsAction";
 import TestRoom_Timer from "./elements/TestRoom_Timer";
-import OutBigButton from "../ui/OutBigButton";
-import {navigate} from "../../lib/NavigationService";
 
 class TestRoom extends Component {
     constructor(props) {

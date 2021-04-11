@@ -1,39 +1,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-    Button,
     View,
-    Text,
-    Dimensions,
     StyleSheet,
-    TouchableHighlight,
-    TouchableOpacity,
-    TextInput,
-    Keyboard, Animated
+    TextInput
 } from "react-native";
 import {
     fontBold,
-    fontMedium,
-    h2,
     h3,
     h4,
-    lightColor,
-    titleColor,
-    subTitleColor,
-    titleColorLight,
-    subTitleColorLight,
-    primaryColor,
-    borderRadius, secondColor, firstColor
+    borderRadius
 } from '../../StyleConstants';
-import {TouchableWithoutFeedback,     ImageBackground} from "react-native";
+import {ImageBackground} from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
 import {getTextColor} from "../../../lib/ColorsHelper";
 import Card_ImageButton from "./card_elements/Card_ImageButton";
 import * as ImagePicker from 'expo-image-picker';
-import {apiDomain} from "../../../settings/url";
-import {apiPath, rootPath} from "../../../lib/Requests";
-import {saveCard, saveImage} from "../../../actions/constructorActions/mainInfoScreenAction";
-
 
 class MainInfoScreen_Card extends Component {
     constructor(props) {
@@ -94,9 +76,6 @@ const styles = StyleSheet.create({
     input: {
         width: 200,
         height: 40,
-        // borderBottomColor: lightColor,
-        // borderBottomWidth: 2,
-
     },
     input_title:{
         fontFamily: fontBold,

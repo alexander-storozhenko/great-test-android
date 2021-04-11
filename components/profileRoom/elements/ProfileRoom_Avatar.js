@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator} from "react-native";
-import Logo from '../../../assets/dev_logo.jpg'
+import {View, Image, StyleSheet} from "react-native";
 import {fontBold, h1_5, secondColor} from "../../StyleConstants";
 import {rootPath} from "../../../lib/Requests";
-import FastImage from 'react-native-fast-image'
 
 class ProfileRoom_Avatar extends Component {
     render() {
@@ -15,7 +12,6 @@ class ProfileRoom_Avatar extends Component {
             </View>
         )
     }
-
 }
 
 const styles = StyleSheet.create( {
@@ -37,14 +33,10 @@ const styles = StyleSheet.create( {
 ,
     title: {
         marginTop: 20,
-        // marginBottom:20,
         fontSize: h1_5,
         fontFamily: fontBold,
         textAlign: 'center',
     }
-
-}
-
-)
+})
 
 export default ProfileRoom_Avatar;

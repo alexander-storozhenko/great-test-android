@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, TextInput, View} from "react-native";
-import {fontLight, fontMedium, fontRegular, lightColor, secondaryColor, secondColor} from "../../StyleConstants";
+import {fontMedium, fontRegular, lightColor} from "../../StyleConstants";
 import {connect} from "react-redux";
 import {searchData} from "../../../actions/searchAction";
 
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius:5,
         backgroundColor: lightColor,
-        // color: '#acacac',
         width: '100%'
     }
 })

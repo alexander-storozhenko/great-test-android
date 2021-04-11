@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {
     View,
     StyleSheet,
@@ -7,12 +6,8 @@ import {
 } from "react-native";
 import {
     borderRadius,
-    contrastColor,
     fontBold,
-    h3,
     h4,
-    lightColor,
-    primaryColor,
     secondaryColor
 } from "../StyleConstants";
 

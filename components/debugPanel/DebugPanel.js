@@ -2,18 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
 import {connect} from "react-redux";
 import {
-    borderRadius,
-    contrastColor,
-    errorColor,
     h2,
     h3,
-    h4,
     lightColor, roomPadding,
     secondaryColor,
-    successColor
 } from "../StyleConstants";
 
-import {TouchableNativeFeedback} from "react-native";
 import Backdrop from "../ui/Backdrop";
 import OutMiddleButton from "../ui/OutMiddleButton";
 import {addRecommend} from "../../actions/recommendsAction";

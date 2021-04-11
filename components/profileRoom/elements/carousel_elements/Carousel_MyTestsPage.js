@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {
-    Button, View, Image, Text, StyleSheet, Dimensions, ActivityIndicator,
-    TouchableNativeFeedback, ScrollView
-} from "react-native";
+import {View, StyleSheet, ActivityIndicator, ScrollView} from "react-native";
 import {lightColor, secondaryColor} from "../../../StyleConstants";
 import Carousel_TestCard from "./Carousel_TestCard";
 import RoundedButton from "../../../roundedButton/RoundedButton";
-import {setNavigation} from "../../../../actions/navigationAction";
 import {getUserTests} from "../../../../actions/profileActions/profileCarouselAction";
 import {navigate} from "../../../../lib/NavigationService";
 

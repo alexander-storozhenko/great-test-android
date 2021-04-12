@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet} from "react-native";
-import {h3} from "../../StyleConstants";
+import {fontBold, fontRegular, h3} from "../../StyleConstants";
 import {changeSlide} from "../../../actions/profileActions/profileCarouselAction";
 
 class ProfileRoom_Panel extends Component {
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: h3,
+        fontFamily: fontBold
     }
 
 })

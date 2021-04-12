@@ -1,19 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-    Button,
     View,
-    Image,
     Text,
     StyleSheet,
-    Dimensions,
-    ActivityIndicator,
     TouchableNativeFeedback,
     ImageBackground
 } from "react-native";
 import RecommendCard_Button from "./elements/RecommendCard_Button";
 import {LinearGradient} from 'expo-linear-gradient';
-import {h2, h3, lightColor} from "../StyleConstants";
+import {fontBold, fontRegular, h2, h3} from "../StyleConstants";
 import {getTextColor} from "../../lib/ColorsHelper";
 import BookMark from "../svg/BookMark";
 import {rootPath} from "../../lib/Requests";
@@ -74,11 +70,13 @@ const styles = StyleSheet.create({
         padding: 10
     },
     title: {
-        fontSize: h2
+        fontSize: h2,
+        fontFamily: fontBold
     },
     subtitle: {
         marginTop: 5,
         fontSize: h3,
+        fontFamily: fontRegular
     },
     btn: {
         position: 'absolute',

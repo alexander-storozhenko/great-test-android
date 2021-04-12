@@ -8,7 +8,6 @@ import thunk from 'redux-thunk';
 import MainRoom from "./components/mainRoom/MainRoom";
 import TestRoom from "./components/testRoom/TestRoom";
 import TestPreviewRoom from "./components/testPreviewRoom/TestPreviewRoom";
-import NavBar from "./components/navBar/NavBar";
 
 import Header from "./components/header/Header";
 import rootReducer from './reducers/rootReducer';

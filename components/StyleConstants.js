@@ -13,11 +13,18 @@ export const successColor = "#A5D440"
 
 //font
 
-export const fontBold     = 'QuickSand-Bold'
-export const fontMedium   = 'QuickSand-Medium'
-export const fontRegular  = 'QuickSand-Regular'
-export const fontSemiBold = 'QuickSand-SemiBold'
-export const fontLight    = 'QuickSand-Light'
+export const fontBold     = 'FontBold'
+export const fontMedium   = 'FontMedium'
+export const fontRegular  = 'FontRegular'
+export const fontSemiBold = 'FontSemiBold'
+export const fontLight    = 'FontLight'
+
+
+export const fontBoldRu = 'FontBoldRu'
+export const fontRegularRu = 'FontRegularRu'
+
+export const fontBoldEn = 'FontBoldEn'
+export const fontRegularEn = 'FontBoldRu'
 
 //font-sizes
 

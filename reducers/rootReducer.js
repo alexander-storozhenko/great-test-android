@@ -36,8 +36,6 @@ export default combineReducers({
     recommendsAdded,
     recommendsAddLoading,
 
-    navbarShow,
-
     questionNumber,
     question,
     questionLoading,

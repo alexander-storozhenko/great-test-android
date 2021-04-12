@@ -4,28 +4,21 @@ import {View, StyleSheet, ActivityIndicator, ScrollView} from "react-native";
 import {lightColor, secondaryColor} from "../../../StyleConstants";
 import Carousel_TestCard from "./Carousel_TestCard";
 import RoundedButton from "../../../roundedButton/RoundedButton";
-import {getUserTests} from "../../../../actions/profileActions/profileCarouselAction";
 import {navigate} from "../../../../lib/NavigationService";
 
 class Carousel_MyTestsPage extends Component {
-
-    componentDidMount() {
-        this.props.getUserTests(0)
-    }
-
     navigate = () => {
         navigate('ConstructorMainInfo')
     }
 
     render() {
-        console.log(this.props.userTests )
         return (
             <View style={styles.container}>
-                {this.props.userTests.length === 0 ?
+                {this.props.data?.length === 0 ?
                     <ActivityIndicator size="small" color={secondaryColor}/> :
                     <ScrollView showsVerticalScrollIndicator={false} style={styles.list}>
-                        {  this.props.userTests
-                            ? this.props.userTests.map((test,key) =>
+                        {  this.props.data
+                            ? this.props.data.map((test,key) =>
                                 <Carousel_TestCard
                                     id={key}
                                     key={key}
@@ -77,8 +70,6 @@ export default connect(
     state => ({
         navigation: state.currentNavigation,
         loading: state.profileCarouselLoading,
-        userTests: state.profileCarouselData,
     }),
     dispatch => ({
-        getUserTests: (page = 0) => dispatch(getUserTests(page)),
     }))(Carousel_MyTestsPage);

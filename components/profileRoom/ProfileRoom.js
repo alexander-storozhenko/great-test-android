@@ -15,6 +15,7 @@ import {backHeader} from "../../actions/headerActions";
 import Like from "../svg/Like";
 import Eye from "../svg/Eye";
 import {getUserData} from "../../actions/profileActions/profileUserDataAction";
+import {getUserTests} from "../../actions/profileActions/profileCarouselAction";
 
 class ProfileRoom extends Component {
     constructor(props) {
@@ -24,8 +25,10 @@ class ProfileRoom extends Component {
 
     componentDidMount() {
         this.props.navigation.addListener('focus', (e) => {
-            if(this.props.route?.params?.from_login )
+            if(this.props.route?.params?.from_login ) {
                 this.props.getUserData()
+                this.props.getUserTests()
+            }
         })
 
         this.props.getUserData()
@@ -72,12 +75,13 @@ class ProfileRoom extends Component {
                     <ProfileRoom_Panel/>
                 </View>
 
-                <ProfileRoom_Carousel>
-                    <Carousel_MyTestsPage/>
-                    {/*<Carousel_MyTestsPage/>*/}
-                    {/*<Carousel_MyTestsPage/>*/}
-                </ProfileRoom_Carousel>
-
+                {this.props.userTests ?
+                    <ProfileRoom_Carousel>
+                        <Carousel_MyTestsPage data={this.props.userTests}/>
+                        {/*<Carousel_MyTestsPage/>*/}
+                        {/*<Carousel_MyTestsPage/>*/}
+                    </ProfileRoom_Carousel> : null
+                }
                 {this.props.settings ? <ProfileRoom_SettingsScreen/> : null}
             </View>
         )
@@ -133,9 +137,11 @@ export default connect(
     state => ({
         // userDataLoading: state.profileUserDataProgress,
         userData: state.profileUserData,
+        userTests: state.profileCarouselData,
     }),
     dispatch => ({
         onBack: (show) => dispatch(backHeader(show)),
         setNavigation: (current) => dispatch(setNavigation(current)),
         getUserData: () => dispatch(getUserData()),
+        getUserTests: (page = 0) => dispatch(getUserTests(page)),
     }))(ProfileRoom);

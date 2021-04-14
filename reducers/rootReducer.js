@@ -8,20 +8,33 @@ import {testPreviewLoading, testPreviewInfo, testTData} from "./testReducer";
 import {userAnswers, answersSendProgress} from "./answersReducer";
 
 import {search_progress, search_results} from "./searchReducer";
-import {profileCarouselSlideTitle, profileCarouselLoading, profileCarouselData, profileCarouselItemSelected} from "./profileReducers/profileCarouselReducer";
+import {
+    profileCarouselSlideTitle,
+    profileCarouselLoading,
+    profileCarouselData,
+    profileCarouselItemSelected
+} from "./profileReducers/profileCarouselReducer";
 import {profileUserData} from './profileReducers/profileUserDataReducer';
 
 import {currentNavigation} from "./navigationReducer";
 
 import {backButton} from "./headerReducer";
-import {constructorColorTextBtnClicked} from "./constructorReducer";
+import {constructorColorTextBtnClicked,} from "./constructorReducer";
 import {
     constructorCarouselFirstColorBtnClicked,
     constructorCarouselSecondColorBtnClicked,
-    constructorCarouselColorTypeBtnClicked
+    constructorCarouselColorTypeBtnClicked,
+    constructorCarouselMainInfoDataProgress,
+    constructorCarouselMainInfoData,
+
 } from './constructorReducers/carouselReducer';
 
-import {constructorSaveCard, constructorCardImage} from './constructorReducers/cardReducer';
+import {
+    constructorSaveCard,
+    constructorCardImage,
+    constructorCardTitle,
+    constructorCardSubTitle,
+} from './constructorReducers/cardReducer';
 import {panelOpen} from './debugReducer';
 
 import {signInProgress, loginIncorrect} from './loginReducer';
@@ -67,8 +80,12 @@ export default combineReducers({
     constructorCarouselFirstColorBtnClicked,
     constructorCarouselSecondColorBtnClicked,
     constructorCarouselColorTypeBtnClicked,
+    constructorCarouselMainInfoDataProgress,
+    constructorCarouselMainInfoData,
     constructorSaveCard,
     constructorCardImage,
+    constructorCardTitle,
+    constructorCardSubTitle,
 
     panelOpen,
 

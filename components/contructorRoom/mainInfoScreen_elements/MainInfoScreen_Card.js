@@ -45,10 +45,12 @@ class MainInfoScreen_Card extends Component {
                     <View style={styles.card_content}>
                         <View>
                             <TextInput placeholder={'Название...'}
+                                       onChangeText={text =>this.props.onChangeTitle(text)}
                                        style={[{color: getTextColor(this.props.first_color)}, styles.input, styles.input_title]}/>
                         </View>
                         <View style={styles.description}>
                             <TextInput placeholder={'Описание...'}
+                                       onChangeText={text =>this.props.onChangeSubTitle(text)}
                                        style={[{color: getTextColor(this.props.first_color)},styles.input, styles.input_description]}/>
                         </View>
                     </View>
@@ -122,6 +124,8 @@ export default connect(
         image: state.constructorCardImage,
     }),
     dispatch => ({
+        onChangeTitle: (title) => dispatch({type: 'CONSTRUCTOR/CARD/TITLE', payload: title}),
+        onChangeSubTitle: (sub_title) => dispatch({type: 'CONSTRUCTOR/CARD/SUB_TITLE', payload: sub_title}),
         onStoreImg: (uri) => dispatch({type: 'CONSTRUCTOR/CARD/STORE_IMG', payload: uri})
     })
 )(MainInfoScreen_Card);

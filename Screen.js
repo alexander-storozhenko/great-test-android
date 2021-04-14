@@ -35,6 +35,7 @@ import Constructor_MainInfoScreen from "./components/contructorRoom/Constructor_
 import ProfileRoom_SettingsScreen from "./components/profileRoom/ProfileRoom_SettingsScreen";
 import Constructor_ParamsScreen from "./components/contructorRoom/Constructor_ParamsScreen";
 import SignInScreen from './components/loginRoom/SignInScreen'
+import Constructor_QuestionScreen from "./components/contructorRoom/Constructor_QuestionScreen";
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
 
@@ -73,8 +74,6 @@ function StackSearchNavigator() {
 }
 
 function StackProfileRoomNavigator() {
-
-
     return (
         <Room padding>
             <Stack.Navigator>
@@ -83,6 +82,7 @@ function StackProfileRoomNavigator() {
 
                 <Stack.Screen name="ConstructorMainInfo" component={Constructor_MainInfoScreen} options={slideAnimation} />
                 <Stack.Screen name="ConstructorParams" component={Constructor_ParamsScreen} options={slideAnimation} />
+                <Stack.Screen name="ConstructorQuestion" component={Constructor_QuestionScreen} options={slideAnimation} />
                 <Stack.Screen name="Settings" component={ProfileRoom_SettingsScreen} back={true} options={slideAnimation} />
                 <Stack.Screen name="Login" options={slideAnimation} component={SignInScreen} />
             </Stack.Navigator>

@@ -18,3 +18,10 @@ export const constructorCarouselColorTypeBtnClicked = (state = 0, action) => {
     return state
 }
 
+export const constructorCarouselMainInfoData = (state = null, action) => {
+    return action.type === 'CONSTRUCTOR/CAROUSEL/SEND_MAIN_INFO_DATA/SUCCESS'
+}
+
+export const constructorCarouselMainInfoDataProgress = (state = null, action) => {
+    return action.type === 'CONSTRUCTOR/CAROUSEL/SEND_MAIN_INFO_DATA/PROGRESS'
+}

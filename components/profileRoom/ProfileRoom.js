@@ -32,6 +32,7 @@ class ProfileRoom extends Component {
         })
 
         this.props.getUserData()
+        this.props.getUserTests()
 
         // root tab component need to set navigation
         this.props.setNavigation(this.props.navigation)

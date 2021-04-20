@@ -6,7 +6,7 @@ import {
     StyleSheet,
 } from "react-native";
 import {h3} from '../StyleConstants';
-import Params_QuestionTypeBox from "./paramsScreen_elements/Params_QuestionTypeBox";
+import Params_QuestionTypeBox from "./paramsScreen_elements/Params_QuestionTypeBoxOne";
 import BottomButton from "../ui/BottomButton";
 import {navigate} from "../../lib/NavigationService";
 
@@ -18,14 +18,6 @@ class Constructor_QuestionScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Тип вопроса 🛠</Text>
-                <Params_QuestionTypeBox/>
-                <Text style={styles.title}>Время на ответ ⏱</Text>
-                <View style={styles.next_btn_container}>
-                    <View style={styles.next_btn}>
-                        <BottomButton onPress={()=> navigate('ConstructorParams')}>Далее</BottomButton>
-                    </View>
-                </View>
             </View>
         );
     }

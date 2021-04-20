@@ -17,9 +17,7 @@ export const signIn = (name, password) => dispatch => {
         .then(result => {
             if(result.access_token) {
                 dispatch({type: 'LOGIN/SIGN_IN/SUCCESS', payload: result})
-                storeData('ACCESS_TOKEN', result.access_token)
-               console.log(getData('ACCESS_TOKEN'))
-                navigate('Profile', {from_login: true})
+                storeData('ACCESS_TOKEN', result.access_token).then(r => navigate('Profile', {from_login: true}))
             }
             else
                 dispatch({ type: 'LOGIN/SIGN_IN/INCORRECT', payload: result })

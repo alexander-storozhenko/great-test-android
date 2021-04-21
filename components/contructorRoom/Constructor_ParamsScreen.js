@@ -48,7 +48,7 @@ class Constructor_ParamsScreen extends Component {
 
                 <View style={styles.next_btn_container}>
                     <View style={styles.next_btn}>
-                        <BottomButton onPress={() => navigate('ConstructorParams')}>Далее</BottomButton>
+                        <BottomButton onPress={() => navigate('ConstructorQuestion')}>Далее</BottomButton>
                     </View>
                 </View>
             </View>

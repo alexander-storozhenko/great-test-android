@@ -1,7 +1,6 @@
 import {apiDomain} from "../../settings/url";
 import {accessible, accessTokenHeader, apiPath, defaultHeaders, getAccessToken} from "../../lib/Requests";
 import {navigate, navigateToLogin, replace} from "../../lib/NavigationService";
-import {getData} from "../../lib/AsyncStorageHelper";
 
 const url = 'profile/user_tests'
 
@@ -18,9 +17,7 @@ export const getUserTests = () => dispatch => {
                 if (accessible(res)) return res.json()
                 navigateToLogin()
             })
-            .then(result => {
-                dispatch({type: 'PROFILE_CAROUSEL/SUCCESS', payload: result})
-            })
+            .then(result => dispatch({type: 'PROFILE_CAROUSEL/SUCCESS', payload: result}))
     })
 }
 

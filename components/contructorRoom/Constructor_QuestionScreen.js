@@ -6,9 +6,8 @@ import {
     StyleSheet,
 } from "react-native";
 import {h3} from '../StyleConstants';
-import Params_QuestionTypeBox from "./paramsScreen_elements/Params_QuestionTypeBoxOne";
-import BottomButton from "../ui/BottomButton";
-import {navigate} from "../../lib/NavigationService";
+import InputField from "../ui/InputField";
+import ImageButton from "../ui/ImageButton";
 
 class Constructor_QuestionScreen extends Component {
     constructor(props) {
@@ -18,6 +17,14 @@ class Constructor_QuestionScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.title_row}>
+                    <View style={styles.input_container}>
+                        <InputField style={styles.input}/>
+                    </View>
+                    <View style={styles.img_btn_container}>
+                        <ImageButton/>
+                    </View>
+                </View>
             </View>
         );
     }
@@ -28,29 +35,26 @@ const styles = StyleSheet.create({
         position: 'relative',
         width: '100%',
         height: '100%',
+        paddingTop: 20,
     },
-    title:{
-        fontSize: h3,
-        paddingTop: 10,
-        paddingBottom: 10,
-
+    input_container: {
+        flex: 1
     },
-    next_btn_container: {
-        position: 'absolute',
-        bottom: 10,
-        width: '100%',
+    input: {
+        height: 40
     },
-    next_btn: {
-        position: 'relative',
-        width: '100%',
-        flexDirection:'row',
-        justifyContent: 'center'
+    img_btn_container: {
+      paddingLeft: 15,
+    },
+    title_row: {
+        flexDirection: 'row',
+        width: 300,
+        alignSelf: 'center'
     }
 })
 
 export default connect(
     null,
     dispatch => ({
-        onSetTestTemplateData: (data) => dispatch({type: 'TEST/SET_TEST_T_DATA', payload: data}),
     })
 )(Constructor_QuestionScreen);

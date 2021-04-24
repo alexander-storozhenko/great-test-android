@@ -8,6 +8,7 @@ import {
 import {h3} from '../StyleConstants';
 import InputField from "../ui/InputField";
 import ImageButton from "../ui/ImageButton";
+import QuestionScreen_AnswerBoxOne from "./questionScreen_elements/QuestionScreen_AnswerBoxOne";
 
 class Constructor_QuestionScreen extends Component {
     constructor(props) {
@@ -19,11 +20,22 @@ class Constructor_QuestionScreen extends Component {
             <View style={styles.container}>
                 <View style={styles.title_row}>
                     <View style={styles.input_container}>
-                        <InputField style={styles.input}/>
+                        <InputField placeholder={'title'} style={styles.input}/>
                     </View>
                     <View style={styles.img_btn_container}>
-                        <ImageButton/>
+                        <ImageButton style={styles.input}/>
                     </View>
+                </View>
+
+                <View style={styles.description_row}>
+                    <View style={{flex: 1}}>
+                    <InputField placeholder={'description'} style={styles.input}/></View>
+                </View>
+
+                <View style={styles.answers}>
+                    <QuestionScreen_AnswerBoxOne number={1}/>
+                    <QuestionScreen_AnswerBoxOne number={2}/>
+                    <QuestionScreen_AnswerBoxOne number={3}/>
                 </View>
             </View>
         );
@@ -44,17 +56,25 @@ const styles = StyleSheet.create({
         height: 40
     },
     img_btn_container: {
-      paddingLeft: 15,
+        paddingLeft: 15,
     },
     title_row: {
         flexDirection: 'row',
         width: 300,
         alignSelf: 'center'
+    },
+    description_row: {
+        flexDirection: 'row',
+        width: 300,
+        alignSelf: 'center',
+
+    },
+    answers: {
+        marginTop: 40,
     }
 })
 
 export default connect(
     null,
-    dispatch => ({
-    })
+    dispatch => ({})
 )(Constructor_QuestionScreen);

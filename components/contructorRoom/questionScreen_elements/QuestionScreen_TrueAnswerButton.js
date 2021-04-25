@@ -10,21 +10,23 @@ import {
     TextInput
 } from "react-native";
 import {
-    borderRadius, checkedColor, contrastColor, fontBold, h3, lightColor, primaryColor, successColor
+    borderRadius, successColor
 } from '../../StyleConstants';
-import InputField from "../../ui/InputField";
 
 class QuestionScreen_TrueAnswerButton extends Component {
     constructor(props) {
         super(props)
     }
 
+    _onPress = () => {
+        this.props.onSetAnswer(this.props.number)
+    }
+
     render() {
-        const selectedStyle = this.props.selectedId === this.props.number ? {backgroundColor: styles.selected} : null
 
         return (
-            <View style={[styles.container, selectedStyle]}>
-                <TouchableNativeFeedback>
+            <View style={[styles.container]}>
+                <TouchableNativeFeedback onPress={this._onPress}>
                     <View style={styles.btn}>
                     </View>
                 </TouchableNativeFeedback>

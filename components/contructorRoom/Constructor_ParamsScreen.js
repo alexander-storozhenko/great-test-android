@@ -13,10 +13,15 @@ import {navigate} from "../../lib/NavigationService";
 import {getLocaledString} from "../../lib/locale/locale";
 import Carousel from "react-native-snap-carousel";
 import Params_QuestionTypeBoxOne from "./paramsScreen_elements/Params_QuestionTypeBoxOne";
+import {constructorSendQuestionParams} from "../../actions/constructorActions/constructorAction";
 
 class Constructor_ParamsScreen extends Component {
     constructor(props) {
         super(props)
+    }
+
+    onPress = () => {
+        this.props.onSendQuestionParamsInfo({questionType: 'one'})
     }
 
     _renderItem = ({item, _}) => (<View style={styles.item}>{item}</View>)
@@ -48,7 +53,7 @@ class Constructor_ParamsScreen extends Component {
 
                 <View style={styles.next_btn_container}>
                     <View style={styles.next_btn}>
-                        <BottomButton onPress={() => navigate('ConstructorQuestion')}>Далее</BottomButton>
+                        <BottomButton disable={this.props.sendParamsProgress} onPress={this.onPress}>Далее</BottomButton>
                     </View>
                 </View>
             </View>
@@ -82,9 +87,13 @@ const styles = StyleSheet.create({
 })
 
 export default connect(
-    null,
+    state=> ({
+        sendParamsProgress: state.constructorQuestionParamsProgress,
+        sendParams: state.constructorQuestionParams,
+    }),
     dispatch => ({
         onSetTestTemplateData: (data) => dispatch({type: 'TEST/SET_TEST_T_DATA', payload: data}),
-        onShowNavBar: (state) => dispatch(showNavBar(state))
+        onShowNavBar: (state) => dispatch(showNavBar(state)),
+        onSendQuestionParamsInfo: (data) => dispatch(constructorSendQuestionParams(data))
     })
 )(Constructor_ParamsScreen);

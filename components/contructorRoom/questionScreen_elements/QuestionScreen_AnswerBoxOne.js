@@ -7,7 +7,8 @@ import {
     Dimensions,
     StyleSheet,
     TouchableNativeFeedback,
-    TextInput
+    TextInput,
+    Animated
 } from "react-native";
 import {
     borderRadius, checkedColor, contrastColor, fontBold, h3, h4, lightColor, primaryColor
@@ -20,23 +21,32 @@ class QuestionScreen_AnswerBoxOne extends Component {
         super(props)
     }
 
-    _select = () => {
-        this.props.onSetAnswer(this.props.number)
-    }
+    _color = new Animated.Value(0)
+
+    _animateColor = () => {
+        this._color = new Animated.Value(0)
+
+        Animated.timing(this._color, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: false
+        }).start();
+    };
 
     render() {
-        const selectedStyle = this.props.selectedId === this.props.number ? {backgroundColor: styles.selected} : null
+        this._animateColor()
+
+        const color = this.props.selectedId === this.props.number ? this._color.interpolate({
+            inputRange: [0,1],
+            outputRange:  [contrastColor, checkedColor]
+        }) : contrastColor
 
         return (
-            <View style={[styles.container, selectedStyle]}>
-
-                    <View style={styles.btn}>
-
-                            <TextInput placeholder={'Answer'} style={{height: 40, fontSize: h3}}/>
-
-                            <QuestionScreen_TrueAnswerButton/>
-                    </View>
-
+            <View style={[styles.container]}>
+                <Animated.View style={[styles.btn, {backgroundColor: color}]}>
+                    <TextInput placeholder={'Answer'} style={{height: 40, fontSize: h3}}/>
+                    <QuestionScreen_TrueAnswerButton number={this.props.number}/>
+                </Animated.View>
             </View>
         );
     }
@@ -66,7 +76,7 @@ const styles = StyleSheet.create({
         fontFamily: fontBold,
         fontSize: h3
     },
-    container:{
+    container: {
         marginTop: 15,
     }
 })

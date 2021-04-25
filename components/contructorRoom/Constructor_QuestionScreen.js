@@ -9,11 +9,16 @@ import {h3} from '../StyleConstants';
 import InputField from "../ui/InputField";
 import ImageButton from "../ui/ImageButton";
 import QuestionScreen_AnswerBoxOne from "./questionScreen_elements/QuestionScreen_AnswerBoxOne";
+import BottomButton from "../ui/BottomButton";
+import {navigate} from "../../lib/NavigationService";
+import {constructorSendQuestionParams} from "../../actions/constructorActions/constructorAction";
 
 class Constructor_QuestionScreen extends Component {
     constructor(props) {
         super(props)
     }
+
+
 
     render() {
         return (
@@ -29,13 +34,23 @@ class Constructor_QuestionScreen extends Component {
 
                 <View style={styles.description_row}>
                     <View style={{flex: 1}}>
-                    <InputField placeholder={'description'} style={styles.input}/></View>
+                        <InputField placeholder={'description'} style={styles.input}/></View>
                 </View>
 
                 <View style={styles.answers}>
                     <QuestionScreen_AnswerBoxOne number={1}/>
                     <QuestionScreen_AnswerBoxOne number={2}/>
                     <QuestionScreen_AnswerBoxOne number={3}/>
+                </View>
+
+                <View style={styles.next_btn_container}>
+                    <View style={styles.next_btn}>
+
+                        <BottomButton disable={!this.props.selectedId} onPress={this.onPress}>
+                            {this.props.selectedId ? 'Далее' : 'Выберете вариант ответа'}
+                        </BottomButton>
+
+                    </View>
                 </View>
             </View>
         );
@@ -71,10 +86,26 @@ const styles = StyleSheet.create({
     },
     answers: {
         marginTop: 40,
-    }
+    },
+    next_btn_container: {
+        position: 'absolute',
+        bottom: 10,
+        width: '100%',
+    },
+    next_btn: {
+        position: 'relative',
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
 })
 
 export default connect(
-    null,
-    dispatch => ({})
+    state=>({
+        selectedId: state.constructorSelectedBtnOne,
+    }),
+    dispatch => ({
+
+
+    })
 )(Constructor_QuestionScreen);

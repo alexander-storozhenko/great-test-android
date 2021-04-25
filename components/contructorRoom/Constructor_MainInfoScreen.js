@@ -43,7 +43,9 @@ class Constructor_MainInfoScreen extends Component {
                 </View>
                 <View style={styles.next_btn_container}>
                     <View style={styles.next_btn}>
-                        <BottomButton disable={this.props.sendMainInfoProgress} onPress={this.onPress}>{!this.props.sendMainInfoProgress ? 'Далее' : 'Отправляем...'}</BottomButton>
+                        <BottomButton disable={this.props.sendMainInfoProgress} onPress={this.onPress}>
+                            {!this.props.sendMainInfoProgress ? 'Далее' : 'Отправляем...'}
+                        </BottomButton>
                     </View>
                 </View>
             </View>

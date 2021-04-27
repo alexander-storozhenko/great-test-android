@@ -29,7 +29,12 @@ import {
 
 } from './constructorReducers/carouselReducer';
 
-import {constructorSelectedBtnOne, constructorQuestionParams, constructorQuestionParamsProgress} from './constructorReducers/questionReducer';
+import {
+    constructorSelectedBtnOne,
+    constructorQuestionParams,
+    constructorQuestionParamsProgress,
+    constructorQuestionAnswerBtnsCount
+} from './constructorReducers/questionReducer';
 
 import {
     constructorSaveCard,
@@ -91,6 +96,7 @@ export default combineReducers({
     constructorSelectedBtnOne,
     constructorQuestionParams,
     constructorQuestionParamsProgress,
+    constructorQuestionAnswerBtnsCount,
 
     panelOpen,
 

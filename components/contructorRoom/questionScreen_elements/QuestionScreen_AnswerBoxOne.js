@@ -21,7 +21,16 @@ class QuestionScreen_AnswerBoxOne extends Component {
         super(props)
     }
 
-    _color = new Animated.Value(0)
+    _opacity_color = new Animated.Value(0)
+    _opacity = new Animated.Value(0)
+
+    componentDidMount() {
+        Animated.timing(this._opacity, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: false
+        }).start();
+    }
 
     _animateColor = () => {
         this._color = new Animated.Value(0)
@@ -42,12 +51,12 @@ class QuestionScreen_AnswerBoxOne extends Component {
         }) : contrastColor
 
         return (
-            <View style={[styles.container]}>
+            <Animated.View style={[styles.container, {opacity: this._opacity}]}>
                 <Animated.View style={[styles.btn, {backgroundColor: color}]}>
                     <TextInput placeholder={'Answer'} style={{height: 40, fontSize: h3}}/>
                     <QuestionScreen_TrueAnswerButton number={this.props.number}/>
                 </Animated.View>
-            </View>
+            </Animated.View>
         );
     }
 }

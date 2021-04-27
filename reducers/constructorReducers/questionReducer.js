@@ -13,3 +13,9 @@ export const constructorQuestionParams = (state = null, action) => {
 export const constructorQuestionParamsProgress = (state = null, action) => {
     return action.type === 'CONSTRUCTOR/SEND_QUESTION_PARAMS/PROGRESS'
 }
+
+export const constructorQuestionAnswerBtnsCount = (state = 2, action) => {
+    if(action.type === 'CONSTRUCTOR/QUESTION/ANSWER_BTNS_COUNT')
+        return action.payload
+    return state
+}

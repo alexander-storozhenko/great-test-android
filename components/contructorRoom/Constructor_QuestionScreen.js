@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {
     View,
     Text,
-    StyleSheet,
+    StyleSheet, Animated, ScrollView,
 } from "react-native";
 import {h3} from '../StyleConstants';
 import InputField from "../ui/InputField";
@@ -12,13 +12,17 @@ import QuestionScreen_AnswerBoxOne from "./questionScreen_elements/QuestionScree
 import BottomButton from "../ui/BottomButton";
 import {navigate} from "../../lib/NavigationService";
 import {constructorSendQuestionParams} from "../../actions/constructorActions/constructorAction";
+import QuestionScreen_AddNewAnswerButton from "./questionScreen_elements/QuestionScreen_AddNewAnswerButton";
+import {constructorQuestionAnswerBtnsCount} from "../../reducers/constructorReducers/questionReducer";
 
 class Constructor_QuestionScreen extends Component {
     constructor(props) {
         super(props)
     }
 
-
+    answerButtons = () => {
+        return Array.from(Array(this.props.btnCount)).map((_, i) => (<QuestionScreen_AnswerBoxOne number={i + 1}/>))
+    }
 
     render() {
         return (
@@ -37,16 +41,17 @@ class Constructor_QuestionScreen extends Component {
                         <InputField placeholder={'description'} style={styles.input}/></View>
                 </View>
 
-                <View style={styles.answers}>
-                    <QuestionScreen_AnswerBoxOne number={1}/>
-                    <QuestionScreen_AnswerBoxOne number={2}/>
-                    <QuestionScreen_AnswerBoxOne number={3}/>
-                </View>
-
+                <ScrollView showsVerticalScrollIndicator={true} style={{flex: 1, marginTop: 15, marginBottom: 20}}>
+                    <View style={[styles.answers, {height: (this.props.btnCount + 2) * 75}]}>
+                        {this.answerButtons()}
+                        <QuestionScreen_AddNewAnswerButton/>
+                    </View>
+                </ScrollView>
                 <View style={styles.next_btn_container}>
                     <View style={styles.next_btn}>
 
-                        <BottomButton disable={!this.props.selectedId} onPress={this.onPress}>
+                        <BottomButton disable={!this.props.selectedId} onPress={() => {
+                        }}>
                             {this.props.selectedId ? 'Далее' : 'Выберете вариант ответа'}
                         </BottomButton>
 
@@ -84,11 +89,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
 
     },
-    answers: {
-        marginTop: 40,
+    answers_container: {
+        // flex: 1
     },
     next_btn_container: {
-        position: 'absolute',
+        position: 'relative',
         bottom: 10,
         width: '100%',
     },
@@ -101,11 +106,11 @@ const styles = StyleSheet.create({
 })
 
 export default connect(
-    state=>({
+    state => ({
         selectedId: state.constructorSelectedBtnOne,
+        btnCount: state.constructorQuestionAnswerBtnsCount
     }),
     dispatch => ({
-
-
+        onSetBtnCount: (cnt) => dispatch({type: 'CONSTRUCTOR/QUESTION/ANSWER_BTNS_COUNT', payload: cnt})
     })
 )(Constructor_QuestionScreen);

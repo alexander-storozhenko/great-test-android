@@ -25,7 +25,8 @@ class InputField extends Component {
     render() {
         return (
             <View>
-                <TextInput placeholder={this.props.placeholder} onFocus={this._focusUnderline} onEndEditing={this._unfocusUnderline} style={[styles.input, {...this.props.style}]}/>
+                <TextInput placeholder={this.props.placeholder} onFocus={this._focusUnderline} onChangeText={(text) => this.props.onChangeText(text)}
+                           onEndEditing={this._unfocusUnderline} style={[styles.input, {...this.props.style}]}/>
                 <View style={ this.state.focused ? styles.underline_focused : styles.underline_unfocused}/>
             </View>
         );

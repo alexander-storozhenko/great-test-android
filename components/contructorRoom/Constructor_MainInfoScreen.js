@@ -28,6 +28,7 @@ class Constructor_MainInfoScreen extends Component {
     render() {
         if(this.props.sendMainInfoSuccess)
             navigate('ConstructorParams')
+
         return (
             <View style={styles.container}>
                 <MainInfoPage_Card colors={["#6ef6ba", "#321321"]}/>

@@ -33,7 +33,8 @@ import {
     constructorSelectedBtnOne,
     constructorQuestionParams,
     constructorQuestionParamsProgress,
-    constructorQuestionAnswerBtnsCount
+    constructorQuestionAnswerBtnsCount,
+    constructorCurrentQuestionId
 } from './constructorReducers/questionReducer';
 
 import {
@@ -97,6 +98,7 @@ export default combineReducers({
     constructorQuestionParams,
     constructorQuestionParamsProgress,
     constructorQuestionAnswerBtnsCount,
+    constructorCurrentQuestionId,
 
     panelOpen,
 

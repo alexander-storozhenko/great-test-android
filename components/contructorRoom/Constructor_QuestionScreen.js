@@ -11,7 +11,10 @@ import ImageButton from "../ui/ImageButton";
 import QuestionScreen_AnswerBoxOne from "./questionScreen_elements/QuestionScreen_AnswerBoxOne";
 import BottomButton from "../ui/BottomButton";
 import {navigate} from "../../lib/NavigationService";
-import {constructorSendQuestionParams} from "../../actions/constructorActions/constructorAction";
+import {
+    constructorSaveQuestionData,
+    constructorSendQuestionParams
+} from "../../actions/constructorActions/constructorAction";
 import QuestionScreen_AddNewAnswerButton from "./questionScreen_elements/QuestionScreen_AddNewAnswerButton";
 import {constructorQuestionAnswerBtnsCount} from "../../reducers/constructorReducers/questionReducer";
 
@@ -21,15 +24,37 @@ class Constructor_QuestionScreen extends Component {
     }
 
     answerButtons = () => {
-        return Array.from(Array(this.props.btnCount)).map((_, i) => (<QuestionScreen_AnswerBoxOne number={i + 1}/>))
+        return Array.from(Array(this.props.btnCount)).map((_, i) =>
+            (<QuestionScreen_AnswerBoxOne onChangeText={(text) => this.answers[i] = text} number={i + 1}/>))
+    }
+
+    title = ''
+    subtitle = ''
+    answers = {}
+
+    onPress = () => {
+        //TODO add img type, add answers type: some, n to n ...
+        const data = {
+            title_type: 'text',
+            title: this.title,
+            subtitle: this.subtitle,
+            answers_type: ['one','text'],
+            answers: this.answers,
+            true_answers: [this.props.selectedNumber - 1],
+            question_id: this.props.currentQuestionId,
+        }
+
+        this.props.onSaveQuestion(data)
+        // navigate('ConstructorParams')
     }
 
     render() {
+         console.log(this.props.currentQuestionId)
         return (
             <View style={styles.container}>
                 <View style={styles.title_row}>
                     <View style={styles.input_container}>
-                        <InputField placeholder={'title'} style={styles.input}/>
+                        <InputField placeholder={'title'} style={styles.input} onChangeText={(text) => this.title = text }/>
                     </View>
                     <View style={styles.img_btn_container}>
                         <ImageButton style={styles.input}/>
@@ -38,7 +63,7 @@ class Constructor_QuestionScreen extends Component {
 
                 <View style={styles.description_row}>
                     <View style={{flex: 1}}>
-                        <InputField placeholder={'description'} style={styles.input}/></View>
+                        <InputField placeholder={'description'} style={styles.input} onChangeText={(text) => this.subtitle = text }/></View>
                 </View>
 
                 <ScrollView showsVerticalScrollIndicator={true} style={{flex: 1, marginTop: 15, marginBottom: 20}}>
@@ -50,9 +75,8 @@ class Constructor_QuestionScreen extends Component {
                 <View style={styles.next_btn_container}>
                     <View style={styles.next_btn}>
 
-                        <BottomButton disable={!this.props.selectedId} onPress={() => {
-                        }}>
-                            {this.props.selectedId ? 'Далее' : 'Выберете вариант ответа'}
+                        <BottomButton disable={!this.props.selectedNumber} onPress={this.onPress}>
+                            {this.props.selectedNumber ? 'Далее' : 'Выберете вариант ответа'}
                         </BottomButton>
 
                     </View>
@@ -107,10 +131,12 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
-        selectedId: state.constructorSelectedBtnOne,
-        btnCount: state.constructorQuestionAnswerBtnsCount
+        selectedNumber: state.constructorSelectedBtnOne,
+        btnCount: state.constructorQuestionAnswerBtnsCount,
+        currentQuestionId: state.constructorCurrentQuestionId,
     }),
     dispatch => ({
-        onSetBtnCount: (cnt) => dispatch({type: 'CONSTRUCTOR/QUESTION/ANSWER_BTNS_COUNT', payload: cnt})
+        onSetBtnCount: (cnt) => dispatch({type: 'CONSTRUCTOR/QUESTION/ANSWER_BTNS_COUNT', payload: cnt}),
+        onSaveQuestion: (data) => dispatch(constructorSaveQuestionData(data))
     })
 )(Constructor_QuestionScreen);

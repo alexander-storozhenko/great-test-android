@@ -32,29 +32,30 @@ class Constructor_QuestionScreen extends Component {
     subtitle = ''
     answers = {}
 
-    onPress = () => {
+    _saveQuestion = (finished) => {
         //TODO add img type, add answers type: some, n to n ...
         const data = {
             title_type: 'text',
             title: this.title,
             subtitle: this.subtitle,
-            answers_type: ['one','text'],
+            answers_type: ['one', 'text'],
             answers: this.answers,
             true_answers: [this.props.selectedNumber - 1],
             question_id: this.props.currentQuestionId,
+            finished: finished,
         }
 
         this.props.onSaveQuestion(data)
-        // navigate('ConstructorParams')
     }
 
     render() {
-         console.log(this.props.currentQuestionId)
+        console.log(this.props.currentQuestionId)
         return (
             <View style={styles.container}>
                 <View style={styles.title_row}>
                     <View style={styles.input_container}>
-                        <InputField placeholder={'title'} style={styles.input} onChangeText={(text) => this.title = text }/>
+                        <InputField placeholder={'title'} style={styles.input}
+                                    onChangeText={(text) => this.title = text}/>
                     </View>
                     <View style={styles.img_btn_container}>
                         <ImageButton style={styles.input}/>
@@ -63,7 +64,8 @@ class Constructor_QuestionScreen extends Component {
 
                 <View style={styles.description_row}>
                     <View style={{flex: 1}}>
-                        <InputField placeholder={'description'} style={styles.input} onChangeText={(text) => this.subtitle = text }/></View>
+                        <InputField placeholder={'description'} style={styles.input}
+                                    onChangeText={(text) => this.subtitle = text}/></View>
                 </View>
 
                 <ScrollView showsVerticalScrollIndicator={true} style={{flex: 1, marginTop: 15, marginBottom: 20}}>
@@ -73,13 +75,10 @@ class Constructor_QuestionScreen extends Component {
                     </View>
                 </ScrollView>
                 <View style={styles.next_btn_container}>
-                    <View style={styles.next_btn}>
-
-                        <BottomButton disable={!this.props.selectedNumber} onPress={this.onPress}>
-                            {this.props.selectedNumber ? 'Далее' : 'Выберете вариант ответа'}
-                        </BottomButton>
-
-                    </View>
+                    <BottomButton disable={!this.props.selectedNumber}
+                                  onPress={() => this._saveQuestion(false)}>Далее</BottomButton>
+                    <BottomButton disable={!this.props.selectedNumber}
+                                  onPress={() => this._saveQuestion(true)}>Завершить</BottomButton>
                 </View>
             </View>
         );
@@ -118,14 +117,16 @@ const styles = StyleSheet.create({
     },
     next_btn_container: {
         position: 'relative',
+        flexDirection: 'row',
+        justifyContent: 'center',
         bottom: 10,
         width: '100%',
     },
     next_btn: {
         position: 'relative',
         width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'center'
+        // flexDirection: 'row',
+        // justifyContent: 'center'
     },
 })
 

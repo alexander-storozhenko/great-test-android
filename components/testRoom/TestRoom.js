@@ -43,7 +43,7 @@ class TestRoom extends Component {
 
         if (!this.props.loading && this.props.questionData) {
             answers = this.props.questionData.data.answers
-            title = this.props.questionData.data.text
+            title = this.props.questionData.data.title
         }
 
         return (

@@ -60,6 +60,7 @@ export const constructorSaveQuestionData = (data) => dispatch => {
     formData.append('answers', `${JSON.stringify(data.answers)}`)
     formData.append('true_answers', `${data.true_answers}`)
     formData.append('question_id', `${data.question_id}`)
+    formData.append('finished', `${data.finished}`)
 
     dispatch({type: 'CONSTRUCTOR/SAVE_QUESTION_DATA/PROGRESS'})
 
@@ -74,7 +75,8 @@ export const constructorSaveQuestionData = (data) => dispatch => {
                  res.json())
             .then(_ => {
                 dispatch({type: 'CONSTRUCTOR/SAVE_QUESTION_DATA/SUCCESS'})
-                navigate('ConstructorParams')
+
+                data.finished ? navigate('Profile') : navigate('ConstructorParams')
             })
     })
 }

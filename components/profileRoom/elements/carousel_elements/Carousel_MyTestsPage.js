@@ -12,6 +12,7 @@ class Carousel_MyTestsPage extends Component {
     }
 
     render() {
+        this.props.data.map((test,key) => console.log(test))
         return (
             <View style={styles.container}>
                 {this.props.data?.length === 0 ?

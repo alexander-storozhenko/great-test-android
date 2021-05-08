@@ -68,16 +68,17 @@ class TestCard_Card extends Component {
                             <View style={styles.title}>
                                 <Text style={styles.title_text}>{this.props.title}</Text>
                             </View>
-                            <View style={styles.plays}>
-                                <View style={styles.plays_container}>
-                                    <Love style={styles.plays_svg} fill={primaryColor}/>
-                                    <Text style={styles.plays_text}>{this.props.plays}</Text>
+                            <View style={styles.rating}>
+                                <View style={styles.rating_container }>
+                                    <Love style={styles.rating_svg} fill={primaryColor}/>
+                                    <Text style={styles.rating_text}>{this.props.rating}</Text>
                                 </View>
                             </View>
-                            <View style={styles.rating}>
-                                <View style={styles.rating_container}>
-                                    <Eye style={styles.rating_svg} fill={primaryColor}/>
-                                    <Text style={styles.rating_text}>{this.props.rating}</Text>
+                            <View style={styles.plays}>
+                                <View style={styles.plays_container}>
+                                    <Eye style={styles.plays_svg} fill={primaryColor}/>
+                                    <Text style={styles.plays_text}>{this.props.plays}</Text>
+
                                 </View>
                             </View>
                         </View>
@@ -109,9 +110,9 @@ const styles = StyleSheet.create({
         color: primaryColor,
     },
     plays: {
-        position: 'absolute',
-        right: 15,
+        right: 50,
         bottom: 18,
+        position: 'absolute',
     },
     plays_container: {
         position: 'relative',
@@ -124,14 +125,14 @@ const styles = StyleSheet.create({
     plays_svg: {
         marginRight: 5,
         marginTop: 2,
-        width: 15,
-        height: 15
+        width: 17,
+        height: 17
     },
     rating: {
         // flexDirection:'row',
-        right: 75,
-        bottom: 18,
         position: 'absolute',
+        right: 15,
+        bottom: 18,
     },
     rating_container: {
         position: 'relative',
@@ -144,8 +145,8 @@ const styles = StyleSheet.create({
     rating_svg: {
         marginRight: 5,
         marginTop: 2,
-        width: 17,
-        height: 17
+        width: 15,
+        height: 15
     },
     btn: {
         width: 60,

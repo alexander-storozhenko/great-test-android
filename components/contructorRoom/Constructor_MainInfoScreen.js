@@ -10,6 +10,8 @@ import BottomButton from "../ui/BottomButton";
 import {navigate} from "../../lib/NavigationService";
 import {carouselSendMainInfoData} from "../../actions/constructorActions/carouselPageAction";
 import {constructorCarouselMainInfoDataProgress} from "../../reducers/constructorReducers/carouselReducer";
+import {getMainInfo} from "../../actions/constructorActions/mainInfoScreenAction";
+import {constructorCardMainInfo} from "../../reducers/constructorReducers/cardReducer";
 
 class Constructor_MainInfoScreen extends Component {
     constructor(props) {
@@ -25,13 +27,19 @@ class Constructor_MainInfoScreen extends Component {
         })
     }
 
+    componentDidMount() {
+        if(this.props.route.params.edit)
+            this.props.onGetMainInfoWhenEdit(this.props.route.params.test_t_id)
+    }
+
+
     render() {
         if(this.props.sendMainInfoSuccess)
             navigate('ConstructorParams')
 
         return (
             <View style={styles.container}>
-                <MainInfoPage_Card colors={["#6ef6ba", "#321321"]}/>
+                <MainInfoPage_Card loading={this.props.mainInfoWhenEditProgress} data={this.props.mainInfoWhenEdit}/>
                 {/*<View style={{marginTop: 20}}>*/}
                 {/*    <MainInfoPage_TextColorPicker/>*/}
                 {/*</View>*/}
@@ -85,10 +93,13 @@ export default connect(
         sendMainInfoProgress: state.constructorCarouselMainInfoDataProgress,
         title: state.constructorCardTitle,
         subTitle: state.constructorCardSubTitle,
+        mainInfoWhenEdit: state.constructorCardMainInfo,
+        mainInfoWhenEditProgress: state.constructorCardMainInfoProgress,
     }),
     dispatch => ({
         onSetTestTemplateData: (data) => dispatch({type: 'TEST/SET_TEST_T_DATA', payload: data}),
         onShowNavBar: (state) => dispatch(showNavBar(state)),
-        onSendMainConstructorInfo: (data) => dispatch(carouselSendMainInfoData(data))
+        onSendMainConstructorInfo: (data) => dispatch(carouselSendMainInfoData(data)),
+        onGetMainInfoWhenEdit: (id) => dispatch(getMainInfo(id))
     })
 )(Constructor_MainInfoScreen);

@@ -3,19 +3,20 @@ import {connect} from 'react-redux';
 import {
     View,
     StyleSheet,
-    TextInput
+    TextInput, ActivityIndicator
 } from "react-native";
 import {
     fontBold,
     h3,
     h4,
-    borderRadius
+    borderRadius, secondaryColor
 } from '../../StyleConstants';
 import {ImageBackground} from "react-native";
 import {LinearGradient} from 'expo-linear-gradient';
 import {getTextColor} from "../../../lib/ColorsHelper";
 import Card_ImageButton from "./card_elements/Card_ImageButton";
 import * as ImagePicker from 'expo-image-picker';
+import {rootPath} from "../../../lib/Requests";
 
 class MainInfoScreen_Card extends Component {
     constructor(props) {
@@ -30,28 +31,46 @@ class MainInfoScreen_Card extends Component {
             quality: 1,
         })
 
-        if(!image.cancelled)
+        if (!image.cancelled)
             this.props.onStoreImg(image.uri)
     }
 
     render() {
+        const colors = this.props.data.colors || [this.props.first_color, this.props.second_color]
+        const image_url = this.props.image || this.props.data.image_url
+        const title = this.props.data.title
+        const subtitle = this.props.data.sub_title
+
+        if (this.props.loading)
+            return (
+                <View style={styles.card}>
+                    <View style={styles.loading_container}>
+                        <View style={styles.loading}>
+                    <ActivityIndicator size="large" color={secondaryColor}/>
+                        </View>
+                    </View>
+                </View>
+            )
+
         return (
             <View style={styles.card}>
-                {this.props.image ?
+                {image_url ?
                     <View style={styles.img_container}>
-                        <ImageBackground style={styles.image} source={{uri: this.props.image }}/>
+                        <ImageBackground style={styles.image} source={{uri: rootPath(image_url)}}/>
                     </View> : null}
-                <LinearGradient style={styles.gradient} colors={[this.props.first_color, this.props.second_color]}>
+                <LinearGradient style={styles.gradient} colors={colors}>
                     <View style={styles.card_content}>
                         <View>
                             <TextInput placeholder={'Название...'}
-                                       onChangeText={text =>this.props.onChangeTitle(text)}
+                                       value={title}
+                                       onChangeText={text => this.props.onChangeTitle(text)}
                                        style={[{color: getTextColor(this.props.first_color)}, styles.input, styles.input_title]}/>
                         </View>
                         <View style={styles.description}>
                             <TextInput placeholder={'Описание...'}
-                                       onChangeText={text =>this.props.onChangeSubTitle(text)}
-                                       style={[{color: getTextColor(this.props.first_color)},styles.input, styles.input_description]}/>
+                                       value={subtitle}
+                                       onChangeText={text => this.props.onChangeSubTitle(text)}
+                                       style={[{color: getTextColor(this.props.first_color)}, styles.input, styles.input_description]}/>
                         </View>
                     </View>
                     <View style={styles.img_btn}>
@@ -79,11 +98,11 @@ const styles = StyleSheet.create({
         width: 200,
         height: 40,
     },
-    input_title:{
+    input_title: {
         fontFamily: fontBold,
         fontSize: h3
     },
-    input_description:{
+    input_description: {
         fontSize: h4,
         width: 300,
     },
@@ -93,10 +112,10 @@ const styles = StyleSheet.create({
         borderRadius: borderRadius,
         opacity: 0.83,
     },
-    description:{
+    description: {
         paddingTop: 10,
     },
-    img_btn:{
+    img_btn: {
         position: 'absolute',
         bottom: 0,
         right: 0
@@ -113,8 +132,19 @@ const styles = StyleSheet.create({
         position: 'absolute',
         borderRadius: borderRadius,
         overflow: 'hidden'
+    },
+    loading_container: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: borderRadius,
+        borderWidth: 2,
+        borderColor: secondaryColor,
+    },
+    loading: {
+        alignSelf: 'center',
     }
-
 })
 
 export default connect(

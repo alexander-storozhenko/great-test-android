@@ -21,3 +21,17 @@ export const constructorCardSubTitle = (state = '', action) => {
     return state
 }
 
+/** GET */
+export const constructorCardMainInfoProgress = (state = false, action) => {
+    if(action.type === 'CONSTRUCTOR/GET_MAIN_INFO/PROGRESS')
+        return action.payload.progress
+    return state
+}
+
+/** GET */
+export const constructorCardMainInfo = (state = null, action) => {
+    if(action.type === 'CONSTRUCTOR/GET_MAIN_INFO/SUCCESS')
+        return action.payload.data
+
+    return state
+}

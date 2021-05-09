@@ -4,12 +4,19 @@ import {
     StyleSheet,
     TouchableNativeFeedback
 } from "react-native";
-import {borderRadius, lightColor} from "../../../StyleConstants";
+import {borderRadius, lightColor, secondaryColor} from "../../../StyleConstants";
 import TestCard_Card from "./test_card_elements/TestCard_Card";
+import Edit from "../../../svg/Edit";
+import Trash from "../../../svg/Trash";
+import {navigate} from "../../../../lib/NavigationService";
 
 class Carousel_TestCard extends Component {
     constructor(props) {
         super(props);
+    }
+
+    onPressEdit = () => {
+        navigate('ConstructorMainInfo', {edit: true, test_t_id: this.props.test_t_id})
     }
 
     render() {
@@ -23,13 +30,15 @@ class Carousel_TestCard extends Component {
                     colors={this.props.colors}
                 />
 
-                <View style={{borderRadius: 5, overflow:'hidden'}}>
-                <TouchableNativeFeedback>
-                    <View style={[styles.btn, {right: 65}]}/>
+                <TouchableNativeFeedback onPress={this.onPressEdit}>
+                    <View style={[styles.btn, {right: 65}]}>
+                        <Edit height={26} width={26} fill={secondaryColor}/>
+                    </View>
                 </TouchableNativeFeedback>
-                </View>
+
                 <TouchableNativeFeedback>
                     <View style={[styles.btn, {right: 0}]}>
+                        <Trash height={26} width={26} fill={secondaryColor}/>
                     </View>
                 </TouchableNativeFeedback>
             </View>
@@ -44,6 +53,8 @@ const styles = StyleSheet.create({
         position:'relative'
     },
     btn: {
+        justifyContent: 'center',
+        alignItems: 'center',
         width: 60,
         height: 60,
         borderRadius: borderRadius,

@@ -38,11 +38,10 @@ class TestPreviewRoom extends Component {
                                 />
                             </View>
                             <View style={{width: '100%', position: 'absolute', bottom: 15}}>
-                                <TestPreviewRoom_StartButton onPress={() => {
-                                    this.props.onGetQuestion(this.props.previewInfo.test_id, 1 )
-                                    console.log(this.props.question_number)
-                                }
-                                }>Start!</TestPreviewRoom_StartButton>
+                                <TestPreviewRoom_StartButton
+                                    onPress={() => this.props.onGetQuestion(this.props.previewInfo.test_id, 1)}>
+                                    Start!
+                                </TestPreviewRoom_StartButton>
                             </View>
                         </View>
                 }

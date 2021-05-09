@@ -12,7 +12,6 @@ class Carousel_MyTestsPage extends Component {
     }
 
     render() {
-        this.props.data.map((test,key) => console.log(test))
         return (
             <View style={styles.container}>
                 {this.props.data?.length === 0 ?
@@ -23,6 +22,7 @@ class Carousel_MyTestsPage extends Component {
                                 <Carousel_TestCard
                                     id={key}
                                     key={key}
+                                    test_t_id={test.id}
                                     title={test.title}
                                     plays={test.plays}
                                     rating={test.rating}

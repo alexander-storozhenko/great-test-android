@@ -41,7 +41,7 @@ import {
     constructorSaveCard,
     constructorCardImage,
     constructorCardTitle,
-    constructorCardSubTitle,
+    constructorCardSubTitle, constructorCardMainInfoProgress, constructorCardMainInfo,
 } from './constructorReducers/cardReducer';
 import {panelOpen} from './debugReducer';
 
@@ -88,8 +88,8 @@ export default combineReducers({
     constructorCarouselFirstColorBtnClicked,
     constructorCarouselSecondColorBtnClicked,
     constructorCarouselColorTypeBtnClicked,
-    constructorCarouselMainInfoDataProgress,
-    constructorCarouselMainInfoData,
+    constructorCarouselMainInfoDataProgress, // post
+    constructorCarouselMainInfoData, // post
     constructorSaveCard,
     constructorCardImage,
     constructorCardTitle,
@@ -99,6 +99,8 @@ export default combineReducers({
     constructorQuestionParamsProgress,
     constructorQuestionAnswerBtnsCount,
     constructorCurrentQuestionId,
+    constructorCardMainInfoProgress, // get
+    constructorCardMainInfo,  // get
 
     panelOpen,
 

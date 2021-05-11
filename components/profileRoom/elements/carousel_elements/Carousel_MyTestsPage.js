@@ -1,41 +1,53 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View, StyleSheet, ActivityIndicator, ScrollView} from "react-native";
+import {View, StyleSheet, ActivityIndicator, ScrollView, RefreshControl, SafeAreaView} from "react-native";
 import {lightColor, secondaryColor} from "../../../StyleConstants";
 import Carousel_TestCard from "./Carousel_TestCard";
 import RoundedButton from "../../../roundedButton/RoundedButton";
 import {navigate} from "../../../../lib/NavigationService";
+import {getUserTests} from "../../../../actions/profileActions/profileCarouselAction";
 
 class Carousel_MyTestsPage extends Component {
     navigate = () => {
         navigate('ConstructorMainInfo')
     }
 
+    onRefresh = () => {
+        this.props.getUserTests()
+    }
+
     render() {
         return (
-            <View style={styles.container}>
-                {this.props.data?.length === 0 ?
-                    <ActivityIndicator size="small" color={secondaryColor}/> :
-                    <ScrollView showsVerticalScrollIndicator={false} style={styles.list}>
-                        {  this.props.data
-                            ? this.props.data.map((test,key) =>
-                                <Carousel_TestCard
-                                    id={key}
-                                    key={key}
-                                    test_t_id={test.id}
-                                    title={test.title}
-                                    plays={test.plays}
-                                    rating={test.rating}
-                                    colors={test.colors}
-                                />)
+            <SafeAreaView style={styles.container}>
+
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.list}
+                            refreshControl={
+                                <RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh}/>}>
+                    <View>
+                        {this.props.data
+                            ? this.props.data.map((test, key) => {
+                                if (test.id !== this.props.deletedTestTId)
+                                    return <Carousel_TestCard
+                                        id={key}
+                                        key={key}
+                                        test_t_id={test.id}
+                                        title={test.title}
+                                        plays={test.plays}
+                                        rating={test.rating}
+                                        colors={test.colors}
+                                    />
+                            })
                             : <View/>
                         }
-                    </ScrollView>}
+                    </View>
+                </ScrollView>
+
 
                 <View style={styles.rounded_btn}>
                     <RoundedButton action={this.navigate}/>
                 </View>
-            </View>
+
+            </SafeAreaView>
         )
     }
 }
@@ -71,6 +83,9 @@ export default connect(
     state => ({
         navigation: state.currentNavigation,
         loading: state.profileCarouselLoading,
+        deletedTestTId: state.testTDeleteSuccess,
     }),
     dispatch => ({
+        getUserTests: (page = 0) => dispatch(getUserTests(page)),
+
     }))(Carousel_MyTestsPage);

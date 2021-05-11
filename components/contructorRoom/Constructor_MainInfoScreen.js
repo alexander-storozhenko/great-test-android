@@ -39,7 +39,9 @@ class Constructor_MainInfoScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <MainInfoPage_Card loading={this.props.mainInfoWhenEditProgress} data={this.props.mainInfoWhenEdit}/>
+                <MainInfoPage_Card mode={this.props.route.params.edit ? 'edit' : 'create'}
+                                   loading={this.props.mainInfoWhenEditProgress}
+                                   data={this.props.mainInfoWhenEdit}/>
                 {/*<View style={{marginTop: 20}}>*/}
                 {/*    <MainInfoPage_TextColorPicker/>*/}
                 {/*</View>*/}

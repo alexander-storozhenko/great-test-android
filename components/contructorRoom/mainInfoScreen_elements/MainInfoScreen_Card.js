@@ -36,10 +36,26 @@ class MainInfoScreen_Card extends Component {
     }
 
     render() {
-        const colors = this.props.data.colors || [this.props.first_color, this.props.second_color]
-        const image_url = this.props.image || this.props.data.image_url
-        const title = this.props.data.title
-        const subtitle = this.props.data.sub_title
+        let colors, image_url, title, subtitle
+
+        const data = this.props.data
+
+        if(data) {
+            switch (this.props.mode){
+                case 'edit':
+                    colors = data.colors
+                    image_url = this.props.image || rootPath(data.image_url)
+                    title = data.title
+                    subtitle = data.sub_title
+                    break
+                case 'create':
+                    colors = [this.props.first_color, this.props.second_color]
+                    image_url = null
+                    title = ""
+                    subtitle = ""
+                    break
+            }
+        }
 
         if (this.props.loading)
             return (
@@ -56,7 +72,7 @@ class MainInfoScreen_Card extends Component {
             <View style={styles.card}>
                 {image_url ?
                     <View style={styles.img_container}>
-                        <ImageBackground style={styles.image} source={{uri: rootPath(image_url)}}/>
+                        <ImageBackground style={styles.image} source={{uri: image_url}}/>
                     </View> : null}
                 <LinearGradient style={styles.gradient} colors={colors}>
                     <View style={styles.card_content}>

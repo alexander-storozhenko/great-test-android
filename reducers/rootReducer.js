@@ -4,7 +4,13 @@ import {move} from './sidebarReducer'
 import {recommends, recommendsLoading, recommendsAdded, recommendsAddLoading} from './recommendsReducer'
 
 import {question, questionNumber, questionLoading, questionCount} from "./questionReducer";
-import {testPreviewLoading, testPreviewInfo, testTData} from "./testReducer";
+import {
+    testPreviewLoading,
+    testPreviewInfo,
+    testTData,
+    testTDeleteProgress,
+    testTDeleteSuccess
+} from "./testReducer";
 import {userAnswers, answersSendProgress} from "./answersReducer";
 
 import {search_progress, search_results} from "./searchReducer";
@@ -65,6 +71,8 @@ export default combineReducers({
     testPreviewInfo,
     testPreviewLoading,
     testTData,
+    testTDeleteProgress,
+    testTDeleteSuccess,
 
     userAnswers,
     answersSendProgress,
@@ -107,5 +115,6 @@ export default combineReducers({
     signInProgress,
     loginIncorrect,
 
-    testResults
+    testResults,
+
 })

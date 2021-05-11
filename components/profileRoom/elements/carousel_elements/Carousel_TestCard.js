@@ -9,6 +9,9 @@ import TestCard_Card from "./test_card_elements/TestCard_Card";
 import Edit from "../../../svg/Edit";
 import Trash from "../../../svg/Trash";
 import {navigate} from "../../../../lib/NavigationService";
+import {connect} from "react-redux";
+import {deleteTestT} from "../../../../actions/testsAction";
+import {getUserTests} from "../../../../actions/profileActions/profileCarouselAction";
 
 class Carousel_TestCard extends Component {
     constructor(props) {
@@ -17,6 +20,12 @@ class Carousel_TestCard extends Component {
 
     onPressEdit = () => {
         navigate('ConstructorMainInfo', {edit: true, test_t_id: this.props.test_t_id})
+    }
+
+    onPressDelete = () => {
+
+        this.props.onDeleteTestT(this.props.test_t_id)
+        this.props.getUserTests()
     }
 
     render() {
@@ -30,13 +39,15 @@ class Carousel_TestCard extends Component {
                     colors={this.props.colors}
                 />
 
+                {/*Edit btn */}
                 <TouchableNativeFeedback onPress={this.onPressEdit}>
                     <View style={[styles.btn, {right: 65}]}>
                         <Edit height={26} width={26} fill={secondaryColor}/>
                     </View>
                 </TouchableNativeFeedback>
 
-                <TouchableNativeFeedback>
+                {/*Delete btn */}
+                <TouchableNativeFeedback onPress={this.onPressDelete}>
                     <View style={[styles.btn, {right: 0}]}>
                         <Trash height={26} width={26} fill={secondaryColor}/>
                     </View>
@@ -65,4 +76,12 @@ const styles = StyleSheet.create({
 
 })
 
-export default Carousel_TestCard;
+export default connect(
+    state => ({
+        navigation: state.currentNavigation,
+        loading: state.profileCarouselLoading,
+    }),
+    dispatch => ({
+        onDeleteTestT: (test_t_id) => dispatch(deleteTestT(test_t_id)),
+        getUserTests: (page = 0) => dispatch(getUserTests(page)),
+    }))(Carousel_TestCard);

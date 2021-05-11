@@ -11,7 +11,7 @@ import Trash from "../../../svg/Trash";
 import {navigate} from "../../../../lib/NavigationService";
 import {connect} from "react-redux";
 import {deleteTestT} from "../../../../actions/testsAction";
-import {getUserTests} from "../../../../actions/profileActions/profileCarouselAction";
+import {getUserTests, selectItem} from "../../../../actions/profileActions/profileCarouselAction";
 
 class Carousel_TestCard extends Component {
     constructor(props) {
@@ -26,6 +26,7 @@ class Carousel_TestCard extends Component {
 
         this.props.onDeleteTestT(this.props.test_t_id)
         this.props.getUserTests()
+        this.props.onSelectItem(null)
     }
 
     render() {
@@ -84,4 +85,5 @@ export default connect(
     dispatch => ({
         onDeleteTestT: (test_t_id) => dispatch(deleteTestT(test_t_id)),
         getUserTests: (page = 0) => dispatch(getUserTests(page)),
+        onSelectItem: (id) => dispatch(selectItem(id))
     }))(Carousel_TestCard);

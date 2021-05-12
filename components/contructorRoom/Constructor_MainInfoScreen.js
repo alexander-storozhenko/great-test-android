@@ -12,6 +12,7 @@ import {carouselSendMainInfoData} from "../../actions/constructorActions/carouse
 import {constructorCarouselMainInfoDataProgress} from "../../reducers/constructorReducers/carouselReducer";
 import {getMainInfo} from "../../actions/constructorActions/mainInfoScreenAction";
 import {constructorCardMainInfo} from "../../reducers/constructorReducers/cardReducer";
+import MainInfoScreen_Card from "./mainInfoScreen_elements/MainInfoScreen_Card";
 
 class Constructor_MainInfoScreen extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class Constructor_MainInfoScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <MainInfoPage_Card mode={this.props.route.params.edit ? 'edit' : 'create'}
+                <MainInfoScreen_Card mode={this.props.route.params.edit ? 'edit' : 'create'}
                                    loading={this.props.mainInfoWhenEditProgress}
                                    data={this.props.mainInfoWhenEdit}/>
                 {/*<View style={{marginTop: 20}}>*/}

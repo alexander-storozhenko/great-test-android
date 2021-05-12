@@ -40,21 +40,16 @@ class MainInfoScreen_Card extends Component {
 
         const data = this.props.data
 
-        if(data) {
-            switch (this.props.mode){
-                case 'edit':
-                    colors = data.colors
-                    image_url = this.props.image || rootPath(data.image_url)
-                    title = data.title
-                    subtitle = data.sub_title
-                    break
-                case 'create':
-                    colors = [this.props.first_color, this.props.second_color]
-                    image_url = null
-                    title = ""
-                    subtitle = ""
-                    break
-            }
+        colors = [this.props.first_color, this.props.second_color]
+        image_url = null
+        title = ""
+        subtitle = ""
+
+        if(data && this.props.mode === 'edit') {
+            colors = data.colors
+            image_url = this.props.image || rootPath(data.image_url)
+            title = data.title
+            subtitle = data.sub_title
         }
 
         if (this.props.loading)

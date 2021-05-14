@@ -12,15 +12,18 @@ import {setLocale} from "./lib/locale/locale";
 // import NotificationService from "./lib/NotificationService";
 import * as NotificationService  from './lib/NotificationService'
 import {getData, storeData} from "./lib/AsyncStorageHelper";
+import * as WebSocketConnectionService from "./lib/WebSocketConnectionService";
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
 
 let store = createStore(rootReducer, applyMiddleware(thunk))
-
+WebSocketConnectionService.init()
 export default function App(_) {
     useEffect(() => {
         NotificationService.register().then(token => storeData(NotificationService.NOTIFICATION_KEY, token))
+
+        // WebSocketConnectionService.socket.send('jej')
     }, [])
 
     let [fontsLoaded] = useFonts({

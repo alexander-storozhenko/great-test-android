@@ -17,16 +17,24 @@ import TestCard from "../testCard/TestCard";
 import RecommendCard from "../recommendCard/RecommendCard";
 import {setNavigation} from "../../actions/navigationAction";
 import Slider from '../ui/Slider'
+import * as WebSocketConnectionService from "../../lib/WebSocketConnectionService";
 class MainRoom extends Component {
     constructor(props) {
         super(props)
         this.navigation = props.navigation
     }
 
+    componentWillUnmount() {
+
+        WebSocketConnectionService.unsubscribe('TestChannel', {id: 1})
+    }
+
     componentDidMount() {
         this.props.onLoadRecommends()
         this.props.onShowNavBar(true)
         this.props.setNavigation(this.props.navigation)
+
+
     }
 
     onRefresh = () => {

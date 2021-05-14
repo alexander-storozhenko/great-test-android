@@ -41,9 +41,7 @@ class MainInfoScreen_Card extends Component {
         const data = this.props.data
 
         colors = [this.props.first_color, this.props.second_color]
-        image_url = null
-        title = ""
-        subtitle = ""
+
 
         if(data && this.props.mode === 'edit') {
             colors = data.colors

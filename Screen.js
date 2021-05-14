@@ -36,6 +36,7 @@ import ProfileRoom_SettingsScreen from "./components/profileRoom/ProfileRoom_Set
 import Constructor_ParamsScreen from "./components/contructorRoom/Constructor_ParamsScreen";
 import SignInScreen from './components/loginRoom/SignInScreen'
 import Constructor_QuestionScreen from "./components/contructorRoom/Constructor_QuestionScreen";
+import * as WebSocketConnectionService from "./lib/WebSocketConnectionService";
 
 const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
@@ -45,6 +46,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function StackMainNavigator() {
+
     return (
         <Room>
             <Stack.Navigator>
@@ -143,6 +145,10 @@ const registerForPushNotificationsAsync = async () => {
 
 function Screen(props) {
     // registerForPushNotificationsAsync()
+
+
+
+
     return (
         <View style={styles.container}>
             <Header />

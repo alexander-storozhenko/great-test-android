@@ -1,12 +1,8 @@
+const settings = require('./settings.json')
+
 export const env = 'dev'
 
-const protocol = 'http://'
+export const apiDomain = settings.protocol + '://' + settings.domain + ':' + settings.port + '/'
+export const webSocketDomain = settings.web_socket_protocol + '://' + settings.domain
 
-const port = '3000'
-
-const devDomain = '192.168.0.12'
-const prodDomain = '127.0.0.1'
-
-const domain = devDomain
-
-export const apiDomain = protocol + domain + ':' + port + '/'
+console.log(webSocketDomain)

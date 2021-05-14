@@ -18,12 +18,11 @@ const navTheme = DefaultTheme;
 navTheme.colors.background = '#fff';
 
 let store = createStore(rootReducer, applyMiddleware(thunk))
-WebSocketConnectionService.init()
+
 export default function App(_) {
     useEffect(() => {
         NotificationService.register().then(token => storeData(NotificationService.NOTIFICATION_KEY, token))
-
-        // WebSocketConnectionService.socket.send('jej')
+        WebSocketConnectionService.init()
     }, [])
 
     let [fontsLoaded] = useFonts({

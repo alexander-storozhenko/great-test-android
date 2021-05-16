@@ -22,7 +22,7 @@ let store = createStore(rootReducer, applyMiddleware(thunk))
 export default function App(_) {
     useEffect(() => {
         NotificationService.register().then(token => storeData(NotificationService.NOTIFICATION_KEY, token))
-        WebSocketConnectionService.init()
+        WebSocketConnectionService.init(1)
     }, [])
 
     let [fontsLoaded] = useFonts({

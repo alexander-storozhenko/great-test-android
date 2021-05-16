@@ -10,6 +10,10 @@ import {
 } from "../StyleConstants";
 import {signIn} from "../../actions/loginActions/signInAction";
 import SignInScreen_SignInButton from "./elements/SignInScreen_SignInButton";
+import * as GoogleLoginService from '../../lib/GoogleLoginService'
+import {storeData} from "../../lib/AsyncStorageHelper";
+import {navigate} from "../../lib/NavigationService";
+import SignInScreen_GoogleButton from "./elements/SignInScreen_GoogleButton";
 
 class SignInScreen extends Component {
     constructor(props) {
@@ -19,12 +23,17 @@ class SignInScreen extends Component {
 
     componentDidMount() {
         this.props.navigation.addListener('beforeRemove', (e) => {
-            if (e.data.action.type === 'GO_BACK') e.preventDefault()
+            if (e.data.action.type === 'GO_BACK')
+                e.preventDefault()
         })
     }
 
     onClick = () => {
         this.props.onSignIn(this.state.name, this.state.password)
+    }
+
+    onClickGoogle = () => {
+
     }
 
     onNameInputChange = (event) => {
@@ -43,9 +52,12 @@ class SignInScreen extends Component {
                         <Text style={styles.title}>Nickname or email</Text>
                         <TextInput style={styles.input} onChange={(event) => this.onNameInputChange(event)}/>
                         <Text style={[styles.title, {marginTop: 10}]}>Password</Text>
-                        <TextInput secureTextEntry={true} style={styles.input} onChange={(event) => this.onPasswordInputChange(event)}/>
-                        {this.props.loginIncorrect ? <Text style={styles.login_error_text}>Incorrect login or password!</Text> : null }
+                        <TextInput secureTextEntry={true} style={styles.input}
+                                   onChange={(event) => this.onPasswordInputChange(event)}/>
+                        {this.props.loginIncorrect ?
+                            <Text style={styles.login_error_text}>Incorrect login or password!</Text> : null}
                         <SignInScreen_SignInButton onPress={this.onClick}/>
+                        <SignInScreen_GoogleButton onPress={this.onClickGoogle}/>
                     </View>
                 </View>
             </View>
@@ -70,7 +82,7 @@ const styles = StyleSheet.create({
         height: 40,
         padding: 5,
     },
-    login_error_text:{
+    login_error_text: {
         color: errorColor,
         fontSize: h4,
         fontFamily: fontRegular
@@ -82,5 +94,5 @@ export default connect(
         loginIncorrect: state.loginIncorrect
     }),
     dispatch => ({
-    onSignIn: (name, password) => dispatch(signIn(name, password))
-}))(SignInScreen);
+        onSignIn: (name, password) => dispatch(signIn(name, password))
+    }))(SignInScreen);

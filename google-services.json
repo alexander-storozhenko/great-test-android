@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "71267958644",
+    "project_id": "great-test-app",
+    "storage_bucket": "great-test-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71267958644:android:a0f6e5c6b59ea1030e3621",
+        "android_client_info": {
+          "package_name": "com.internalsoft.great_test_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71267958644-v4h9ak2l42t3hdocnq8ura1e4sm50293.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxYPzv6JpJRoQWg6DtONy1A4TH7jrwnt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71267958644-v4h9ak2l42t3hdocnq8ura1e4sm50293.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

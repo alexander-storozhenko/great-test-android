@@ -1,3 +1,12 @@
+// let redirectUrl = AuthSession.getRedirectUrl();
+// let result = await AuthSession.startAsync({
+//     authUrl: 'https://oauth.vk.com/authorize?client_id=<client_id>&display=mobile&redirect_uri=' +
+//         encodeURIComponent(redirectUrl) + '&response_type=token&v=5.92',
+// });
+// if (result.type === 'success') {
+//     // обрабатываете полученный токен, получаете информацию о пользователе, etc
+// }
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, View, StyleSheet, Dimensions, TouchableNativeFeedback, Text, TextInput} from "react-native";
@@ -9,7 +18,7 @@ import {
 } from "../../StyleConstants";
 import {getTextColor} from "../../../lib/ColorsHelper";
 
-class SignInScreen_SignInButton extends Component {
+class SignInScreen_VkButton extends Component {
     render() {
         return (
             <View>
@@ -48,4 +57,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect(state => ({}), dispatch => ({}))(SignInScreen_SignInButton);
+export default connect(state => ({}), dispatch => ({}))(SignInScreen_VkButton);

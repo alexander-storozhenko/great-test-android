@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, View, StyleSheet, Dimensions, TouchableNativeFeedback, Text, TextInput} from "react-native";
+import {Button, View, StyleSheet, Dimensions, TouchableNativeFeedback, Text, TextInput, ImageBackground} from "react-native";
 import {
     borderRadius,
     contrastColor,
@@ -9,13 +9,16 @@ import {
 } from "../../StyleConstants";
 import {getTextColor} from "../../../lib/ColorsHelper";
 
-class SignInScreen_SignInButton extends Component {
+class SignInScreen_GoogleButton extends Component {
     render() {
         return (
             <View>
                 <TouchableNativeFeedback onPress={this.props.onPress}>
                     <View style={styles.btn}>
-                        <Text style={styles.text}>Sign In</Text>
+                        <View style={styles.content}>
+                            <ImageBackground style={styles.logo} source={require('../../../assets/google_logo.png')}/>
+                            <Text style={styles.text}>Sign in with Google</Text>
+                        </View>
                     </View>
                 </TouchableNativeFeedback>
             </View>
@@ -30,14 +33,14 @@ const styles = StyleSheet.create({
         borderRadius: borderRadius,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: contrastColor,
+        backgroundColor: '#f2f2f2',
         elevation: 5,
         marginTop: 10,
     },
     text: {
         fontSize: h3,
         fontFamily: fontBold,
-        color: getTextColor(contrastColor)
+        color: '#757575'
     },
     input: {
         borderRadius: borderRadius,
@@ -45,7 +48,16 @@ const styles = StyleSheet.create({
         marginTop: 10,
         height: 40,
         padding: 5,
+    },
+    logo: {
+        width: 30,
+        height: 30,
+        marginRight: 15
+    },
+    content: {
+        flexDirection: 'row',
+
     }
 });
 
-export default connect(state => ({}), dispatch => ({}))(SignInScreen_SignInButton);
+export default connect(state => ({}), dispatch => ({}))(SignInScreen_GoogleButton);

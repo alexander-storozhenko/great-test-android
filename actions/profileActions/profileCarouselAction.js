@@ -12,12 +12,15 @@ export const getUserTests = () => dispatch => {
     dispatch({type: 'PROFILE_CAROUSEL/LOADING'})
 
     getAccessToken().then(token => {
+        console.log(token)
         fetch(apiDomain + apiPath(url), {headers: {...defaultHeaders, ...accessTokenHeader(token)}})
             .then(res => {
                 if (accessible(res)) return res.json()
+
                 navigateToLogin()
             })
-            .then(result => dispatch({type: 'PROFILE_CAROUSEL/SUCCESS', payload: result}))
+            .then(result => {
+                dispatch({type: 'PROFILE_CAROUSEL/SUCCESS', payload: result})})
     })
 }
 

@@ -16,6 +16,7 @@ import Like from "../svg/Like";
 import Eye from "../svg/Eye";
 import {getUserData} from "../../actions/profileActions/profileUserDataAction";
 import {getUserTests} from "../../actions/profileActions/profileCarouselAction";
+import {rootPath} from "../../lib/Requests";
 
 class ProfileRoom extends Component {
     constructor(props) {
@@ -27,12 +28,12 @@ class ProfileRoom extends Component {
         this.props.navigation.addListener('focus', (e) => {
             if(this.props.route?.params?.from_login ) {
                 this.props.getUserData()
-                this.props.getUserTests()
+              //  this.props.getUserTests()
             }
         })
 
         this.props.getUserData()
-        this.props.getUserTests()
+     //   this.props.getUserTests()
 
         // root tab component need to set navigation
         this.props.setNavigation(this.props.navigation)
@@ -44,12 +45,14 @@ class ProfileRoom extends Component {
             // need to return empty view or view without API request because it will call recursive logout
             return <View/>
 
+        const image = this.props.userData?.avatar_url ?  rootPath(this.props.userData?.avatar_url) : this.props.userData?.picture
+
         return (
             <View style={styles.container}>
                 <View style={styles.user_info}>
                     <View style={styles.info}>
                         <View style={styles.left_content}>
-                            <ProfileRoom_Avatar url={this.props.userData?.avatar_url}/>
+                            <ProfileRoom_Avatar url={image}/>
                             {
                                 this.props.userData === [] || !this.props.userData
                                     ? <ActivityIndicator size="small" color={secondaryColor}/>
@@ -65,7 +68,7 @@ class ProfileRoom extends Component {
                         </View>
 
                         <View style={styles.right_content}>
-                            <ProfileRoom_UserInfo name={this.props.userData ? this.props.userData.user_name : '...' }/>
+                            <ProfileRoom_UserInfo name={this.props.userData ? this.props.userData.name : '...' }/>
                             <ProfileRoom_UserStatistics/>
                             <ProfileRoom_ButtonsLine/>
                         </View>

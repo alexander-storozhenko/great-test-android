@@ -14,6 +14,7 @@ import * as GoogleLoginService from '../../lib/GoogleLoginService'
 import {storeData} from "../../lib/AsyncStorageHelper";
 import {navigate} from "../../lib/NavigationService";
 import SignInScreen_GoogleButton from "./elements/SignInScreen_GoogleButton";
+import {googleSignIn} from "../../actions/loginActions/signInWithServicesAction";
 
 class SignInScreen extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class SignInScreen extends Component {
     }
 
     onClickGoogle = () => {
-
+        this.props.onSignInGoogle()
     }
 
     onNameInputChange = (event) => {
@@ -94,5 +95,6 @@ export default connect(
         loginIncorrect: state.loginIncorrect
     }),
     dispatch => ({
-        onSignIn: (name, password) => dispatch(signIn(name, password))
+        onSignIn: (name, password) => dispatch(signIn(name, password)),
+        onSignInGoogle: () => dispatch(googleSignIn())
     }))(SignInScreen);

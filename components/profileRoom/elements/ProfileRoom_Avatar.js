@@ -5,10 +5,9 @@ import {rootPath} from "../../../lib/Requests";
 
 class ProfileRoom_Avatar extends Component {
     render() {
-        console.log(rootPath(this.props.url))
         return (
             <View>
-                {this.props.url ? <Image style={styles.logo} source={{uri: rootPath(this.props.url)}}/> : null}
+                {this.props.url ? <Image style={styles.logo} source={{uri: this.props.url}}/> : null}
             </View>
         )
     }

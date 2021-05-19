@@ -21,7 +21,6 @@ class DebugPanel extends Component {
     }
 
     render() {
-        console.log(this.props.recommendsLoading )
         return (
             <View style={styles.container}>
                 <Backdrop onChange={this.props.onOpen} open={this.props.panelOpen}>

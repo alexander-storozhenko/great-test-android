@@ -14,7 +14,6 @@ export const getMainInfo = (id) => dispatch => {
             })
             .then(res => res.json())
             .then(response => {
-                console.log('sdfsdfsdfsdfsdffdssdf',response['test_template'])
                 dispatch({type: 'CONSTRUCTOR/GET_MAIN_INFO/PROGRESS', payload: {progress: false}})
                 dispatch({type: 'CONSTRUCTOR/GET_MAIN_INFO/SUCCESS', payload: {data: response['test_template']}})
             })

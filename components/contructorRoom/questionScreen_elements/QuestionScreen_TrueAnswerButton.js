@@ -19,7 +19,7 @@ class QuestionScreen_TrueAnswerButton extends Component {
     }
 
     _onPress = () => {
-        this.props.onSetAnswer(this.props.number)
+      this.props.onSelectCurrentOne(this.props.number)
     }
 
     render() {
@@ -47,9 +47,8 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
-        selectedId: state.constructorSelectedBtnOne,
     }),
     dispatch => ({
-        onSetAnswer: (number) => dispatch({type: 'CONSTRUCTOR/QUESTION/SET_ANSWER/ONE', payload: {number: number}})
+        onSelectCurrentOne: (number) => dispatch({type: 'CONSTRUCTOR/QUESTION/SELECT_ANSWER/ONE', payload: {number: number}})
     })
 )(QuestionScreen_TrueAnswerButton);

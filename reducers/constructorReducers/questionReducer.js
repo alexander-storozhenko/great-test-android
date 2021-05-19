@@ -1,7 +1,14 @@
 import {contrastColor} from "../../components/StyleConstants";
 
-export const constructorSelectedBtnOne = (state = null, action) => {
-    if(action.type === 'CONSTRUCTOR/QUESTION/SET_ANSWER/ONE')
+//TODO DEPRECATED
+export const constructorSet = (state = {}, action) => {
+    if(action.type === 'CONSTRUCTOR/QUESTION/SET_ANSWER')
+        state[action.payload.number] = action.payload.text
+    return state
+}
+
+export const constructorSelectOne = (state = {}, action) => {
+    if(action.type === 'CONSTRUCTOR/QUESTION/SELECT_ANSWER/ONE')
         return action.payload.number
     return state
 }

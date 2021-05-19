@@ -36,7 +36,8 @@ import {
 } from './constructorReducers/carouselReducer';
 
 import {
-    constructorSelectedBtnOne,
+    constructorSet,
+    constructorSelectOne,
     constructorQuestionParams,
     constructorQuestionParamsProgress,
     constructorQuestionAnswerBtnsCount,
@@ -102,7 +103,8 @@ export default combineReducers({
     constructorCardImage,
     constructorCardTitle,
     constructorCardSubTitle,
-    constructorSelectedBtnOne,
+    constructorSelectOne,
+    constructorSet,
     constructorQuestionParams,
     constructorQuestionParamsProgress,
     constructorQuestionAnswerBtnsCount,

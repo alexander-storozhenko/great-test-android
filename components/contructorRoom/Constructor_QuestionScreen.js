@@ -17,20 +17,15 @@ import {
 } from "../../actions/constructorActions/constructorAction";
 import QuestionScreen_AddNewAnswerButton from "./questionScreen_elements/QuestionScreen_AddNewAnswerButton";
 import {constructorQuestionAnswerBtnsCount} from "../../reducers/constructorReducers/questionReducer";
+import QuestionScreen_Answers from "./questionScreen_elements/QuestionScreen_Answers";
 
 class Constructor_QuestionScreen extends Component {
     constructor(props) {
         super(props)
     }
 
-    answerButtons = () => {
-        return Array.from(Array(this.props.btnCount)).map((_, i) =>
-            (<QuestionScreen_AnswerBoxOne onChangeText={(text) => this.answers[i] = text} number={i + 1}/>))
-    }
-
     title = ''
     subtitle = ''
-    answers = {}
 
     _saveQuestion = (finished) => {
         //TODO add img type, add answers type: some, n to n ...
@@ -40,16 +35,15 @@ class Constructor_QuestionScreen extends Component {
             subtitle: this.subtitle,
             answers_type: ['one', 'text'],
             answers: this.answers,
-            true_answers: [this.props.selectedNumber - 1],
+            true_answers: [this.props.trueAnswers],
             question_id: this.props.currentQuestionId,
             finished: finished,
         }
 
-        this.props.onSaveQuestion(data)
+        // this.props.onSaveQuestion(data)
     }
 
     render() {
-        console.log(this.props.currentQuestionId)
         return (
             <View style={styles.container}>
                 <View style={styles.title_row}>
@@ -68,16 +62,12 @@ class Constructor_QuestionScreen extends Component {
                                     onChangeText={(text) => this.subtitle = text}/></View>
                 </View>
 
-                <ScrollView showsVerticalScrollIndicator={true} style={{flex: 1, marginTop: 15, marginBottom: 20}}>
-                    <View style={[styles.answers, {height: (this.props.btnCount + 2) * 75}]}>
-                        {this.answerButtons()}
-                        <QuestionScreen_AddNewAnswerButton/>
-                    </View>
-                </ScrollView>
+                <QuestionScreen_Answers type={'one'}/>
+
                 <View style={styles.next_btn_container}>
-                    <BottomButton disable={!this.props.selectedNumber}
+                    <BottomButton
                                   onPress={() => this._saveQuestion(false)}>Далее</BottomButton>
-                    <BottomButton disable={!this.props.selectedNumber}
+                    <BottomButton
                                   onPress={() => this._saveQuestion(true)}>Завершить</BottomButton>
                 </View>
             </View>
@@ -132,7 +122,7 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
-        selectedNumber: state.constructorSelectedBtnOne,
+        trueAnswers: state.constructorSet,
         btnCount: state.constructorQuestionAnswerBtnsCount,
         currentQuestionId: state.constructorCurrentQuestionId,
     }),

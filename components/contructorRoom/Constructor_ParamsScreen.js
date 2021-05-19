@@ -35,7 +35,7 @@ class Constructor_ParamsScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Тип вопроса 🛠</Text>
+                <Text style={styles.title}>Тип вопроса</Text>
 
                 <View>
                     <Carousel
@@ -49,7 +49,7 @@ class Constructor_ParamsScreen extends Component {
                     />
                 </View>
 
-                <Text style={styles.title}>Время на ответ ⏱</Text>
+                <Text style={styles.title}>Время на ответ</Text>
 
                 <View style={styles.next_btn_container}>
                     <View style={styles.next_btn}>

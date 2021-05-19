@@ -1,5 +1,12 @@
 import {apiDomain} from "../../settings/url";
-import {accessible, accessTokenHeader, apiPath, defaultHeaders, getAccessToken} from "../../lib/Requests";
+import {
+    accessible,
+    accessTokenHeader,
+    apiPath,
+    defaultHeaders,
+    getAccessToken,
+    withoutErrors
+} from "../../lib/Requests";
 import {navigate, navigateToLogin, replace} from "../../lib/NavigationService";
 
 const url = 'profile/user_tests'
@@ -12,10 +19,10 @@ export const getUserTests = () => dispatch => {
     dispatch({type: 'PROFILE_CAROUSEL/LOADING'})
 
     getAccessToken().then(token => {
-        console.log(token)
         fetch(apiDomain + apiPath(url), {headers: {...defaultHeaders, ...accessTokenHeader(token)}})
             .then(res => {
-                if (accessible(res)) return res.json()
+                if (withoutErrors(res))
+                    return res.json()
 
                 navigateToLogin()
             })

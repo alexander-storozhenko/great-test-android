@@ -39,20 +39,17 @@ class ProfileRoom extends Component {
         this.props.setNavigation(this.props.navigation)
     }
 
-
     render() {
         if (this.props.route?.params?.status === 403)
             // need to return empty view or view without API request because it will call recursive logout
             return <View/>
-
-        const image = this.props.userData?.avatar_url ?  rootPath(this.props.userData?.avatar_url) : this.props.userData?.picture
 
         return (
             <View style={styles.container}>
                 <View style={styles.user_info}>
                     <View style={styles.info}>
                         <View style={styles.left_content}>
-                            <ProfileRoom_Avatar url={image}/>
+                            <ProfileRoom_Avatar url={this.props.userData?.avatar_url }/>
                             {
                                 this.props.userData === [] || !this.props.userData
                                     ? <ActivityIndicator size="small" color={secondaryColor}/>

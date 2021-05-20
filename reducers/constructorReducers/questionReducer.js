@@ -1,6 +1,6 @@
 import {contrastColor} from "../../components/StyleConstants";
 
-//TODO DEPRECATED
+//set answers {number: text}
 export const constructorSet = (state = {}, action) => {
     if(action.type === 'CONSTRUCTOR/QUESTION/SET_ANSWER')
         state[action.payload.number] = action.payload.text
@@ -12,6 +12,16 @@ export const constructorSelectOne = (state = {}, action) => {
         return action.payload.number
     return state
 }
+
+export const constructorSelectSome = (state = {}, action) => {
+    if(action.type === 'CONSTRUCTOR/QUESTION/SELECT_ANSWER/SOME') {
+        state[action.payload.number] = !state[action.payload.number]
+    }
+    console.log(state)
+
+    return state
+}
+
 
 export const constructorQuestionParams = (state = null, action) => {
     return action.type === 'CONSTRUCTOR/SEND_QUESTION_PARAMS/SUCCESS'

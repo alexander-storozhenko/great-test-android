@@ -27,7 +27,7 @@ export const constructorSendQuestionParams = (data) => dispatch => {
             .then(response => {
                 dispatch({type: 'CONSTRUCTOR/SEND_QUESTION_PARAMS/SUCCESS'})
                 dispatch({type: 'CONSTRUCTOR/SET_QUESTION_ID', payload: {id: response.question_id}})
-                navigate('ConstructorQuestion')
+                navigate('ConstructorQuestion', {type: questionType})
             })
     })
 }

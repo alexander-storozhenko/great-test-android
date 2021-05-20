@@ -21,7 +21,7 @@ class Constructor_ParamsScreen extends Component {
     }
 
     onPress = () => {
-        this.props.onSendQuestionParamsInfo({questionType: 'one'})
+        this.props.onSendQuestionParamsInfo({questionType: 'some'})
     }
 
     _renderItem = ({item, _}) => (<View style={styles.item}>{item}</View>)

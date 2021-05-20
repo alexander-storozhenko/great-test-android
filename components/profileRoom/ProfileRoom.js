@@ -26,14 +26,14 @@ class ProfileRoom extends Component {
 
     componentDidMount() {
         this.props.navigation.addListener('focus', (e) => {
-            if(this.props.route?.params?.from_login ) {
+            if (this.props.route?.params?.from_login) {
                 this.props.getUserData()
-              //  this.props.getUserTests()
+                //  this.props.getUserTests()
             }
         })
 
         this.props.getUserData()
-     //   this.props.getUserTests()
+        //   this.props.getUserTests()
 
         // root tab component need to set navigation
         this.props.setNavigation(this.props.navigation)
@@ -49,23 +49,30 @@ class ProfileRoom extends Component {
                 <View style={styles.user_info}>
                     <View style={styles.info}>
                         <View style={styles.left_content}>
-                            <ProfileRoom_Avatar url={this.props.userData?.avatar_url }/>
+                            <ProfileRoom_Avatar url={this.props.userData?.avatar_url}/>
                             {
                                 this.props.userData === [] || !this.props.userData
                                     ? <ActivityIndicator size="small" color={secondaryColor}/>
-                                    :
-                                    <View style={styles.user_stats}>
+                                    : <View style={styles.user_stats}>
                                         <Eye width={20} height={20} fill={contrastColor} style={{marginTop: 5}}/>
-                                        <Text style={{marginLeft: 4, marginTop: 4, color: contrastColor}}>{this.props.userData.plays}</Text>
+                                        <Text style={{
+                                            marginLeft: 4,
+                                            marginTop: 4,
+                                            color: contrastColor
+                                        }}>{this.props.userData.plays}</Text>
                                         <Like width={20} height={20} fill={contrastColor} style={{marginLeft: 7}}/>
-                                        <Text style={{marginLeft: 4, marginTop: 4, color: contrastColor}}>{this.props.userData.likes}</Text>
+                                        <Text style={{
+                                            marginLeft: 4,
+                                            marginTop: 4,
+                                            color: contrastColor
+                                        }}>{this.props.userData.likes}</Text>
                                     </View>
                             }
 
                         </View>
 
                         <View style={styles.right_content}>
-                            <ProfileRoom_UserInfo name={this.props.userData ? this.props.userData.name : '...' }/>
+                            <ProfileRoom_UserInfo name={this.props.userData ? this.props.userData.name : '...'}/>
                             <ProfileRoom_UserStatistics/>
                             <ProfileRoom_ButtonsLine/>
                         </View>

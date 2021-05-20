@@ -45,15 +45,20 @@ class QuestionScreen_Answers extends Component {
         this._animateColor()
 
         const color = this.props.selected ? this._color.interpolate({
-            inputRange: [0,1],
-            outputRange:  [contrastColor, checkedColor]
+            inputRange: [0, 1],
+            outputRange: [contrastColor, checkedColor]
         }) : contrastColor
 
         return (
             <Animated.View style={[styles.container, {opacity: this._opacity}]}>
                 <Animated.View style={[styles.btn, {backgroundColor: color}]}>
-                    <TextInput onChangeText={(text) => this.props.onSetAnswerText(this.props.number, text)} placeholder={'Answer'} style={{height: 40, fontSize: h3}}/>
-                    <QuestionScreen_TrueAnswerButton number={this.props.number}/>
+
+                    <TextInput onChangeText={(text) => this.props.onSetAnswerText(this.props.number, text)}
+                               placeholder={'Answer'} style={{height: 40, fontSize: h3}}/>
+
+                    <QuestionScreen_TrueAnswerButton onPress={() => this.props.onSelectTrue(this.props.number)}
+                                                     number={this.props.number}/>
+
                 </Animated.View>
             </Animated.View>
         );
@@ -92,6 +97,9 @@ const styles = StyleSheet.create({
 export default connect(
     state => ({}),
     dispatch => ({
-        onSetAnswerText: (number, data) => dispatch({type: 'CONSTRUCTOR/QUESTION/SET_ANSWER', payload: {number: number, text: data}})
+        onSetAnswerText: (number, data) => dispatch({
+            type: 'CONSTRUCTOR/QUESTION/SET_ANSWER',
+            payload: {number: number, text: data}
+        }),
     })
 )(QuestionScreen_Answers)

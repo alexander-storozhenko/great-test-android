@@ -41,7 +41,7 @@ import {
     constructorQuestionParams,
     constructorQuestionParamsProgress,
     constructorQuestionAnswerBtnsCount,
-    constructorCurrentQuestionId
+    constructorCurrentQuestionId, constructorSelectSome
 } from './constructorReducers/questionReducer';
 
 import {
@@ -104,6 +104,7 @@ export default combineReducers({
     constructorCardTitle,
     constructorCardSubTitle,
     constructorSelectOne,
+    constructorSelectSome,
     constructorSet,
     constructorQuestionParams,
     constructorQuestionParamsProgress,

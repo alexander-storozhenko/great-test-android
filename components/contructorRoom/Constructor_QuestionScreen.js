@@ -29,21 +29,30 @@ class Constructor_QuestionScreen extends Component {
 
     _saveQuestion = (finished) => {
         //TODO add img type, add answers type: some, n to n ...
+
+        const type = this.props.route.params.type
+
         const data = {
             title_type: 'text',
             title: this.title,
             subtitle: this.subtitle,
-            answers_type: ['one', 'text'],
-            answers: this.answers,
-            true_answers: [this.props.trueAnswers],
+            answers_type: [type, 'text'],
+            answers: this.props.answers,
+            true_answers:
+                type === 'one' ? this.props.trueAnswersOne :
+                type === 'some' ? this.props.trueAnswersSome : null,
             question_id: this.props.currentQuestionId,
             finished: finished,
         }
 
-        // this.props.onSaveQuestion(data)
+        console.log(data)
+
+        this.props.onSaveQuestion(data)
     }
 
     render() {
+        const type = this.props.route.params.type
+
         return (
             <View style={styles.container}>
                 <View style={styles.title_row}>
@@ -62,13 +71,13 @@ class Constructor_QuestionScreen extends Component {
                                     onChangeText={(text) => this.subtitle = text}/></View>
                 </View>
 
-                <QuestionScreen_Answers type={'one'}/>
+                <QuestionScreen_Answers type={type}/>
 
                 <View style={styles.next_btn_container}>
                     <BottomButton
-                                  onPress={() => this._saveQuestion(false)}>Далее</BottomButton>
+                        onPress={() => this._saveQuestion(false)}>Далее</BottomButton>
                     <BottomButton
-                                  onPress={() => this._saveQuestion(true)}>Завершить</BottomButton>
+                        onPress={() => this._saveQuestion(true)}>Завершить</BottomButton>
                 </View>
             </View>
         );
@@ -122,9 +131,11 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
-        trueAnswers: state.constructorSet,
+        answers: state.constructorSet,
         btnCount: state.constructorQuestionAnswerBtnsCount,
         currentQuestionId: state.constructorCurrentQuestionId,
+        trueAnswersOne: state.constructorSelectOne,
+        trueAnswersSome: state.constructorSelectSome,
     }),
     dispatch => ({
         onSetBtnCount: (cnt) => dispatch({type: 'CONSTRUCTOR/QUESTION/ANSWER_BTNS_COUNT', payload: cnt}),

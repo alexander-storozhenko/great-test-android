@@ -18,12 +18,11 @@ import QuestionScreen_TrueAnswerButton from "./QuestionScreen_TrueAnswerButton";
 import QuestionScreen_AnswerButton from "./QuestionScreen_AnswerButton";
 
 class QuestionScreen_AnswerBoxOne extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
-        return <QuestionScreen_AnswerButton number={this.props.number} selected={this.props.selectedId === this.props.number}/>
+        return <QuestionScreen_AnswerButton number={this.props.number}
+                                            onSelectTrue={(number) => this.props.onSelectCurrentOne(number)}
+                                            selected ={this.props.selectedId === this.props.number}/>
     }
 }
 
@@ -31,5 +30,10 @@ export default connect(
     state => ({
         selectedId: state.constructorSelectOne,
     }),
-    dispatch => ({})
+    dispatch => ({
+        onSelectCurrentOne: (number) => dispatch({
+            type: 'CONSTRUCTOR/QUESTION/SELECT_ANSWER/ONE',
+            payload: {number: number}
+        })
+    })
 )(QuestionScreen_AnswerBoxOne);

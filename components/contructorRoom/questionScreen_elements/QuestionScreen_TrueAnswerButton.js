@@ -18,15 +18,10 @@ class QuestionScreen_TrueAnswerButton extends Component {
         super(props)
     }
 
-    _onPress = () => {
-      this.props.onSelectCurrentOne(this.props.number)
-    }
-
     render() {
-
         return (
             <View style={[styles.container]}>
-                <TouchableNativeFeedback onPress={this._onPress}>
+                <TouchableNativeFeedback onPress={this.props.onPress}>
                     <View style={styles.btn}>
                     </View>
                 </TouchableNativeFeedback>
@@ -49,6 +44,6 @@ export default connect(
     state => ({
     }),
     dispatch => ({
-        onSelectCurrentOne: (number) => dispatch({type: 'CONSTRUCTOR/QUESTION/SELECT_ANSWER/ONE', payload: {number: number}})
+
     })
 )(QuestionScreen_TrueAnswerButton);

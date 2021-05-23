@@ -27,8 +27,8 @@ class FinishScreen extends Component {
                             <View style={styles.statistics_container}>
 
                                 <View style={styles.percentage_line}>
-                                    <FinishScreen_PercentageLine allValue={this.props.results.data.question_count}
-                                                                 trueValue={this.props.results.data.results}/>
+                                    {/*<FinishScreen_PercentageLine allValue={this.props.results.data.question_count}*/}
+                                    {/*                             trueValue={this.props.results.data.results}/>*/}
                                 </View>
 
                                 <Text style={styles.statistics_text}>Author's grade: A</Text>

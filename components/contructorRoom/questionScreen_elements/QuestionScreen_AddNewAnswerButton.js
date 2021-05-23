@@ -58,14 +58,10 @@ class QuestionScreen_AddNewAnswerButton extends Component {
 const styles = StyleSheet.create({
     btn_container:{
         position: 'absolute',
-
         width: '100%',
         marginTop: 15,
     },
     btn: {
-
-
-
         height: 60,
         borderRadius: borderRadius,
         borderWidth: 2,
@@ -83,7 +79,6 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
-        selectedId: state.constructorSelectedBtnOne,
         btnCount: state.constructorQuestionAnswerBtnsCount
     }),
     dispatch => ({

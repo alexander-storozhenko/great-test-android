@@ -36,10 +36,13 @@ class QuestionScreen_Answers extends Component {
     }
 
     render() {
+        const answers = this.answerButtons()
+
         return (
             <ScrollView showsVerticalScrollIndicator={true} style={{flex: 1, marginTop: 15, marginBottom: 20}}>
-                <View style={[styles.answers, {height: (Object.keys(this.props.selectedNumber).length + 2) * 75}]}>
-                    {this.answerButtons()}
+                {/*calc answers size + paddings + add new answer btn size */}
+                <View style={{height: (answers.length + 1) * 75}}>
+                    {answers}
                     <QuestionScreen_AddNewAnswerButton/>
                 </View>
             </ScrollView>
@@ -73,6 +76,10 @@ const styles = StyleSheet.create({
     },
     container: {
         marginTop: 15,
+    },
+    answers: {
+        flex: 1,
+        height: '100%'
     }
 })
 

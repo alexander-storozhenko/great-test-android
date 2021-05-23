@@ -45,8 +45,6 @@ class Constructor_QuestionScreen extends Component {
             finished: finished,
         }
 
-        console.log(data)
-
         this.props.onSaveQuestion(data)
     }
 

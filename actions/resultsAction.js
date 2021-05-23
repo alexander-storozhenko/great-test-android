@@ -6,9 +6,9 @@ import {getQuestion} from "./questionsAction";
 
 const url = 'tests/results'
 
-export const sendAnswersAndGetTestResults = (answers, test_id, question_number,) => dispatch => {
+export const sendAnswersAndGetTestResults = (type, answers, test_id, question_number,) => dispatch => {
     dispatch({type: 'ANSWERS_SEND/PROGRESS', payload: {[test_id]: answers}})
-    sendAnswers(answers, test_id, question_number, () => {
+    sendAnswers(type, answers, test_id, question_number, () => {
         fetch(apiDomain + apiPath(url, {test_id: test_id}))
             .then(res => res.json())
             .then(result => {

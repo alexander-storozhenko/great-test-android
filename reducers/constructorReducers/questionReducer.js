@@ -17,7 +17,6 @@ export const constructorSelectSome = (state = {}, action) => {
     if(action.type === 'CONSTRUCTOR/QUESTION/SELECT_ANSWER/SOME') {
         state[action.payload.number] = !state[action.payload.number]
     }
-    console.log(state)
 
     return state
 }

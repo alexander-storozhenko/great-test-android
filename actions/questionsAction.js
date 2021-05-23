@@ -19,9 +19,9 @@ export const getQuestion = (test_id, question_number) => dispatch => {
         })
 }
 
-export const sendAnswersAndGetNextQuestion = (answers, test_id, question_number) => dispatch => {
+export const sendAnswersAndGetNextQuestion = (type, answers, test_id, question_number) => dispatch => {
     dispatch({type: 'ANSWERS_SEND/PROGRESS', payload: {[test_id]: answers}})
-    sendAnswers(answers, test_id, question_number, () => {
+    sendAnswers(type, answers, test_id, question_number, () => {
         dispatch(getQuestion(test_id, question_number + 1))
     })
 }

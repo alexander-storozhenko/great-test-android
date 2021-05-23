@@ -13,7 +13,7 @@ export const carouselSetColorTypeBtn = (btn_id) => dispatch => {
     dispatch({type: 'CONSTRUCTOR/CAROUSEL/COLOR_TYPE_SET', payload: {btn_id: btn_id}})
 }
 
-const url = 'constructor/save_card'
+const url = 'constructor/card'
 
 //TODO NOT carousel! Is constructor action!!!!
 export const carouselSendMainInfoData = (data) => dispatch => {

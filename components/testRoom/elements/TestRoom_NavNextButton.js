@@ -28,7 +28,6 @@ class TestRoom_NavNextButton extends Component {
 
     render() {
         return (
-
                 <View style={styles.container}>
                     <View style={[this.props.disable ? styles.disable_btn : styles.enable_btn, styles.next,]}>
                         <TouchableNativeFeedback onPress={this.onPress} style={{width: '100%', height: '100%'}}>
@@ -97,7 +96,6 @@ export default connect(
     dispatch => ({
         onGetTestResults: (test_id, navigation) => dispatch(getTestResults(test_id, navigation)),
         onIncreaseQuestionNumber: () => dispatch({type: 'QUESTION/INCREASE_NUMBER'}),
-        onSendAnswers: (userAnswers, test_id, question_number, navigation) => dispatch(sendAnswers(userAnswers, test_id, question_number, navigation)),
         onGetQuestion: (test_id, question_number, navigation) => dispatch(getQuestion(test_id, question_number, navigation)),
     })
 )(TestRoom_NavNextButton);

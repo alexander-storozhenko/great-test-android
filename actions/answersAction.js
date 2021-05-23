@@ -4,7 +4,8 @@ import {getQuestion} from "./questionsAction";
 
 const url = 'questions/set_answers'
 
-export const sendAnswers = (answers, test_id, question_number, callback = () => {}) => {
+export const sendAnswers = (type, answers, test_id, question_number, callback = () => {
+}) => {
     fetch(apiDomain + apiPath(url),
         {
             headers: defaultHeaders,
@@ -12,11 +13,12 @@ export const sendAnswers = (answers, test_id, question_number, callback = () => 
             body: JSON.stringify({
                 answers: JSON.stringify(answers),
                 question_number: JSON.stringify(question_number),
+                question_type: type,
                 test_id: JSON.stringify(test_id)
             })
         })
         .then(res => res.json())
-        .then( _ => {
+        .then(_ => {
             callback()
         })
 }
@@ -26,14 +28,24 @@ export const sendAnswers = (answers, test_id, question_number, callback = () => 
 // }
 
 export const storeUserAnswer = (type, value, answer_id, test_id, question_number) => dispatch => {
+
+    const question_type =
+              type === 'one' ? 'ANSWERS_STORE/SET_ONE'
+            : type === 'some' ? 'ANSWERS_STORE/SET_SOME'
+            : null
+
+    if(!question_type)
+        return
+
     dispatch({
-        type: 'ANSWERS_STORE/SET_ONE', payload:
-            {
-                type: type,
-                answer_id: answer_id,
-                value: value,
-                test_id: test_id,
-                question_number: question_number
-            }
-    })
+            type: question_type, payload:
+                {
+                    type: type,
+                    answer_id: answer_id,
+                    value: value,
+                    test_id: test_id,
+                    question_number: question_number
+                }
+        }
+    )
 }

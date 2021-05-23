@@ -7,6 +7,7 @@ import TestRoom_NavNextButton from './elements/TestRoom_NavNextButton';
 import {getQuestion, sendAnswersAndGetNextQuestion} from '../../actions/questionsAction';
 import {sendAnswersAndGetTestResults} from "../../actions/resultsAction";
 import TestRoom_Timer from "./elements/TestRoom_Timer";
+import TestRoom_SomeButton from "./elements/TestRoom_SomeButton";
 
 class TestRoom extends Component {
     constructor(props) {
@@ -26,25 +27,55 @@ class TestRoom extends Component {
         const question_number = this.props.question_number
         const user_answers = this.props.user_answers[question_number].data
         const test_id = this.props.route.params.test_id
+        const question_type = this.props.questionData.data.data.answers_type.split(',')[0]
 
         if (this.lastQuestion())
-            this.props.onSendAnswersAndGetTestResults(user_answers, test_id, question_number)
+            this.props.onSendAnswersAndGetTestResults(question_type, user_answers, test_id, question_number)
         else
-            this.props.onSendAnswersAndGetNextQuestion(user_answers, test_id, question_number)
+            this.props.onSendAnswersAndGetNextQuestion(question_type, user_answers, test_id, question_number)
+    }
+
+    _answerButtons = (type, answers, active, test_id) => {
+        switch (type) {
+            case 'one':
+                return Object.entries(answers)
+                    .map(([key, value]) =>
+                        <TestRoom_OneButton
+                            test_id={test_id}
+                            id={key}
+                            key={key}
+                            active={active[key]}>
+                            {value}
+                        </TestRoom_OneButton>)
+            case 'some':
+                return Object.entries(answers)
+                    .map(([key, value]) =>
+                        <TestRoom_SomeButton
+                            test_id={test_id}
+                            id={key}
+                            key={key}
+                            active={active[key]}>
+                            {value}
+                        </TestRoom_SomeButton>)
+        }
+
     }
 
     render() {
-        let answers, title;
+        let answers, title, answers_buttons;
 
         const test_id = this.props.route.params.test_id
         const question_number = this.props.question_number
         const user_data = this.props.user_answers[question_number]?.data
-        const active = !user_data ? {} : user_data
+        const active = user_data || {}
+        const question_type = this.props.questionData.data.data.answers_type.split(',')[0]
 
         if (!this.props.loading && this.props.questionData) {
             answers = this.props.questionData.data.answers
             title = this.props.questionData.data.title
         }
+
+        answers_buttons = this._answerButtons(question_type, answers, active, test_id)
 
         return (
             <View>
@@ -62,17 +93,7 @@ class TestRoom extends Component {
                         <View style={styles.content}>
                             <View style={styles.answers_block}>
                                 <View style={{flexDirection: 'column', alignSelf: 'center'}}>
-                                    {
-                                        Object.entries(answers)
-                                            .map(([key, value]) =>
-                                                <TestRoom_OneButton
-                                                    test_id={test_id}
-                                                    id={key}
-                                                    key={key}
-                                                    active={active[key]}>
-                                                    {value}
-                                                </TestRoom_OneButton>)
-                                    }
+                                    {answers_buttons}
                                 </View>
                             </View>
                         </View>
@@ -123,6 +144,6 @@ export default connect(
         setDefaultUserAnswers: (answers, test_id, question_id) => dispatch(setDefaultUserAnswers(answers, test_id, question_id)),
         callLoading: () => dispatch({type: 'QUESTION/GET_PROGRESS'}),
         onGetQuestion: (answers, test_id, question_number,) => dispatch(getQuestion(answers, test_id, question_number)),
-        onSendAnswersAndGetTestResults: (answers, test_id, question_number) => dispatch(sendAnswersAndGetTestResults(answers, test_id, question_number)),
-        onSendAnswersAndGetNextQuestion: (answers, test_id, question_number) => dispatch(sendAnswersAndGetNextQuestion(answers, test_id, question_number)),
+        onSendAnswersAndGetTestResults: (question_type, answers, test_id, question_number) => dispatch(sendAnswersAndGetTestResults(question_type, answers, test_id, question_number)),
+        onSendAnswersAndGetNextQuestion: (question_type, answers, test_id, question_number) => dispatch(sendAnswersAndGetNextQuestion(question_type, answers, test_id, question_number)),
     }))(TestRoom);

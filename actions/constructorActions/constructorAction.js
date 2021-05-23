@@ -6,7 +6,7 @@ export const setColorTextBtn = (btn_id) => dispatch => {
     dispatch({type: 'CONSTRUCTOR/TEXT_COLOR_SET', payload: {btn_id: btn_id}})
 }
 
-const save_question_params_url = 'constructor/save_question_params'
+const question_params_url = 'constructor/question_params'
 
 export const constructorSendQuestionParams = (data) => dispatch => {
 
@@ -14,7 +14,7 @@ export const constructorSendQuestionParams = (data) => dispatch => {
 
     dispatch({type: 'CONSTRUCTOR/SEND_QUESTION_PARAMS/PROGRESS'})
     getAccessToken().then(token => {
-        fetch(apiDomain + apiPath(save_question_params_url),
+        fetch(apiDomain + apiPath(question_params_url),
             {
                 headers: {...defaultHeaders, ...accessTokenHeader(token)},
                 method: 'POST',
@@ -32,16 +32,19 @@ export const constructorSendQuestionParams = (data) => dispatch => {
     })
 }
 
-const save_question_data_url = 'constructor/save_question_data'
+const question_data_url = 'constructor/question_data'
 
-/**{
+/**
+ * PATCH
+ * {
     title_type: 'img',
     title: url,
     subtitle: 'abcdefg',
     answers_type: ['one', 'image'],
     answers: ['url1', 'url2'],
     true_answers: 0
-}*/
+}
+ */
 export const constructorSaveQuestionData = (data) => dispatch => {
     const formData = new FormData();
 
@@ -58,16 +61,16 @@ export const constructorSaveQuestionData = (data) => dispatch => {
     formData.append('sub_title', data.subtitle)
     formData.append('answers_type', `${data.answers_type}`)
     formData.append('answers', `${JSON.stringify(data.answers)}`)
-    formData.append('true_answers', `${data.true_answers}`)
+    formData.append('true_answers', `${JSON.stringify(data.true_answers)}`)
     formData.append('question_id', `${data.question_id}`)
     formData.append('finished', `${data.finished}`)
 
     dispatch({type: 'CONSTRUCTOR/SAVE_QUESTION_DATA/PROGRESS'})
 
     getAccessToken().then(token => {
-        fetch(apiDomain + apiPath(save_question_data_url),
+        fetch(apiDomain + apiPath(question_data_url),
             {
-                method: 'POST',
+                method: 'PATCH',
                 body: formData,
                 headers: {...defaultHeaders, ...accessTokenHeader(token), 'content-type': 'multipart/form-data'}
             })

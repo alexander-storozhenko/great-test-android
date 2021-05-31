@@ -14,14 +14,25 @@ import {getLocaledString} from "../../lib/locale/locale";
 import Carousel from "react-native-snap-carousel";
 import Params_QuestionTypeBoxOne from "./paramsScreen_elements/Params_QuestionTypeBoxOne";
 import {constructorSendQuestionParams} from "../../actions/constructorActions/constructorAction";
+import Params_QuestionTypeBoxSome from "./paramsScreen_elements/Params_QuestionTypeBoxSome";
 
 class Constructor_ParamsScreen extends Component {
     constructor(props) {
         super(props)
+        this.state = {selected_type: 'one'}
     }
 
     onPress = () => {
-        this.props.onSendQuestionParamsInfo({questionType: 'some'})
+        this.props.onSendQuestionParamsInfo({questionType: this.state.selected_type})
+    }
+
+    _selectType(index) {
+        switch (index) {
+            case 0:
+                this.setState({selected_type: 'one'})
+            case 1:
+                this.setState({selected_type: 'some'})
+        }
     }
 
     _renderItem = ({item, _}) => (<View style={styles.item}>{item}</View>)
@@ -30,7 +41,7 @@ class Constructor_ParamsScreen extends Component {
         const carousel_width = Dimensions.get('window').width - roomPadding * 2;
         const itemWidth = carousel_width - 100;
         const children = React.Children.toArray(
-            [<Params_QuestionTypeBoxOne/>, <Params_QuestionTypeBoxOne/>]
+            [<Params_QuestionTypeBoxOne/>, <Params_QuestionTypeBoxSome/>]
         )
 
         return (
@@ -44,8 +55,7 @@ class Constructor_ParamsScreen extends Component {
                         renderItem={this._renderItem}
                         sliderWidth={carousel_width}
                         itemWidth={itemWidth}
-                        onBeforeSnapToItem={(i) => {
-                        }}
+                        onBeforeSnapToItem={(i) => this._selectType(i)}
                     />
                 </View>
 

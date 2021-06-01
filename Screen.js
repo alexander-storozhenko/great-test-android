@@ -77,7 +77,7 @@ function StackSearchNavigator() {
 
 function StackProfileRoomNavigator() {
     return (
-        <Room padding>
+        <Room>
             <Stack.Navigator>
                 {/*<Stack.Screen name="Login" component={StackLoginNavigator} options={slideAnimation}/>*/}
                 <Stack.Screen name="Profile" component={ProfileRoom} options={slideAnimation}/>

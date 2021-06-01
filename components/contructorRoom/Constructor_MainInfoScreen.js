@@ -13,6 +13,7 @@ import {constructorCarouselMainInfoDataProgress} from "../../reducers/constructo
 import {getMainInfo} from "../../actions/constructorActions/mainInfoScreenAction";
 import {constructorCardMainInfo} from "../../reducers/constructorReducers/cardReducer";
 import MainInfoScreen_Card from "./mainInfoScreen_elements/MainInfoScreen_Card";
+import {roomPadding} from "../StyleConstants";
 
 class Constructor_MainInfoScreen extends Component {
     constructor(props) {
@@ -72,7 +73,8 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     carousel_container: {
-        paddingTop: 10
+        padding: roomPadding,
+
     },
     next_btn_container: {
         position: 'absolute',

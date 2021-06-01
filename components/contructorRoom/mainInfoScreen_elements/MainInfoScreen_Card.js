@@ -17,10 +17,12 @@ import {getTextColor} from "../../../lib/ColorsHelper";
 import Card_ImageButton from "./card_elements/Card_ImageButton";
 import * as ImagePicker from 'expo-image-picker';
 import {rootPath} from "../../../lib/Requests";
+import ImageButton from "../../ui/ImageButton";
 
 class MainInfoScreen_Card extends Component {
     constructor(props) {
         super(props)
+        this.state = {from_phone_image: false}
     }
 
     onLoadImage = async () => {
@@ -31,8 +33,12 @@ class MainInfoScreen_Card extends Component {
             quality: 1,
         })
 
-        if (!image.cancelled)
+
+
+        if (!image.cancelled) {
             this.props.onStoreImg(image.uri)
+            this.setState({from_phone_image: true})
+        }
     }
 
     render() {
@@ -42,12 +48,18 @@ class MainInfoScreen_Card extends Component {
 
         colors = [this.props.first_color, this.props.second_color]
 
+        image_url = this.props.image
 
         if(data && this.props.mode === 'edit') {
             colors = data.colors
-            image_url = this.props.image || rootPath(data.image_url)
+            image_url = this.state.from_phone_image ? this.props.image : rootPath(data.image_url)
             title = data.title
             subtitle = data.sub_title
+        }
+
+        if(this.state.from_phone_image) {
+            console.log(this.props.image)
+            console.log(image_url)
         }
 
         if (this.props.loading)
@@ -83,7 +95,7 @@ class MainInfoScreen_Card extends Component {
                         </View>
                     </View>
                     <View style={styles.img_btn}>
-                        <Card_ImageButton onPress={this.onLoadImage}/>
+                        <ImageButton color={getTextColor(this.props.first_color)} onPress={this.onLoadImage}/>
                     </View>
                 </LinearGradient>
             </View>
@@ -94,9 +106,7 @@ class MainInfoScreen_Card extends Component {
 const styles = StyleSheet.create({
     card: {
         height: 190,
-        maxWidth: 380,
-        marginTop: 15,
-        borderRadius: borderRadius,
+        width: '100%'
     },
     card_content: {
         width: '100%',
@@ -118,7 +128,6 @@ const styles = StyleSheet.create({
     gradient: {
         width: '100%',
         height: '100%',
-        borderRadius: borderRadius,
         opacity: 0.83,
     },
     description: {
@@ -126,8 +135,8 @@ const styles = StyleSheet.create({
     },
     img_btn: {
         position: 'absolute',
-        bottom: 0,
-        right: 0
+        bottom: 10,
+        right: 10
     },
     image: {
         width: '100%',

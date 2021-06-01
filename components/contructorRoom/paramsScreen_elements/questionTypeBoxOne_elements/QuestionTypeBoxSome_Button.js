@@ -32,7 +32,7 @@ class QuestionTypeBoxSome_Button extends Component {
 const styles = StyleSheet.create({
     btn: {
         width: 170,
-        minHeight: 50,
+        height: 50,
         borderRadius: 10,
         elevation: 12,
         alignItems: 'center',
@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red'
     },
     circle: {
-        marginRight: 20,
-        borderRadius: 15,
+        marginRight: 14,
+        marginTop: 14,
+        borderRadius: 3,
         width: 15,
         height: 15,
         backgroundColor: contrastColor

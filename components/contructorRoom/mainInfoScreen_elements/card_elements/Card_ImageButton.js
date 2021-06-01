@@ -11,6 +11,7 @@ import {
     h4,
     borderRadius
 } from '../../../StyleConstants';
+import Image from "../../../svg/Image";
 
 class Card_ImageButton extends Component {
     constructor(props) {
@@ -23,7 +24,9 @@ class Card_ImageButton extends Component {
         return (
             <View>
                 <TouchableNativeFeedback onPress={this.props.onPress}>
-                    <View style={[styles.btn, {borderColor: color}]}/>
+                    <View style={[styles.btn, {borderColor: color}]}>
+                        <Image ></Image>
+                    </View>
                 </TouchableNativeFeedback>
             </View>
         );

@@ -42,3 +42,10 @@ export const constructorQuestionAnswerBtnsCount = (state = 2, action) => {
         return action.payload
     return state
 }
+
+export const constructorQuestionDataStore = (state = {}, action) => {
+    if(action.type === 'CONSTRUCTOR/QUESTION/STORE_DATA')
+        state[action.payload.question_id] = action.payload.data
+
+    return state
+}

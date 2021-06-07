@@ -8,6 +8,7 @@ export const setColorTextBtn = (btn_id) => dispatch => {
 
 const question_params_url = 'constructor/question_params'
 
+//POST
 export const constructorSendQuestionParams = (data) => dispatch => {
 
     const questionType = data.questionType
@@ -34,8 +35,8 @@ export const constructorSendQuestionParams = (data) => dispatch => {
 
 const question_data_url = 'constructor/question_data'
 
+// PATCH
 /**
- * PATCH
  * {
     title_type: 'img',
     title: url,
@@ -45,19 +46,22 @@ const question_data_url = 'constructor/question_data'
     true_answers: 0
 }
  */
-export const constructorSaveQuestionData = (data) => dispatch => {
+export const constructorSaveAndSendQuestionData = (data) => dispatch => {
+    dispatch({type: 'CONSTRUCTOR/QUESTION/STORE_DATA', payload: {question_id: data.question_id, data: data}})
+
     const formData = new FormData();
 
-    switch (data.title_type) {
-        case 'img':
-            formData.append('title', {uri: data.title, name: data.title.split('/').pop(), type: 'image/jpeg'})
-            break
-        case 'text':
-            formData.append('title', data.title)
-            break
-    }
+    // switch (data.title_type) {
+    //     case 'img':
+    //         formData.append('title', {uri: data.title, name: data.title.split('/').pop(), type: 'image/jpeg'})
+    //         break
+    //     case 'text':
+    //         formData.append('title', data.title)
+    //         break
+    // }
 
-    formData.append('title_type', data.title_type)
+    formData.append('image', {uri: data.image, name: data.image.split('/').pop(), type: 'image/jpeg'})
+    formData.append('title', data.title)
     formData.append('sub_title', data.subtitle)
     formData.append('answers_type', `${data.answers_type}`)
     formData.append('answers', `${JSON.stringify(data.answers)}`)
@@ -77,6 +81,7 @@ export const constructorSaveQuestionData = (data) => dispatch => {
             .then(res =>
                  res.json())
             .then(_ => {
+                console.log(_)
                 dispatch({type: 'CONSTRUCTOR/SAVE_QUESTION_DATA/SUCCESS'})
 
                 data.finished ? navigate('Profile') : navigate('ConstructorParams')

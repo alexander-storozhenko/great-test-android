@@ -12,12 +12,10 @@ import QuestionScreen_AnswerBoxOne from "./questionScreen_elements/QuestionScree
 import BottomButton from "../ui/BottomButton";
 import {navigate} from "../../lib/NavigationService";
 import {
-    constructorSaveQuestionData,
-    constructorSendQuestionParams
+    constructorSaveAndSendQuestionData,
 } from "../../actions/constructorActions/constructorAction";
-import QuestionScreen_AddNewAnswerButton from "./questionScreen_elements/QuestionScreen_AddNewAnswerButton";
-import {constructorQuestionAnswerBtnsCount} from "../../reducers/constructorReducers/questionReducer";
 import QuestionScreen_Answers from "./questionScreen_elements/QuestionScreen_Answers";
+import * as ImagePicker from "expo-image-picker";
 
 class Constructor_QuestionScreen extends Component {
     constructor(props) {
@@ -25,7 +23,22 @@ class Constructor_QuestionScreen extends Component {
     }
 
     title = ''
+    image = ''
     subtitle = ''
+
+    onLoadImage = async () => {
+        let image = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        })
+
+        if (!image.cancelled) {
+            this.image = image.uri
+            this.setState({from_phone_image: true})
+        }
+    }
 
     _saveQuestion = (finished) => {
         //TODO add img type, add answers type: some, n to n ...
@@ -33,14 +46,14 @@ class Constructor_QuestionScreen extends Component {
         const type = this.props.route.params.type
 
         const data = {
-            title_type: 'text',
             title: this.title,
             subtitle: this.subtitle,
+            image: this.image,
             answers_type: [type, 'text'],
             answers: this.props.answers,
             true_answers:
                 type === 'one' ? this.props.trueAnswersOne :
-                type === 'some' ? this.props.trueAnswersSome : null,
+                    type === 'some' ? this.props.trueAnswersSome : null,
             question_id: this.props.currentQuestionId,
             finished: finished,
         }
@@ -59,7 +72,7 @@ class Constructor_QuestionScreen extends Component {
                                     onChangeText={(text) => this.title = text}/>
                     </View>
                     <View style={styles.img_btn_container}>
-                        <ImageButton style={styles.input}/>
+                        <ImageButton onPress={this.onLoadImage} style={styles.input}/>
                     </View>
                 </View>
 
@@ -137,6 +150,6 @@ export default connect(
     }),
     dispatch => ({
         onSetBtnCount: (cnt) => dispatch({type: 'CONSTRUCTOR/QUESTION/ANSWER_BTNS_COUNT', payload: cnt}),
-        onSaveQuestion: (data) => dispatch(constructorSaveQuestionData(data))
+        onSaveQuestion: (data) => dispatch(constructorSaveAndSendQuestionData(data))
     })
 )(Constructor_QuestionScreen);

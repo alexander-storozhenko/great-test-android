@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
+import {View, Text, StyleSheet, ActivityIndicator, ImageBackground} from "react-native";
 import TestRoom_OneButton from './elements/TestRoom_OneButton'
-import {fontBold, h1_5, secondaryColor} from '../StyleConstants';
+import {borderRadius, fontBold, h1_5, secondaryColor} from '../StyleConstants';
 import TestRoom_NavNextButton from './elements/TestRoom_NavNextButton';
 import {getQuestion, sendAnswersAndGetNextQuestion} from '../../actions/questionsAction';
 import {sendAnswersAndGetTestResults} from "../../actions/resultsAction";
 import TestRoom_Timer from "./elements/TestRoom_Timer";
 import TestRoom_SomeButton from "./elements/TestRoom_SomeButton";
+import {apiPath, rootPath} from "../../lib/Requests";
+import SeparateLine from "../ui/SeparateLine";
 
 class TestRoom extends Component {
     constructor(props) {
@@ -61,6 +63,17 @@ class TestRoom extends Component {
 
     }
 
+    renderImageHead = () => {
+        const image_url = this.props.questionData.title_image_url
+        if (image_url) {
+            return (
+                <View style={{width: '100%', height: 200, borderRadius: borderRadius}}>
+                    <ImageBackground style={styles.image} source={{uri: rootPath(image_url)}}/>
+                </View>
+            )
+        }
+    }
+
     render() {
         let answers, title, answers_buttons;
 
@@ -70,6 +83,7 @@ class TestRoom extends Component {
         const active = user_data || {}
         const question_type = this.props.questionData.data.data.answers_type.split(',')[0]
 
+        console.log(rootPath(this.props.questionData.title_image_url))
         if (!this.props.loading && this.props.questionData) {
             answers = this.props.questionData.data.answers
             title = this.props.questionData.data.title
@@ -83,15 +97,20 @@ class TestRoom extends Component {
                     <ActivityIndicator size="small" color={secondaryColor}/> :
                     <View style={{width: '100%', height: '100%', position: 'relative'}}>
                         <TestRoom_Timer
-                            start_time={1000}
+                            start_time={3000}
                             test_id={test_id}
                             onTimerExpire={this.onNextQuestion}
                             navigation={this.props.navigation}
 
                         />
+
                         <Text style={styles.title}>{title}</Text>
+                        {this.renderImageHead()}
+
                         <View style={styles.content}>
+
                             <View style={styles.answers_block}>
+                                <SeparateLine/>
                                 <View style={{flexDirection: 'column', alignSelf: 'center'}}>
                                     {answers_buttons}
                                 </View>
@@ -114,7 +133,7 @@ class TestRoom extends Component {
 const styles = StyleSheet.create({
     answers_block: {
         width: '100%',
-        marginTop: 40,
+        marginTop: 20,
         justifyContent: 'center',
     },
     content: {
@@ -124,11 +143,17 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        marginTop: 20,
+        marginTop: 5,
         fontSize: h1_5,
         fontFamily: fontBold,
-        textAlign: 'center',
-    }
+    },
+    image: {
+        marginTop: 10,
+        width: '100%',
+        height: 200,
+        resizeMode: 'contain',
+
+    },
 })
 
 export default connect(

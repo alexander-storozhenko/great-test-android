@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text} from "react-native";
 import {getQuestion} from "../../../actions/questionsAction";
+import {timeWithFormat} from "../../../lib/TimeHelper";
 
 class TestRoom_Timer extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class TestRoom_Timer extends Component {
         return (
             <View>
                 <View>
-                    <Text>{this.state.time}</Text>
+                    <Text>{timeWithFormat(this.state.time)}</Text>
                 </View>
             </View>
         );

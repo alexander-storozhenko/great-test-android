@@ -59,13 +59,13 @@ class ProfileRoom extends Component {
                                             marginLeft: 4,
                                             marginTop: 4,
                                             color: contrastColor
-                                        }}>{this.props.userData.plays}</Text>
+                                        }}>12</Text>
                                         <Like width={20} height={20} fill={contrastColor} style={{marginLeft: 7}}/>
                                         <Text style={{
                                             marginLeft: 4,
                                             marginTop: 4,
                                             color: contrastColor
-                                        }}>{this.props.userData.likes}</Text>
+                                        }}>4.3</Text>
                                     </View>
                             }
 
@@ -100,7 +100,9 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '100%',
-        position: 'relative'
+        position: 'relative',
+        padding: 10,
+        paddingTop: 0
     },
     user_info: {
         paddingTop: 15,

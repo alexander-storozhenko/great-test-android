@@ -11,6 +11,7 @@ export const checkedColor = "#DF379C"
 export const errorColor = "#E53963"
 export const successColor = "#A5D440"
 
+export const n2nColors = ['#37D5DF', '#DC006A', '#DCC600']
 //font
 
 export const fontBold     = 'FontBold'

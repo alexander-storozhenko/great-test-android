@@ -10,6 +10,7 @@ import TestRoom_Timer from "./elements/TestRoom_Timer";
 import TestRoom_SomeButton from "./elements/TestRoom_SomeButton";
 import {apiPath, rootPath} from "../../lib/Requests";
 import SeparateLine from "../ui/SeparateLine";
+import TestRoom_N2NButton from "./elements/TestRoom_N2NButton";
 
 class TestRoom extends Component {
     constructor(props) {
@@ -41,24 +42,19 @@ class TestRoom extends Component {
         switch (type) {
             case 'one':
                 return Object.entries(answers)
-                    .map(([key, value]) =>
-                        <TestRoom_OneButton
-                            test_id={test_id}
-                            id={key}
-                            key={key}
-                            active={active[key]}>
-                            {value}
-                        </TestRoom_OneButton>)
+                    .map(([key, value]) => <TestRoom_OneButton test_id={test_id} id={key} key={key} active={active[key]}>{value}</TestRoom_OneButton>)
             case 'some':
                 return Object.entries(answers)
-                    .map(([key, value]) =>
-                        <TestRoom_SomeButton
-                            test_id={test_id}
-                            id={key}
-                            key={key}
-                            active={active[key]}>
-                            {value}
-                        </TestRoom_SomeButton>)
+                    .map(([key, value]) => <TestRoom_SomeButton test_id={test_id} id={key} key={key} active={active[key]}>{value}</TestRoom_SomeButton>)
+            case 'n2n':
+                return [
+                    Object.entries(answers[0])
+                        .map(([key, value]) =>
+                            <TestRoom_N2NButton test_id={test_id} pos={'up'} id={key} key={key} active={active[key]}>{value}</TestRoom_N2NButton>),
+                    Object.entries(answers[1])
+                        .map(([key, value]) =>
+                            <TestRoom_N2NButton test_id={test_id} pos={'down'} id={key} key={key} active={active[key]}>{value}</TestRoom_N2NButton>)
+                    ]
         }
 
     }

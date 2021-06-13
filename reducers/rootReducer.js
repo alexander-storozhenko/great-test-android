@@ -11,7 +11,7 @@ import {
     testTDeleteProgress,
     testTDeleteSuccess
 } from "./testReducer";
-import {userAnswers, answersSendProgress} from "./answersReducer";
+import {userAnswers, answersSendProgress, answersColorN2N, answersColorN2NMap} from "./answersReducer";
 
 import {search_progress, search_results} from "./searchReducer";
 import {
@@ -77,6 +77,7 @@ export default combineReducers({
 
     userAnswers,
     answersSendProgress,
+    answersColorN2NMap,
 
     search_progress,
     search_results,

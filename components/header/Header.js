@@ -1,33 +1,33 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View, StyleSheet, Dimensions} from "react-native";
-import {headerHeight, secondaryColor} from "../StyleConstants";
+import {View, StyleSheet, Dimensions, Text} from "react-native";
+import {fontBold, h1, h2, h3, headerHeight, secondaryColor} from "../StyleConstants";
 import Header_Settings from "./elements/Header_Settings";
 import Header_Debug from "./elements/Header_Debug";
 import {env} from "../../settings/url";
-
+import Header_BackButton from "./elements/Header_BackButton";
 
 class Header extends Component {
     constructor(props) {
         super(props)
     }
 
-    rightAccessories = (screen) => {
-        switch (screen) {
-            case 'Профиль':
-                return <Header_Settings/>
-        }
-        return null
-    }
-
     render() {
+
         return (
             <View style={styles.header}>
-                <View style={styles.settings_btn}>
-                    {env ==='dev' ? <Header_Debug/> : null}
-                    {/*{//TODO set custom header }*/}
-                    {/*{<Header_Settings/>}*/}
+                <View style={{position: 'absolute', bottom: 25, flexDirection: 'row'}}>
+                    {this.props.content.back ?
+                        <View style={styles.back_btn}>
+                            <Header_BackButton/>
+                        </View>  : null}
+                    <Text style={styles.text}>{this.props.content.text}</Text>
                 </View>
+
+                <View style={styles.settings_btn}>
+                    {env === 'dev' ? <Header_Debug/> : null}
+                </View>
+
             </View>
         );
     }
@@ -39,14 +39,21 @@ const styles = StyleSheet.create({
     header: {
         height: headerHeight,
         width: width,
-        backgroundColor: secondaryColor,
         position: "relative"
     },
 
+    text: {
+        position: "relative",
+        bottom: 5,
+        left: 18,
+        color: secondaryColor,
+        fontSize: h3,
+        fontFamily: fontBold
+    },
+
     back_btn: {
-        position: "absolute",
-        bottom: 25,
-        left: 15,
+        bottom: 3,
+        left: 10,
     },
     settings_btn: {
         position: "absolute",
@@ -72,5 +79,6 @@ const styles = StyleSheet.create({
 });
 
 export default connect(state => ({
+    content: state.headerContent
 
-}),null)(Header);
+}), null)(Header);

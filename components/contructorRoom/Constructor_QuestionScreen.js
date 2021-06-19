@@ -22,6 +22,12 @@ class Constructor_QuestionScreen extends Component {
         super(props)
     }
 
+    componentDidMount() {
+        this.props.navigation.addListener('focus', (e) => {
+            this.props.setHeader("Question answers (1)")
+        })
+    }
+
     title = ''
     image = ''
     subtitle = ''
@@ -150,6 +156,7 @@ export default connect(
     }),
     dispatch => ({
         onSetBtnCount: (cnt) => dispatch({type: 'CONSTRUCTOR/QUESTION/ANSWER_BTNS_COUNT', payload: cnt}),
-        onSaveQuestion: (data) => dispatch(constructorSaveAndSendQuestionData(data))
+        onSaveQuestion: (data) => dispatch(constructorSaveAndSendQuestionData(data)),
+        setHeader: (text) => dispatch({type: 'HEADER/SET', payload: { text: text, back: true}}),
     })
 )(Constructor_QuestionScreen);

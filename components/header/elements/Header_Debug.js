@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, StyleSheet, TouchableWithoutFeedback} from "react-native";
-import {primaryColor} from "../../StyleConstants";
+import {primaryColor, secondaryColor} from "../../StyleConstants";
 import {openDebugPanel} from "../../../actions/debugAction";
 import Bug from "../../svg/Bug";
 
@@ -17,7 +17,7 @@ class Header_Debug extends Component {
         return (
             <View>
                 <TouchableWithoutFeedback onPress={this.onPress}>
-                    <Bug height={30} width={30} fill={primaryColor}/>
+                    <Bug height={30} width={30} fill={secondaryColor}/>
                 </TouchableWithoutFeedback>
             </View>
         );

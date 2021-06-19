@@ -128,11 +128,11 @@ function Screen(props) {
                 <Stack.Navigator initialRouteName="Home">
 
                     <Stack.Screen options={{headerShown: false}} name="Home" component={TabNavigator}/>
-                    <Stack.Screen options={slideAnimation} name="TestPreview" component={StackTestNavigator}/>
+                    <Stack.Screen options={slideAnimation}  name="TestPreview" component={StackTestNavigator}/>
 
                 </Stack.Navigator>
             </NavigationContainer>
-            <StatusBar style="light"/>
+            <StatusBar style="dark"/>
         </View>
 
     );

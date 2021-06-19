@@ -22,6 +22,12 @@ class Constructor_ParamsScreen extends Component {
         this.state = {selected_type: 'one'}
     }
 
+    componentDidMount() {
+        this.props.navigation.addListener('focus', (e) => {
+            this.props.setHeader("Question parameters (1)")
+        })
+    }
+
     onPress = () => {
         this.props.onSendQuestionParamsInfo({questionType: this.state.selected_type})
     }
@@ -105,6 +111,7 @@ export default connect(
     dispatch => ({
         onSetTestTemplateData: (data) => dispatch({type: 'TEST/SET_TEST_T_DATA', payload: data}),
         onShowNavBar: (state) => dispatch(showNavBar(state)),
-        onSendQuestionParamsInfo: (data) => dispatch(constructorSendQuestionParams(data))
+        onSendQuestionParamsInfo: (data) => dispatch(constructorSendQuestionParams(data)),
+        setHeader: (text) => dispatch({type: 'HEADER/SET', payload: { text: text, back: true}}),
     })
 )(Constructor_ParamsScreen);

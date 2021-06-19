@@ -32,6 +32,10 @@ class Constructor_MainInfoScreen extends Component {
     componentDidMount() {
         if(this.props.route.params.edit)
             this.props.onGetMainInfoWhenEdit(this.props.route.params.test_t_id)
+        this.props.navigation.addListener('focus', (e) => {
+            this.props.setHeader("Test main info")
+        })
+
     }
 
 
@@ -105,6 +109,7 @@ export default connect(
         onSetTestTemplateData: (data) => dispatch({type: 'TEST/SET_TEST_T_DATA', payload: data}),
         onShowNavBar: (state) => dispatch(showNavBar(state)),
         onSendMainConstructorInfo: (data) => dispatch(carouselSendMainInfoData(data)),
-        onGetMainInfoWhenEdit: (id) => dispatch(getMainInfo(id))
+        onGetMainInfoWhenEdit: (id) => dispatch(getMainInfo(id)),
+        setHeader: (text) => dispatch({type: 'HEADER/SET', payload: { text: text, back: true}}),
     })
 )(Constructor_MainInfoScreen);

@@ -14,24 +14,24 @@ class Header_BackButton extends Component {
         super(props)
     }
 
-    onClick = () => goBack()
+    onClick = () => this.props.navigation.goBack()
 
     render() {
 
         return (
-            <TouchableNativeFeedback style={styles.btn} onPress={this.onClick}>
-                <Back width={20} height={20} fill={primaryColor}/>
-            </TouchableNativeFeedback>
+            <TouchableWithoutFeedback style={styles.btn} onPress={this.onClick}>
+                <Back width={25} height={25} fill={secondaryColor}/>
+            </TouchableWithoutFeedback>
         );
     }
 }
 
 const styles = StyleSheet.create({
     btn: {
-        height: 20,
-        width: 20,
+        height: 40,
+        width: 40,
         backgroundColor: secondaryColor,
-        position: "relative"
+        position: "relative",
     },
     menuIconContainer: {
         position: "absolute",

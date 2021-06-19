@@ -7,6 +7,7 @@ import {showNavBar} from '../../actions/navBarAction';
 import {getPreviewInfo} from '../../actions/testsAction';
 import {getQuestion, resetQuestionNumber} from "../../actions/questionsAction";
 import TestPreviewRoom_StartButton from "./elements/TestPreviewRoom_StartButton";
+import {setNavigation} from "../../actions/navigationAction";
 
 class TestPreviewRoom extends Component {
     constructor(props) {
@@ -21,6 +22,9 @@ class TestPreviewRoom extends Component {
     render() {
         const data = this.props.previewInfo?.data
         const options = data?.options
+
+        // need to get data before set title in header
+        this.props.setHeader(`${this.props.previewInfo?.data?.title}`)
 
         return (
             <View>
@@ -37,7 +41,7 @@ class TestPreviewRoom extends Component {
                                     author_name={options?.author_name}
                                 />
                             </View>
-                            <View style={{width: '100%', position: 'absolute', bottom: 15}}>
+                            <View style={{width: '100%', position: 'absolute', bottom: 50}}>
                                 <TestPreviewRoom_StartButton
                                     onPress={() => this.props.onGetQuestion(this.props.previewInfo.test_id, 1)}>
                                     Start!
@@ -71,6 +75,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     }
 })
+
 export default connect(
     state => ({
         previewInfo: state.testPreviewInfo,
@@ -84,5 +89,6 @@ export default connect(
         onShowNavBar: (state) => dispatch(showNavBar(state)),
         onGetQuestion: (test_id, question_number) => dispatch(getQuestion(test_id, question_number)),
         resetQuestionNumber: () => dispatch(resetQuestionNumber()),
+        setHeader: (text, back = false) => dispatch({type: 'HEADER/SET', payload: {text: text, back: true}}),
     })
 )(TestPreviewRoom);

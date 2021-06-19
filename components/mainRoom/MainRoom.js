@@ -27,6 +27,10 @@ class MainRoom extends Component {
         this.props.onLoadRecommends()
         this.props.onShowNavBar(true)
         this.props.setNavigation(this.props.navigation)
+
+        this.props.navigation.addListener('focus', (e) => {
+            this.props.setHeader("Recommends")
+        })
     }
 
     onRefresh = () => {
@@ -100,5 +104,6 @@ export default connect(
     dispatch => ({
         onShowNavBar: (state) => dispatch(showNavBar(state)),
         onLoadRecommends: () => dispatch(loadRecommends()),
-        setNavigation: (current) => dispatch(setNavigation(current))
+        setNavigation: (current) => dispatch(setNavigation(current)),
+        setHeader: (text) => dispatch({type: 'HEADER/SET', payload: { text: text}}),
     }))(MainRoom);

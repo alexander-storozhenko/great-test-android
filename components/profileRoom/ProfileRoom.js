@@ -30,13 +30,15 @@ class ProfileRoom extends Component {
                 this.props.getUserData()
                 //  this.props.getUserTests()
             }
+
+            // root tab component need to set navigation
+            this.props.setNavigation(this.props.navigation)
+
+            this.props.setHeader("Profile")
         })
 
         this.props.getUserData()
         //   this.props.getUserTests()
-
-        // root tab component need to set navigation
-        this.props.setNavigation(this.props.navigation)
     }
 
     render() {
@@ -154,4 +156,5 @@ export default connect(
         setNavigation: (current) => dispatch(setNavigation(current)),
         getUserData: () => dispatch(getUserData()),
         getUserTests: (page = 0) => dispatch(getUserTests(page)),
+        setHeader: (text) => dispatch({type: 'HEADER/SET', payload: { text: text}}),
     }))(ProfileRoom);

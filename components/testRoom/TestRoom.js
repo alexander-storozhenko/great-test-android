@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet, ActivityIndicator, ImageBackground} from "react-native";
 import TestRoom_OneButton from './elements/TestRoom_OneButton'
-import {borderRadius, fontBold, h1_5, secondaryColor} from '../StyleConstants';
+import {borderRadius, fontBold, fontRegular, h1_5, lightColor, secondaryColor} from '../StyleConstants';
 import TestRoom_NavNextButton from './elements/TestRoom_NavNextButton';
 import {getQuestion, sendAnswersAndGetNextQuestion} from '../../actions/questionsAction';
 import {sendAnswersAndGetTestResults} from "../../actions/resultsAction";
@@ -20,7 +20,12 @@ class TestRoom extends Component {
 
     componentDidMount() {
         this.props.navigation.addListener('beforeRemove', (e) => {
-            if (e.data.action.type === 'GO_BACK') e.preventDefault()
+            if (e.data.action.type === 'GO_BACK')
+                e.preventDefault()
+        })
+
+        this.props.navigation.addListener('focus', (e) => {
+            this.props.setHeader(`${this.props.question_number}/${this.props.question_count}`)
         })
     }
 
@@ -30,7 +35,8 @@ class TestRoom extends Component {
         const question_number = this.props.question_number
         const user_answers = this.props.user_answers[question_number].data
         const test_id = this.props.route.params.test_id
-        const question_type = this.props.questionData.data.data.answers_type.split(',')[0]
+
+        const question_type = this.props.questionData.question.data.data.answers_type.split(',')[0]
 
         if (this.lastQuestion())
             this.props.onSendAnswersAndGetTestResults(question_type, user_answers, test_id, question_number)
@@ -56,10 +62,9 @@ class TestRoom extends Component {
                             <TestRoom_N2NButton test_id={test_id} pos={'down'} id={key} key={key} active={active[key]}>{value}</TestRoom_N2NButton>)
                     ]
         }
-
     }
 
-    renderImageHead = () => {
+    renderImageQuestion = () => {
         const image_url = this.props.questionData.title_image_url
         if (image_url) {
             return (
@@ -71,27 +76,28 @@ class TestRoom extends Component {
     }
 
     render() {
-        let answers, title, answers_buttons;
+        let answers, question_type, title
 
         const test_id = this.props.route.params.test_id
         const question_number = this.props.question_number
         const user_data = this.props.user_answers[question_number]?.data
         const active = user_data || {}
-        const question_type = this.props.questionData.data.data.answers_type.split(',')[0]
+        const questionData = this.props.questionData?.question.data
 
-        console.log(rootPath(this.props.questionData.title_image_url))
-        if (!this.props.loading && this.props.questionData) {
-            answers = this.props.questionData.data.answers
-            title = this.props.questionData.data.title
+        if (!this.props.loading && questionData) {
+            answers = questionData.answers
+            title = questionData.title
+            question_type = questionData.data.answers_type.split(',')[0]
         }
 
-        answers_buttons = this._answerButtons(question_type, answers, active, test_id)
+        const answers_buttons = this._answerButtons(question_type, answers, active, test_id)
 
         return (
             <View>
                 {this.props.loading ?
                     <ActivityIndicator size="small" color={secondaryColor}/> :
-                    <View style={{width: '100%', height: '100%', position: 'relative'}}>
+                    <View style={{ width: '100%', height: '100%', position: 'relative'}}>
+                        <View style={{alignItems: 'flex-end'}}>
                         <TestRoom_Timer
                             start_time={3000}
                             test_id={test_id}
@@ -99,9 +105,9 @@ class TestRoom extends Component {
                             navigation={this.props.navigation}
 
                         />
-
+                        </View>
                         <Text style={styles.title}>{title}</Text>
-                        {this.renderImageHead()}
+                        {this.renderImageQuestion()}
 
                         <View style={styles.content}>
 
@@ -112,7 +118,7 @@ class TestRoom extends Component {
                                 </View>
                             </View>
                         </View>
-                        <View style={{position: 'absolute', bottom: 15, width: '100%'}}>
+                        <View style={{position: 'absolute', bottom: 50, width: '100%'}}>
                             <TestRoom_NavNextButton
                                 disable={this.props.answersSendLoading}
                                 onPress={this.onNextQuestion}
@@ -141,7 +147,7 @@ const styles = StyleSheet.create({
     title: {
         marginTop: 5,
         fontSize: h1_5,
-        fontFamily: fontBold,
+        fontFamily: fontRegular,
     },
     image: {
         marginTop: 10,
@@ -160,10 +166,12 @@ export default connect(
         loading: state.questionLoading,
         user_answers: state.userAnswers,
         answersSendLoading: state.answersSendProgress,
+        headerTitle: state.headerTitle,
     }),
     dispatch => ({
         setDefaultUserAnswers: (answers, test_id, question_id) => dispatch(setDefaultUserAnswers(answers, test_id, question_id)),
         callLoading: () => dispatch({type: 'QUESTION/GET_PROGRESS'}),
+        setHeader: (text) => dispatch({type: 'HEADER/SET', payload: { text: text}}),
         onGetQuestion: (answers, test_id, question_number,) => dispatch(getQuestion(answers, test_id, question_number)),
         onSendAnswersAndGetTestResults: (question_type, answers, test_id, question_number) => dispatch(sendAnswersAndGetTestResults(question_type, answers, test_id, question_number)),
         onSendAnswersAndGetNextQuestion: (question_type, answers, test_id, question_number) => dispatch(sendAnswersAndGetNextQuestion(question_type, answers, test_id, question_number)),

@@ -24,7 +24,7 @@ import {profileUserData} from './profileReducers/profileUserDataReducer';
 
 import {currentNavigation} from "./navigationReducer";
 
-import {backButton} from "./headerReducer";
+import {backButton, headerContent} from "./headerReducer";
 import {constructorColorTextBtnClicked,} from "./constructorReducer";
 import {
     constructorCarouselFirstColorBtnClicked,
@@ -92,6 +92,7 @@ export default combineReducers({
     currentNavigation,
 
     backButton,
+    headerContent,
 
     constructorColorTextBtnClicked,
 

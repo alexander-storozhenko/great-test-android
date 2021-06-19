@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     to_home_content: {
         position: 'absolute',
-        bottom: 15,
+        bottom: 50,
         width: '100%',
     },
     container: {

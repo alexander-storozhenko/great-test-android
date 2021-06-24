@@ -54,10 +54,10 @@ class TestRoom extends Component {
                     .map(([key, value]) => <TestRoom_SomeButton test_id={test_id} id={key} key={key} active={active[key]}>{value}</TestRoom_SomeButton>)
             case 'n2n':
                 return [
-                    Object.entries(answers[0])
+                    Object.entries(answers['up'])
                         .map(([key, value]) =>
                             <TestRoom_N2NButton test_id={test_id} pos={'up'} id={key} key={key} active={active[key]}>{value}</TestRoom_N2NButton>),
-                    Object.entries(answers[1])
+                    Object.entries(answers['down'])
                         .map(([key, value]) =>
                             <TestRoom_N2NButton test_id={test_id} pos={'down'} id={key} key={key} active={active[key]}>{value}</TestRoom_N2NButton>)
                     ]
@@ -112,7 +112,7 @@ class TestRoom extends Component {
                         <View style={styles.content}>
 
                             <View style={styles.answers_block}>
-                                <SeparateLine/>
+
                                 <View style={{flexDirection: 'column', alignSelf: 'center'}}>
                                     {answers_buttons}
                                 </View>

@@ -14,13 +14,13 @@ class TestRoom_N2NButton extends Component {
     onClick = () => {
         if (!this.props.answersSendLoading) {
             this.setState({pressed: !this.state.pressed})
-            this.props.selectBtn(this.props.id, this.props.pos, this.props.btnMap)
+            this.props.selectBtn(this.props.id, this.props.pos, this.props.colorMap)
             this.props.storeAnswers('n2n', !this.props.active, this.props.id, this.props.test_id, this.props.question_number)
         }
     }
 
     render() {
-        const backgroundColor = this.props.btnColor;
+        const backgroundColor = this.props.colorMap[this.props.pos][this.props.id] ?? contrastColor;
 
         return (
             <View style={{marginTop: 15}}>
@@ -54,7 +54,7 @@ export default connect(
         question_number: state.questionNumber,
         user_answers: state.userAnswers,
         answersSendLoading: state.answersSendProgress,
-        btnMap: state.answersColorN2NMap,
+        colorMap: state.answersColorN2NMap,
     }),
     dispatch => ({
         selectBtn: (answer_id, pos, answers_color_map) => dispatch(selectN2NBtn(answer_id, pos, answers_color_map)),

@@ -10,10 +10,10 @@ import {
     lightColor,
     primaryColor,
     secondaryColor
-} from '../../StyleConstants';
+} from '../../../StyleConstants';
 import {TouchableNativeFeedback} from 'react-native-gesture-handler';
-import {sendAnswers} from '../../../actions/answersAction';
-import {decreaseQuestionNumber, getQuestion, increaseQuestionNumber} from '../../../actions/questionsAction';
+import {sendAnswers} from '../../../../actions/answersAction';
+import {decreaseQuestionNumber, getQuestion, increaseQuestionNumber} from '../../../../actions/questionsAction';
 
 class TestRoom_NavNextButton extends Component {
     constructor(props) {

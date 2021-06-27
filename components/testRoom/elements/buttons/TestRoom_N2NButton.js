@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet} from "react-native";
-import {checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../StyleConstants';
+import {checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../../StyleConstants';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {storeUserAnswer} from "../../../actions/answersAction";
+import {selectN2NBtn, storeUserAnswer} from "../../../../actions/answersAction";
 
-class TestRoom_SomeButton extends Component {
+class TestRoom_N2NButton extends Component {
     constructor(props) {
         super(props)
         this.state = {pressed: false}
@@ -14,12 +14,14 @@ class TestRoom_SomeButton extends Component {
     onClick = () => {
         if (!this.props.answersSendLoading) {
             this.setState({pressed: !this.state.pressed})
-            this.props.storeAnswers('some', !this.state.pressed, this.props.id, this.props.test_id, this.props.question_number)
+            this.props.selectBtn(this.props.id, this.props.pos, this.props.colorMap)
+            this.props.storeAnswers('n2n', !this.props.active, this.props.id, this.props.test_id, this.props.question_number)
         }
     }
 
     render() {
-        const backgroundColor = this.state.pressed ? checkedColor : '#efd4a7'
+        const backgroundColor = this.props.colorMap[this.props.pos][this.props.id] ?? contrastColor;
+
         return (
             <View style={{marginTop: 15}}>
                 <TouchableWithoutFeedback onPress={() => this.onClick()}
@@ -52,8 +54,10 @@ export default connect(
         question_number: state.questionNumber,
         user_answers: state.userAnswers,
         answersSendLoading: state.answersSendProgress,
+        colorMap: state.answersColorN2NMap,
     }),
     dispatch => ({
+        selectBtn: (answer_id, pos, answers_color_map) => dispatch(selectN2NBtn(answer_id, pos, answers_color_map)),
         storeAnswers: (type, value, answer_id, test_id, question_number) =>
             dispatch(storeUserAnswer(type, value, answer_id, test_id, question_number))
-    }))(TestRoom_SomeButton);
+    }))(TestRoom_N2NButton);

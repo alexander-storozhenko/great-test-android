@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet} from "react-native";
-import {checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../StyleConstants';
+import {checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../../StyleConstants';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {storeUserAnswer} from "../../../actions/answersAction";
+import {storeUserAnswer} from "../../../../actions/answersAction";
 
 class TestRoom_OneButton extends Component {
     constructor(props) {

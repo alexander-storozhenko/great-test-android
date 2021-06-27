@@ -57,11 +57,6 @@ class MainInfoScreen_Card extends Component {
             subtitle = data.sub_title
         }
 
-        if(this.state.from_phone_image) {
-            console.log(this.props.image)
-            console.log(image_url)
-        }
-
         if (this.props.loading)
             return (
                 <View style={styles.card}>

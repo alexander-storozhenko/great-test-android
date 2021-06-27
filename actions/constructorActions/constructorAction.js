@@ -81,7 +81,6 @@ export const constructorSaveAndSendQuestionData = (data) => dispatch => {
             .then(res =>
                  res.json())
             .then(_ => {
-                console.log(_)
                 dispatch({type: 'CONSTRUCTOR/SAVE_QUESTION_DATA/SUCCESS'})
 
                 data.finished ? navigate('Profile') : navigate('ConstructorParams')

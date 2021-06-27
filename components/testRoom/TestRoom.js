@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet, ActivityIndicator, ImageBackground} from "react-native";
-import TestRoom_OneButton from './elements/TestRoom_OneButton'
+import TestRoom_OneButton from './elements/buttons/TestRoom_OneButton'
 import {borderRadius, fontBold, fontRegular, h1_5, lightColor, secondaryColor} from '../StyleConstants';
-import TestRoom_NavNextButton from './elements/TestRoom_NavNextButton';
+import TestRoom_NavNextButton from './elements/buttons/TestRoom_NavNextButton';
 import {getQuestion, sendAnswersAndGetNextQuestion} from '../../actions/questionsAction';
 import {sendAnswersAndGetTestResults} from "../../actions/resultsAction";
 import TestRoom_Timer from "./elements/TestRoom_Timer";
-import TestRoom_SomeButton from "./elements/TestRoom_SomeButton";
+import TestRoom_SomeButton from "./elements/buttons/TestRoom_SomeButton";
 import {apiPath, rootPath} from "../../lib/Requests";
 import SeparateLine from "../ui/SeparateLine";
-import TestRoom_N2NButton from "./elements/TestRoom_N2NButton";
+import TestRoom_N2NButton from "./elements/buttons/TestRoom_N2NButton";
+import TestRoom_N2NAnswers from "./elements/TestRoom_N2NAnswers";
 
 class TestRoom extends Component {
     constructor(props) {
@@ -45,6 +46,8 @@ class TestRoom extends Component {
     }
 
     _answerButtons = (type, answers, active, test_id) => {
+
+        console.log(answers)
         switch (type) {
             case 'one':
                 return Object.entries(answers)
@@ -53,14 +56,7 @@ class TestRoom extends Component {
                 return Object.entries(answers)
                     .map(([key, value]) => <TestRoom_SomeButton test_id={test_id} id={key} key={key} active={active[key]}>{value}</TestRoom_SomeButton>)
             case 'n2n':
-                return [
-                    Object.entries(answers['up'])
-                        .map(([key, value]) =>
-                            <TestRoom_N2NButton test_id={test_id} pos={'up'} id={key} key={key} active={active[key]}>{value}</TestRoom_N2NButton>),
-                    Object.entries(answers['down'])
-                        .map(([key, value]) =>
-                            <TestRoom_N2NButton test_id={test_id} pos={'down'} id={key} key={key} active={active[key]}>{value}</TestRoom_N2NButton>)
-                    ]
+                return <TestRoom_N2NAnswers answers={answers} active={active} test_id={test_id} />
         }
     }
 

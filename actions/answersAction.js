@@ -5,7 +5,7 @@ import {n2nColors} from "../components/StyleConstants";
 import {first, second, isNull} from "../lib/MainHelper";
 
 const url = 'questions/set_answers'
-const colors = ['red', 'blue', 'yellow', 'green', 'brown', 'pink', 'light-blue', 'light-green']
+const colors = ['red', '#3039c1', 'yellow', 'green', 'brown', 'pink', 'light-blue', 'light-green']
 
 export const sendAnswers = (type, answers, test_id, question_number, callback = () => {
 }) => {
@@ -74,35 +74,37 @@ export const selectN2NBtn = (id, sect, answers_color_map) => dispatch => {
         const allColorsValues = () => Object.values(answers_color_map['up']).concat(Object.values(answers_color_map['down']))
         const hasTimes = (element, array) => array.filter(item => item === element).length
         const section = (key) => isNaN(key) ? 'up' : 'down'
+        const compareNumbers = (a, b) => a - b
 
-        // color without pair in reverse section
         const aloneColor = () => {
             const values = allColorsValues()
-            const filtered = first(allColorsEntries().filter(entry => hasTimes(second(entry), values) === 1))
+            const filtered = allColorsEntries().filter(entry => entry[1] && hasTimes(entry[1], values) === 1)[0]
 
+            // console.log(filtered)
             if (!filtered)
                 return null
 
-            return {key: first(filtered), color: second(filtered)}
+            return {color: filtered[1], key: filtered[0]}
         }
 
-        const arrayMiss = (array) => {
+        const missedColor = (array) => {
             if (array.length === 0)
                 return null
 
+            array = array.sort(compareNumbers)
+
             for (let index = 0; index < array.length; index++) {
-                const element = array[index];
+                const element = array[index]
 
                 if (element !== index)
                     return index
             }
         }
 
-        //we know that alone color not exists!
+//we know that alone color not exists!
         const actualColor = () => {
             let resIndex = -1;
             let indexBuffer = []
-
             allColorsValues().map(color => {
                 let colorIndex = colors.indexOf(color)
 
@@ -112,30 +114,35 @@ export const selectN2NBtn = (id, sect, answers_color_map) => dispatch => {
                 resIndex = colorIndex > resIndex ? colorIndex : resIndex
             })
 
-            const missedColorIndex = arrayMiss(indexBuffer)
+            const missedColorIndex = missedColor(indexBuffer)
 
-            if (!isNull(missedColorIndex))
+            if (Number.isInteger(missedColorIndex))
                 return colors[missedColorIndex]
 
-            return colors[++resIndex]
+            return colors[resIndex + 1]
         }
 
         const freeColor = (clickedSect) => {
             const aloneColour = aloneColor()
+
+            // console.log(aloneColour)
 
             if (!aloneColour)
                 return actualColor()
 
             const aloneColorSect = section(aloneColour.key)
 
-            if (aloneColorSect === clickedSect && aloneColour)
-                answers_color_map[aloneColorSect][aloneColour.key] = null
+            if (aloneColorSect === clickedSect)
+                if (aloneColour)
+                    answers_color_map[aloneColorSect][aloneColour.key] = null
 
-            return aloneColour
+            return aloneColour.color
         }
 
         answers_color_map[sect][id] = freeColor(sect)
     }
+
+    console.log(answers_color_map)
 
     dispatch({type: 'ANSWERS/N2N/SET_MAP', payload: answers_color_map})
 }

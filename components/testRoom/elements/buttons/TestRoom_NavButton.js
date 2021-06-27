@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet } from "react-native";
-import { fontBold, h3, secondaryColor } from '../../StyleConstants';
+import { fontBold, h3, secondaryColor } from '../../../StyleConstants';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 class TestRoom_NavButton extends Component {

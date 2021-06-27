@@ -14,18 +14,16 @@ class TestRoom_N2NButton extends Component {
     onClick = () => {
         if (!this.props.answersSendLoading) {
             this.setState({pressed: !this.state.pressed})
-            this.props.selectBtn(this.props.id, this.props.pos, this.props.colorMap)
+            this.props.onClick()
             this.props.storeAnswers('n2n', !this.props.active, this.props.id, this.props.test_id, this.props.question_number)
         }
     }
 
     render() {
-        const backgroundColor = this.props.colorMap[this.props.pos][this.props.id] ?? contrastColor;
-
         return (
             <View style={{marginTop: 15}}>
                 <TouchableWithoutFeedback onPress={() => this.onClick()}
-                                          style={{...styles.button, backgroundColor: backgroundColor}}>
+                                          style={{...styles.button, backgroundColor: this.props.backgroundColor ?? contrastColor}}>
                     <Text style={styles.button_text}>{this.props.children}</Text>
                 </TouchableWithoutFeedback>
             </View>

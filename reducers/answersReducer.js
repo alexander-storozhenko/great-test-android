@@ -33,8 +33,11 @@ export const answersSendProgress = (state = {}, action) => {
 }
 
 export const answersColorN2NMap = (state = {up:{},down:{}}, action) => {
-    if (action.type === 'ANSWERS/N2N/SET_MAP')
+    if (action.type === 'ANSWERS/N2N/SET_MAP') {
+        console.log(action.payload)
         return action.payload
 
+
+    }
     return state
 }

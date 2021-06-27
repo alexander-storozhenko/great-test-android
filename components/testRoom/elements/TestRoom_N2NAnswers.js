@@ -13,12 +13,19 @@ class TestRoom_N2NAnswers extends Component {
     }
 
     _buildColorMap = () => {
-        const map = {}
+        const map = {up:{}, down:{}}
         let startSymbol = 'A'.charCodeAt(0)
-        Object.entries(this.props.answers['up']).forEach(_ => map[String.fromCharCode(startSymbol++)] = null)
-        Object.entries(this.props.answers['down']).forEach((_, index) => map[index] = null)
+        Object.entries(this.props.answers['up']).forEach(_ => map['up'][String.fromCharCode(startSymbol++)] = null)
+        Object.entries(this.props.answers['down']).forEach((_, index) => map['down'][index] = null)
 
         this.props.setMap(map)
+
+        console.log('colorMap',this.props.colorMap)
+    }
+
+    onClickBtn = (id, pos, colorMap) => {
+        this.props.selectBtn(id, pos, colorMap)
+        this.forceUpdate()
     }
 
     componentDidMount() {
@@ -34,11 +41,15 @@ class TestRoom_N2NAnswers extends Component {
                 {[
                     Object.entries(this.props.answers['up'])
                         .map(([key, value]) =>
-                            <TestRoom_N2NButton test_id={this.props.test_id} pos={'up'} id={key} key={key}
+                            <TestRoom_N2NButton backgroundColor={this.props.colorMap['up'][key]}
+                                                onClick={() => this.onClickBtn(key, 'up', this.props.colorMap)}
+                                                test_id={this.props.test_id} pos={'up'} id={key} key={key}
                                                 active={this.props.active[key]}>{value}</TestRoom_N2NButton>),
                     Object.entries(this.props.answers['down'])
                         .map(([key, value]) =>
-                            <TestRoom_N2NButton test_id={this.props.test_id} pos={'down'} id={key} key={key}
+                            <TestRoom_N2NButton backgroundColor={this.props.colorMap['down'][key]}
+                                                test_id={this.props.test_id} pos={'down'} id={key} key={key}
+                                                onClick={() => this.onClickBtn(key, 'down', this.props.colorMap)}
                                                 active={this.props.active[key]}>{value}</TestRoom_N2NButton>)
                 ]}
             </View>
@@ -66,7 +77,9 @@ const styles = StyleSheet.create({
 
 export default connect(
     state => ({
+        colorMap: state.answersColorN2NMap,
     }),
     dispatch => ({
-        setMap: (answers_color_map) => ({type: 'ANSWERS/N2N/SET_MAP', payload: answers_color_map}),
+        selectBtn: (answer_id, pos, answers_color_map) => dispatch(selectN2NBtn(answer_id, pos, answers_color_map)),
+        setMap: (answers_color_map) => dispatch({type: 'ANSWERS/N2N/SET_MAP', payload: answers_color_map}),
     }))(TestRoom_N2NAnswers)

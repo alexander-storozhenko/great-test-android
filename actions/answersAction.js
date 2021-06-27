@@ -5,7 +5,7 @@ import {n2nColors} from "../components/StyleConstants";
 import {first, second, isNull} from "../lib/MainHelper";
 
 const url = 'questions/set_answers'
-const colors = ['red', '#3039c1', 'yellow', 'green', 'brown', 'pink', 'light-blue', 'light-green']
+const colors = ['#D30000', '#51884d', '#a98f3f', '#A9C635', '#E25A0D', '#964584', '#C79686', '#128555']
 
 export const sendAnswers = (type, answers, test_id, question_number, callback = () => {
 }) => {
@@ -67,6 +67,8 @@ export const storeUserAnswer = (type, value, answer_id, test_id, question_number
     }
  */
 export const selectN2NBtn = (id, sect, answers_color_map) => dispatch => {
+
+     console.log('MAP*********', answers_color_map )
     if (answers_color_map[sect][id])
         answers_color_map[sect][id] = null
     else {

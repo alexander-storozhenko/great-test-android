@@ -19,8 +19,6 @@ class TestRoom_N2NAnswers extends Component {
         Object.entries(this.props.answers['down']).forEach((_, index) => map['down'][index] = null)
 
         this.props.setMap(map)
-
-        console.log('colorMap',this.props.colorMap)
     }
 
     onClickBtn = (id, pos, colorMap) => {

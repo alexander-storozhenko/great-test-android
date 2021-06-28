@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View, StyleSheet, Dimensions, Text} from "react-native";
+import {View, StyleSheet, Dimensions, Text, ActivityIndicator} from "react-native";
 import {fontBold, h1, h2, h3, headerHeight, secondaryColor} from "../StyleConstants";
 import Header_Settings from "./elements/Header_Settings";
 import Header_Debug from "./elements/Header_Debug";
@@ -21,7 +21,8 @@ class Header extends Component {
                         <View style={styles.back_btn}>
                             <Header_BackButton/>
                         </View>  : null}
-                    <Text style={styles.text}>{this.props.content.text}</Text>
+                    {this.props.loading || !this.props.content.text ?  <Text style={styles.text}>...</Text> : <Text style={styles.text}>{this.props.content.text}</Text>  }
+
                 </View>
 
                 <View style={styles.settings_btn}>

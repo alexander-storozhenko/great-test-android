@@ -15,6 +15,9 @@ class TestPreviewRoom extends Component {
     }
 
     componentDidMount() {
+        this.props.navigation.addListener('focus', (e) => {
+            this.props.setHeader('...')
+        })
         this.props.resetQuestionNumber()
         this.props.onGetPreviewInfo(this.props.testTData.test_t_id)
     }
@@ -24,7 +27,8 @@ class TestPreviewRoom extends Component {
         const options = data?.options
 
         // need to get data before set title in header
-        this.props.setHeader(`${this.props.previewInfo?.data?.title}`)
+
+        this.props.setHeader(this.props.previewInfo?.data?.title)
 
         return (
             <View>
@@ -89,6 +93,6 @@ export default connect(
         onShowNavBar: (state) => dispatch(showNavBar(state)),
         onGetQuestion: (test_id, question_number) => dispatch(getQuestion(test_id, question_number)),
         resetQuestionNumber: () => dispatch(resetQuestionNumber()),
-        setHeader: (text, back = false) => dispatch({type: 'HEADER/SET', payload: {text: text, back: true}}),
+        setHeader: (text, loading = false, back = false) => dispatch({type: 'HEADER/SET', payload: {loading: loading, text: text, back: true}}),
     })
 )(TestPreviewRoom);

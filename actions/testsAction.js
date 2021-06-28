@@ -7,6 +7,7 @@ const preview_info_url = 'tests/preview_info'
 
 /**GET*/
 export const getPreviewInfo = (test_t_id) => dispatch => {
+    dispatch({type: 'TEST/GET_PREVIEW_INFO_SUCCESS', payload: null})
     dispatch({type: 'TEST/GET_PREVIEW_INFO_PROGRESS'})
 
     fetch(apiDomain + apiPath(preview_info_url, {test_t_id: test_t_id}))

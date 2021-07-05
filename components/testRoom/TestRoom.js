@@ -13,6 +13,8 @@ import SeparateLine from "../ui/SeparateLine";
 import TestRoom_N2NButton from "./elements/buttons/TestRoom_N2NButton";
 import TestRoom_N2NAnswers from "./elements/TestRoom_N2NAnswers";
 import {anySelectedAnswer, n2nColorMapToAnswers} from "../../lib/TestsHelper";
+import TestRoom_BigCountGrid from "./elements/grids/TestRoom_BigCountGrid";
+import TestRoom_2Grid from "./elements/grids/TestRoom_2Grid";
 
 class TestRoom extends Component {
     constructor(props) {
@@ -26,7 +28,7 @@ class TestRoom extends Component {
                 e.preventDefault()
         })
 
-        this.props.navigation.addListener('focus', (e) => {
+        this.props.navigation.addListener('focus', (_) => {
             this.props.setHeader(`${this.props.question_number}/${this.props.question_count}`)
         })
     }
@@ -34,17 +36,14 @@ class TestRoom extends Component {
     lastQuestion = () => (this.props.question_number >= this.props.question_count)
 
     onNextQuestion = () => {
-        let user_answers
         const question_number = this.props.question_number
         const test_id = this.props.route.params.test_id
 
         const question_type = this.props.questionData.question.data.data.answers_type.split(',')[0]
 
-        if (question_type === 'n2n') {
-            user_answers = n2nColorMapToAnswers(this.props.n2nColorMap)
-        } else {
-            user_answers = this.props.user_answers[question_number].data
-        }
+        const user_answers = question_type === 'n2n' ?
+            n2nColorMapToAnswers(this.props.n2nColorMap) :
+            this.props.user_answers[question_number].data
 
         if (this.lastQuestion())
             this.props.onSendAnswersAndGetTestResults(question_type, user_answers, test_id, question_number)
@@ -93,7 +92,12 @@ class TestRoom extends Component {
             question_type = questionData.data.answers_type.split(',')[0]
         }
 
-        const answers_buttons = this._answerButtons(question_type, answers, active, test_id)
+        const answerButtons = this._answerButtons(question_type, answers, active, test_id)
+
+        const resultAnswerButtons =
+            answerButtons.length > 2 ?
+                <TestRoom_BigCountGrid>{answerButtons}</TestRoom_BigCountGrid> :
+                <TestRoom_2Grid>{answerButtons}</TestRoom_2Grid>
 
         return (
             <View>
@@ -116,9 +120,9 @@ class TestRoom extends Component {
 
                             <View style={styles.answers_block}>
 
-                                <View style={{flexDirection: 'column', alignSelf: 'center'}}>
-                                    {answers_buttons}
-                                </View>
+                                {/*<View style={{flexDirection: 'column', alignSelf: 'center'}}>*/}
+                                    {resultAnswerButtons}
+                                {/*</View>*/}
                             </View>
                         </View>
                         <View style={{position: 'absolute', bottom: 50, width: '100%'}}>

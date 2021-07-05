@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet} from "react-native";
-import {checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../StyleConstants';
+import {checkedColor, contrastColor, fontBold, h2, lightColor, primaryColor} from '../../StyleConstants';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import TestRoom_N2NButton from "./buttons/TestRoom_N2NButton";
 import {selectN2NBtn, storeUserAnswer} from "../../../actions/answersAction";
+import TwoArrows from "../../svg/TwoArrows";
 
 class TestRoom_N2NAnswers extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class TestRoom_N2NAnswers extends Component {
     }
 
     _buildColorMap = () => {
-        const map = {up:{}, down:{}}
+        const map = {up: {}, down: {}}
         let startSymbol = 'A'.charCodeAt(0)
         Object.entries(this.props.answers['up']).forEach(_ => map['up'][String.fromCharCode(startSymbol++)] = null)
         Object.entries(this.props.answers['down']).forEach((_, index) => map['down'][index] = null)
@@ -36,20 +37,27 @@ class TestRoom_N2NAnswers extends Component {
 
         return (
             <View>
-                {[
+                {
                     Object.entries(this.props.answers['up'])
                         .map(([key, value]) =>
                             <TestRoom_N2NButton backgroundColor={this.props.colorMap['up'][key]}
                                                 onClick={() => this.onClickBtn(key, 'up', this.props.colorMap)}
                                                 test_id={this.props.test_id} pos={'up'} id={key} key={key}
-                                                active={this.props.active[key]}>{value}</TestRoom_N2NButton>),
+                                                active={this.props.active[key]}>{value}</TestRoom_N2NButton>)
+                }
+
+                <View style={{width: '100%', height: 20, alignItems: 'center'}}>
+                    <TwoArrows width={20} height={20} fill={lightColor}/>
+                </View>
+
+                {
                     Object.entries(this.props.answers['down'])
                         .map(([key, value]) =>
                             <TestRoom_N2NButton backgroundColor={this.props.colorMap['down'][key]}
                                                 test_id={this.props.test_id} pos={'down'} id={key} key={key}
                                                 onClick={() => this.onClickBtn(key, 'down', this.props.colorMap)}
                                                 active={this.props.active[key]}>{value}</TestRoom_N2NButton>)
-                ]}
+                }
             </View>
         );
     }

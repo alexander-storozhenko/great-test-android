@@ -77,3 +77,5 @@ export const mr_30 = {marginRight:30}
 //TODO refactor!
 export const firstColor = "#456712"
 export const secondColor = "#001112"
+
+export const answerBtnWidth = 150

@@ -16,6 +16,8 @@ import {anySelectedAnswer, n2nColorMapToAnswers} from "../../lib/TestsHelper";
 import TestRoom_BigCountGrid from "./elements/grids/TestRoom_BigCountGrid";
 import TestRoom_2Grid from "./elements/grids/TestRoom_2Grid";
 
+const TITLE_BREAK_LENGTH = 20
+
 class TestRoom extends Component {
     constructor(props) {
         super(props)
@@ -113,7 +115,16 @@ class TestRoom extends Component {
 
                             />
                         </View>
-                        <Text style={styles.title}>{title}</Text>
+
+                        <Text style={[styles.title,
+                            {
+                                textAlign: title.length > TITLE_BREAK_LENGTH ? null :'center',
+                                fontFamily: title.length > TITLE_BREAK_LENGTH ? fontRegular : fontBold,
+                            }
+                            ]}>
+                            {title}
+                        </Text>
+
                         {this.renderImageQuestion()}
 
                         <View style={styles.content}>

@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet} from "react-native";
-import {checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../../StyleConstants';
+import {answerBtnWidth, checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../../StyleConstants';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {storeUserAnswer} from "../../../../actions/answersAction";
+
+
+let textSize;
+const BREAK_LENGTH = 25
+const BIG_SIZE = 310
+const SMALL_SIZE = answerBtnWidth
 
 class TestRoom_OneButton extends Component {
     constructor(props) {
@@ -19,11 +25,13 @@ class TestRoom_OneButton extends Component {
     }
 
     render() {
+        textSize = this.props.children.length
+
         const backgroundColor = this.props.active ? checkedColor : contrastColor
         return (
-            <View style={{marginTop: 15}}>
+            <View>
                 <TouchableWithoutFeedback onPress={() => this.onClick()}
-                                          style={{...styles.button, backgroundColor: backgroundColor}}>
+                                          style={{...styles.button,       width: textSize > BREAK_LENGTH ? BIG_SIZE : SMALL_SIZE ,backgroundColor: backgroundColor}}>
                     <Text style={styles.button_text}>{this.props.children}</Text>
                 </TouchableWithoutFeedback>
             </View>
@@ -33,10 +41,10 @@ class TestRoom_OneButton extends Component {
 
 const styles = StyleSheet.create({
     button: {
-        width: 300,
-        minHeight: 60,
+        minHeight: 70,
         borderRadius: 10,
         elevation: 12,
+        padding:10,
         alignItems: 'center',
         justifyContent: 'center'
     },

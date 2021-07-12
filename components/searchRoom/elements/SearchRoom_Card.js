@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     card: {
         width: '100%',
         height: 40,
-        backgroundColor: 'red',
     },
     text_input: {
         fontFamily: fontMedium,

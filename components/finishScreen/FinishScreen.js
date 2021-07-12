@@ -16,6 +16,7 @@ class FinishScreen extends Component {
     }
 
     render() {
+        console.log(this.props.results)
         return (<View>
                 {
                     this.props.results ?

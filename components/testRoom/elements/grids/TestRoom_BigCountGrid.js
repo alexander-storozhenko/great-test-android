@@ -1,33 +1,35 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {connect} from 'react-redux';
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Dimensions} from "react-native";
+import {answerBtnWidth} from "../../../StyleConstants";
 
 /**
- * grid for >3 answers
+ * grid for >2 answers
  */
 
-const COLUMNS = 3
-
+const COLUMNS = 2
 const TestRoom_BigCountGrid = ({children}) => {
-    const result = []
-
-    children.forEach((_, index) => index === 0 || index % COLUMNS === 0 ?
-        result.push(<View style={styles.row}> {children.slice(index, index + COLUMNS)} </View>) : null)
+    const answers = children.map(answer => <View style={{margin: 5}}>{answer}</View>)
 
     return (
-        <View style={styles.container}>
-            {result}
+        <View style={[styles.container]}>
+            <View style={[styles.answers, {width: COLUMNS * (answerBtnWidth + 10)}]}>
+                {answers}
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    row: {
-        width: '100%',
+    answers: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
     },
     container: {
-        width: '100%',
-        flexDirection: 'column'
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+
     }
 
 })

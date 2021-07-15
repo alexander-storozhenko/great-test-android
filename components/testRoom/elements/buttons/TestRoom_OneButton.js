@@ -4,12 +4,9 @@ import {View, Text, StyleSheet} from "react-native";
 import {answerBtnWidth, checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../../StyleConstants';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {storeUserAnswer} from "../../../../actions/answersAction";
+import TestRoom_Button from "./TestRoom_Button";
 
 
-let textSize;
-const BREAK_LENGTH = 25
-const BIG_SIZE = 310
-const SMALL_SIZE = answerBtnWidth
 
 class TestRoom_OneButton extends Component {
     constructor(props) {
@@ -25,15 +22,14 @@ class TestRoom_OneButton extends Component {
     }
 
     render() {
-        textSize = this.props.children.length
-
-        const backgroundColor = this.props.active ? checkedColor : contrastColor
         return (
             <View>
-                <TouchableWithoutFeedback onPress={() => this.onClick()}
-                                          style={{...styles.button,       width: textSize > BREAK_LENGTH ? BIG_SIZE : SMALL_SIZE ,backgroundColor: backgroundColor}}>
-                    <Text style={styles.button_text}>{this.props.children}</Text>
-                </TouchableWithoutFeedback>
+                {/* children - text */}
+                <TestRoom_Button
+                    checked={this.props.active}
+                    text={this.props.children}
+                    image_url={this.props.image_url}
+                />
             </View>
         );
     }
@@ -44,7 +40,7 @@ const styles = StyleSheet.create({
         minHeight: 70,
         borderRadius: 10,
         elevation: 12,
-        padding:10,
+        padding: 10,
         alignItems: 'center',
         justifyContent: 'center'
     },

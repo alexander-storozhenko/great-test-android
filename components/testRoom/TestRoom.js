@@ -53,12 +53,14 @@ class TestRoom extends Component {
             this.props.onSendAnswersAndGetNextQuestion(question_type, user_answers, test_id, question_number)
     }
 
+    //TODO check test type
     _answerButtons = (type, answers, active, test_id) => {
         switch (type) {
             case 'one':
+
                 return Object.entries(answers)
                     .map(([key, value]) => <TestRoom_OneButton test_id={test_id} id={key} key={key}
-                                                               active={active[key]}>{value}</TestRoom_OneButton>)
+                                                               active={active[key]} image_url={} >{value}</TestRoom_OneButton>)
             case 'some':
                 return Object.entries(answers)
                     .map(([key, value]) => <TestRoom_SomeButton test_id={test_id} id={key} key={key}

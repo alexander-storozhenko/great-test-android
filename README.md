@@ -1,4 +1,4 @@
-# great-test-android
+# Readme
 
 # Start
 - `expo start`

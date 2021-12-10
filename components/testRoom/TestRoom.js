@@ -60,7 +60,7 @@ class TestRoom extends Component {
 
                 return Object.entries(answers)
                     .map(([key, value]) => <TestRoom_OneButton test_id={test_id} id={key} key={key}
-                                                               active={active[key]} image_url={} >{value}</TestRoom_OneButton>)
+                                                               active={active[key]} image_url="" >{value}</TestRoom_OneButton>)
             case 'some':
                 return Object.entries(answers)
                     .map(([key, value]) => <TestRoom_SomeButton test_id={test_id} id={key} key={key}

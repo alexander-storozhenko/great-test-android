@@ -84,14 +84,11 @@ class MainRoom extends Component {
                 <ScrollView style={{width: '100%',height: '100%'}} showsVerticalScrollIndicator={false} refreshControl={
                     <RefreshControl refreshing={this.props.loading} onRefresh={this.onRefresh}/>}>
                     <View style={{width: '100%',height: '100%'}}>
-
                         {this.items().map(r => r)}
-
                         {/* <MainRoom_MiniTest question="What time is it? " /> */}
                     </View>
                 </ScrollView>
             </SafeAreaView>
-
         );
     }
 }

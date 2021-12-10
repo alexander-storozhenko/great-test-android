@@ -26,9 +26,11 @@ class TestRoom_OneButton extends Component {
             <View>
                 {/* children - text */}
                 <TestRoom_Button
+                    type={this.props.image_url ? 'img' : 'text' }
                     checked={this.props.active}
                     text={this.props.children}
                     image_url={this.props.image_url}
+                    onClick={this.onClick}
                 />
             </View>
         );

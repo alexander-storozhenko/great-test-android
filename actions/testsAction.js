@@ -28,7 +28,6 @@ const delete_url = 'tests/delete'
 export const deleteTestT = (test_t_id) => dispatch => {
     dispatch({type: 'TEST/DELETE/PROGRESS', payload: {progress: true}})
 
-
     getAccessToken().then(token => {
         fetch(apiDomain + apiPath(delete_url + `/${test_t_id}`),
             {

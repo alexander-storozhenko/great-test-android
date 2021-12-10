@@ -9,6 +9,7 @@ export const loadRecommends = () => dispatch => {
     fetch(apiDomain + apiPath(url))
         .then(res => res.json())
         .then(result => {
+            console.log(result)
             dispatch({ type: 'RECOMMENDS_LOADING/SUCCESS', payload: result })
         })
 }

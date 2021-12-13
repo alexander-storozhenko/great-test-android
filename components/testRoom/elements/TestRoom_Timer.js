@@ -7,29 +7,29 @@ import {timeWithFormat} from "../../../lib/TimeHelper";
 class TestRoom_Timer extends Component {
     constructor(props) {
         super(props);
-        this.state = {time: 0}
-        this.interval = null
+        this.state = {time: 0};
+        this.interval = null;
     }
 
     componentWillUnmount() {
-        clearInterval(this.interval)
+        clearInterval(this.interval);
     }
 
     ticksStart = () => {
         this.interval = setInterval(() => {
             if (this.state.time === 1) {
-                this.props.onTimerExpire()
+                this.props.onTimerExpire();
                 return;
             }
 
-            const time = this.state.time - 1
-            this.setState({time: time})
+            const time = this.state.time - 1;
+            this.setState({time: time});
         }, 1000)
     }
 
     componentDidMount() {
-        this.setState({time: this.props.start_time})
-        this.ticksStart()
+        this.setState({time: this.props.start_time});
+        this.ticksStart();
     }
 
     render() {

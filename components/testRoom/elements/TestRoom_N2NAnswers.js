@@ -7,28 +7,36 @@ import TestRoom_N2NButton from "./buttons/TestRoom_N2NButton";
 import {selectN2NBtn, storeUserAnswer} from "../../../actions/answersAction";
 import TwoArrows from "../../svg/TwoArrows";
 
+
+/**
+ * TestRoom_N2NAnswers answer buttons 
+ * supported types: 
+ * - text
+ */
+
+//TODO rename to One2One
 class TestRoom_N2NAnswers extends Component {
     constructor(props) {
-        super(props)
-        this.state = {map: {}}
+        super(props);
+        this.state = {map: {}};
     }
 
     _buildColorMap = () => {
-        const map = {up: {}, down: {}}
-        let startSymbol = 'A'.charCodeAt(0)
-        Object.entries(this.props.answers['up']).forEach(_ => map['up'][String.fromCharCode(startSymbol++)] = null)
-        Object.entries(this.props.answers['down']).forEach((_, index) => map['down'][index] = null)
+        const map = {up: {}, down: {}};
+        let startSymbol = 'A'.charCodeAt(0);
+        Object.entries(this.props.answers['up']).forEach(_ => map['up'][String.fromCharCode(startSymbol++)] = null);
+        Object.entries(this.props.answers['down']).forEach((_, index) => map['down'][index] = null);
 
-        this.props.setMap(map)
+        this.props.setMap(map);
     }
 
     onClickBtn = (id, pos, colorMap) => {
-        this.props.selectBtn(id, pos, colorMap)
-        this.forceUpdate()
+        this.props.selectBtn(id, pos, colorMap);
+        this.forceUpdate();
     }
 
     componentDidMount() {
-        this._buildColorMap()
+        this.buildColorMap();
     }
 
     render() {

@@ -16,7 +16,6 @@ class TestRoom_Button extends Component {
         super(props)
     }
 
-
     render() {
         const textSize = this.props.text?.length
         const backgroundColor = this.props.checked ? checkedColor : contrastColor
@@ -24,14 +23,15 @@ class TestRoom_Button extends Component {
         if(this.props.type === 'text') {
             return (
                 <View>
-                    <TouchableWithoutFeedback onPress={() => this.props.onClick()}
-                                              style={
-                                                  {
-                                                      ...styles.button,
-                                                      width: textSize > BREAK_LENGTH ? BIG_SIZE : SMALL_SIZE,
-                                                      backgroundColor: backgroundColor
-                                                  }
-                                              }
+                    <TouchableWithoutFeedback 
+                    onPress={() => this.props.onClick()}
+                    style={
+                        {
+                            ...styles.button,
+                            width: textSize > BREAK_LENGTH ? BIG_SIZE : SMALL_SIZE,
+                            backgroundColor: backgroundColor
+                        }
+                    }
                     >
                     <Text style={styles.button_text}>{this.props.text}</Text>
                     </TouchableWithoutFeedback>

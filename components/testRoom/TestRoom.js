@@ -9,12 +9,20 @@ import {sendAnswersAndGetTestResults} from "../../actions/resultsAction";
 import TestRoom_Timer from "./elements/TestRoom_Timer";
 import TestRoom_SomeButton from "./elements/buttons/TestRoom_SomeButton";
 import {apiPath, rootPath} from "../../lib/Requests";
-import SeparateLine from "../ui/SeparateLine";
-import TestRoom_N2NButton from "./elements/buttons/TestRoom_N2NButton";
 import TestRoom_N2NAnswers from "./elements/TestRoom_N2NAnswers";
 import {anySelectedAnswer, n2nColorMapToAnswers} from "../../lib/TestsHelper";
 import TestRoom_BigCountGrid from "./elements/grids/TestRoom_BigCountGrid";
 import TestRoom_2Grid from "./elements/grids/TestRoom_2Grid";
+
+
+/**
+ * 
+ * TestRoom use for 
+ * 1. containing: title, subtitle, title image, answers 
+ * 2. redirecting to next question
+ * 3. containing: timer
+ * 
+ */
 
 const TITLE_BREAK_LENGTH = 20
 
@@ -27,7 +35,7 @@ class TestRoom extends Component {
     componentDidMount() {
         this.props.navigation.addListener('beforeRemove', (e) => {
             if (e.data.action.type === 'GO_BACK')
-                e.preventDefault()
+                e.preventDefault();
         })
 
         this.props.navigation.addListener('focus', (_) => {
@@ -38,10 +46,9 @@ class TestRoom extends Component {
     lastQuestion = () => (this.props.question_number >= this.props.question_count)
 
     onNextQuestion = () => {
-        const question_number = this.props.question_number
-        const test_id = this.props.route.params.test_id
-
-        const question_type = this.props.questionData.question.data.data.answers_type.split(',')[0]
+        const question_number = this.props.question_number;
+        const test_id = this.props.route.params.test_id;
+        const question_type = this.props.questionData.question.data.data.answers_type.split(',')[0];
 
         const user_answers = question_type === 'n2n' ?
             n2nColorMapToAnswers(this.props.n2nColorMap) :
@@ -53,14 +60,12 @@ class TestRoom extends Component {
             this.props.onSendAnswersAndGetNextQuestion(question_type, user_answers, test_id, question_number)
     }
 
-    //TODO check test type
-    _answerButtons = (type, answers, active, test_id) => {
+    answerButtons = (type, answers, active, test_id, image_url) => {
         switch (type) {
             case 'one':
-
                 return Object.entries(answers)
                     .map(([key, value]) => <TestRoom_OneButton test_id={test_id} id={key} key={key}
-                                                               active={active[key]} image_url={} >{value}</TestRoom_OneButton>)
+                                                               active={active[key]} image_url={image_url}>{value}</TestRoom_OneButton>)
             case 'some':
                 return Object.entries(answers)
                     .map(([key, value]) => <TestRoom_SomeButton test_id={test_id} id={key} key={key}
@@ -71,7 +76,8 @@ class TestRoom extends Component {
     }
 
     renderImageQuestion = () => {
-        const image_url = this.props.questionData.title_image_url
+        const image_url = this.props.questionData.title_image_url;
+
         if (image_url) {
             return (
                 <View style={{width: '100%', height: 200, borderRadius: borderRadius}}>
@@ -96,7 +102,7 @@ class TestRoom extends Component {
             question_type = questionData.data.answers_type.split(',')[0]
         }
 
-        const answerButtons = this._answerButtons(question_type, answers, active, test_id)
+        const answerButtons = this.answerButtons(question_type, answers, active, test_id)
 
         const resultAnswerButtons =
             answerButtons.length > 2 ?
@@ -130,7 +136,6 @@ class TestRoom extends Component {
                         {this.renderImageQuestion()}
 
                         <View style={styles.content}>
-
                             <View style={styles.answers_block}>
 
                                 {/*<View style={{flexDirection: 'column', alignSelf: 'center'}}>*/}

@@ -5,21 +5,30 @@ import {checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../../
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {storeUserAnswer} from "../../../../actions/answersAction";
 
+
+/**
+* TestRoom_SomeButton use for question with type "some"
+* answers types supported:
+* - text
+* - image
+*/
+
 class TestRoom_SomeButton extends Component {
     constructor(props) {
-        super(props)
-        this.state = {pressed: false}
+        super(props);
+        this.state = {pressed: false};
     }
 
     onClick = () => {
         if (!this.props.answersSendLoading) {
-            this.setState({pressed: !this.state.pressed})
-            this.props.storeAnswers('some', !this.state.pressed, this.props.id, this.props.test_id, this.props.question_number)
+            this.setState({pressed: !this.state.pressed});
+            this.props.storeAnswers('some', !this.state.pressed, this.props.id, this.props.test_id, this.props.question_number);
         }
     }
 
     render() {
-        const backgroundColor = this.state.pressed ? checkedColor : '#efd4a7'
+        const backgroundColor = this.state.pressed ? checkedColor : '#efd4a7';
+
         return (
             <View style={{marginTop: 15}}>
                 <TouchableWithoutFeedback onPress={() => this.onClick()}

@@ -15,6 +15,11 @@ import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 import {sendAnswers} from '../../../../actions/answersAction';
 import {decreaseQuestionNumber, getQuestion, increaseQuestionNumber} from '../../../../actions/questionsAction';
 
+/**
+ * TestRoom_NavNextButton send to next question ot to result
+ */
+
+//TODO encapsulate method onNextQuestion to this class
 class TestRoom_NavNextButton extends Component {
     constructor(props) {
         super(props)

@@ -7,17 +7,16 @@ import {storeUserAnswer} from "../../../../actions/answersAction";
 import TestRoom_Button from "./TestRoom_Button";
 
 
-
 class TestRoom_OneButton extends Component {
     constructor(props) {
-        super(props)
-        this.state = {pressed: false}
+        super(props);
+        this.state = {pressed: false};
     }
 
     onClick = () => {
         if (!this.props.answersSendLoading) {
-            this.setState({pressed: !this.state.pressed})
-            this.props.storeAnswers('one', !this.props.active, this.props.id, this.props.test_id, this.props.question_number)
+            this.setState({pressed: !this.state.pressed});
+            this.props.storeAnswers('one', !this.props.active, this.props.id, this.props.test_id, this.props.question_number);
         }
     }
 
@@ -26,9 +25,11 @@ class TestRoom_OneButton extends Component {
             <View>
                 {/* children - text */}
                 <TestRoom_Button
+                    type={this.props.image_url ? 'img' : 'text' }
                     checked={this.props.active}
                     text={this.props.children}
                     image_url={this.props.image_url}
+                    onClick={this.onClick}
                 />
             </View>
         );

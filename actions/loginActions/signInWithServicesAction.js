@@ -36,7 +36,7 @@ const _putGoogleUserData = (result, dispatch) => {
             ),
             headers: defaultHeaders
         })
-        .then(res =>res.json())
+        .then(res =>{return res.json()})
         .then(result => {
             if (result.access_token) {
                 dispatch({type: 'LOGIN/SIGN_IN/SUCCESS', payload: result})

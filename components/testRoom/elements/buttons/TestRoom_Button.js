@@ -4,7 +4,7 @@ import {View, Text, StyleSheet} from "react-native";
 import {answerBtnWidth, checkedColor, contrastColor, fontBold, h2, primaryColor} from '../../../StyleConstants';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {selectN2NBtn, storeUserAnswer} from "../../../../actions/answersAction";
-import {ImageBackground} from "react-native-web";
+import {ImageBackground} from "react-native";
 import {rootPath} from "../../../../lib/Requests";
 
 const BREAK_LENGTH = 25
@@ -17,23 +17,23 @@ class TestRoom_Button extends Component {
     }
 
     render() {
-        const textSize = this.props.children.text?.length
+        const textSize = this.props.text?.length
         const backgroundColor = this.props.checked ? checkedColor : contrastColor
 
         if(this.props.type === 'text') {
             return (
                 <View>
-                    <TouchableWithoutFeedback onPress={() => this.onClick()}
-                                              style={
-                                                  {
-                                                      ...styles.button,
-                                                      width: textSize > BREAK_LENGTH ? BIG_SIZE : SMALL_SIZE,
-                                                      backgroundColor: backgroundColor
-                                                  }
-                                              }
+                    <TouchableWithoutFeedback 
+                    onPress={() => this.props.onClick()}
+                    style={
+                        {
+                            ...styles.button,
+                            width: textSize > BREAK_LENGTH ? BIG_SIZE : SMALL_SIZE,
+                            backgroundColor: backgroundColor
+                        }
+                    }
                     >
-                        <ImageBackground source={{uri: rootPath(this.props.image_url ) }}/>
-                        <Text style={styles.button_text}>{this.props.text}</Text>
+                    <Text style={styles.button_text}>{this.props.text}</Text>
                     </TouchableWithoutFeedback>
                 </View>
             )

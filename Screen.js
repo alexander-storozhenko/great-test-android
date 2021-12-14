@@ -123,7 +123,7 @@ function TabNavigator() {
 function Screen(props) {
     return (
         <View style={styles.container}>
-            <Header/>
+             <Header/>
             <NavigationContainer theme={navTheme}>
                 <Stack.Navigator initialRouteName="Home">
 
@@ -131,10 +131,9 @@ function Screen(props) {
                     <Stack.Screen options={slideAnimation}  name="TestPreview" component={StackTestNavigator}/>
 
                 </Stack.Navigator>
-            </NavigationContainer>
-            <StatusBar style="dark"/>
+            </NavigationContainer> 
+            <StatusBar style="dark"/> 
         </View>
-
     );
 }
 

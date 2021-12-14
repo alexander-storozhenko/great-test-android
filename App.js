@@ -11,7 +11,7 @@ import Screen from './Screen'
 import {setLocale} from "./lib/locale/locale";
 // import NotificationService from "./lib/NotificationService";
 import * as NotificationService  from './lib/NotificationService'
-import {getData, storeData} from "./lib/AsyncStorageHelper";
+// import {getData, storeData} from "./lib/AsyncStorageHelper";
 import * as WebSocketConnectionService from "./lib/WebSocketConnectionService";
 
 const navTheme = DefaultTheme;
@@ -30,14 +30,14 @@ export default function App(_) {
         [fontRegular]: require('./assets/fonts/Nunito-Regular.ttf'),
     });
 
-    console.disableYellowBox = true;
+    // console.disableYellowBox = true;
 
     setLocale('en')
 
-    if (!fontsLoaded) return <AppLoading />;
+    // if (!fontsLoaded) return <AppLoading />;
 
     return (
-        <Provider store={store} >
+        <Provider store={store}>
             <Screen/>
         </Provider>
     );
